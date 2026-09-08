@@ -16,9 +16,11 @@
                 { id: 'contacto-cta', label: 'Contacto & Cita', num: '04' }
             ],
             scrollToSection(id) {
-                const el = document.getElementById(id);
-                if (el) {
-                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (window.scrollToFarfoSection) {
+                    window.scrollToFarfoSection(id);
+                } else {
+                    const el = document.getElementById(id);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
             },
             init() {
@@ -28,7 +30,7 @@
                             this.activeSection = entry.target.id;
                         }
                     });
-                }, { threshold: 0.3 });
+                }, { threshold: 0.25 });
 
                 this.sections.forEach(s => {
                     const el = document.getElementById(s.id);
@@ -297,7 +299,7 @@
                 });
             }
         }"
-        class="snap-section py-8 sm:py-10 lg:py-12 min-h-screen flex items-center bg-surface relative overflow-hidden border-t border-border/40"
+        class="py-24 sm:py-28 lg:py-36 min-h-screen flex items-center bg-surface relative overflow-hidden border-t border-border/40"
     >
         {{-- Radial Background Ambience --}}
         <div 
@@ -754,7 +756,7 @@
                 });
             }
         }"
-        class="snap-section py-8 sm:py-10 lg:py-12 min-h-screen flex items-center bg-background relative overflow-hidden border-t border-border/40"
+        class="py-24 sm:py-28 lg:py-36 min-h-screen flex items-center bg-background relative overflow-hidden border-t border-border/40"
     >
         {{-- Background Ambience --}}
         <div 
@@ -1130,7 +1132,7 @@
                 obs.observe(this.$el);
             }
         }"
-        class="snap-section scroll-mt-20 py-24 sm:py-28 bg-surface relative overflow-hidden border-t border-border/50"
+        class="py-24 sm:py-28 lg:py-36 bg-surface relative overflow-hidden border-t border-border/50"
     >
         {{-- Background Ambience Glow --}}
         <div class="absolute -top-1/2 right-0 w-[500px] h-[500px] rounded-full bg-accent/5 blur-[140px] pointer-events-none"></div>
@@ -1297,6 +1299,56 @@
 
 @push('scripts')
 <script>
+    // Global Helper: Smoothly scroll to the exact vertical center of a section's content
+    window.scrollToFarfoSection = function(id) {
+        if (id === 'hero-section') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+        const section = document.getElementById(id);
+        if (!section) return;
+
+        // Find the inner grid or container inside the section
+        const content = section.querySelector('.grid') || section.querySelector('.container') || section;
+        const rect = content.getBoundingClientRect();
+        const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Exactly center the content in the viewport:
+        const targetY = currentScrollY + rect.top + (rect.height / 2) - (window.innerHeight / 2);
+
+        window.scrollTo({
+            top: Math.max(0, Math.round(targetY)),
+            behavior: 'smooth'
+        });
+    };
+
+    // Smooth scroll for internal anchor links (like #ritual or #proceso)
+    document.addEventListener('click', function(e) {
+        const anchor = e.target.closest('a[href^="#"], a[href*="#ritual"], a[href*="#proceso"], a[href*="#contacto-cta"]');
+        if (anchor) {
+            const href = anchor.getAttribute('href');
+            const hashIdx = href.indexOf('#');
+            if (hashIdx !== -1) {
+                const id = href.substring(hashIdx + 1);
+                if (id && document.getElementById(id)) {
+                    e.preventDefault();
+                    window.scrollToFarfoSection(id);
+                    history.pushState(null, null, '#' + id);
+                }
+            }
+        }
+    });
+
+    // On initial page load if hash exists, center that section
+    if (window.location.hash) {
+        const hashId = window.location.hash.substring(1);
+        setTimeout(() => {
+            if (document.getElementById(hashId)) {
+                window.scrollToFarfoSection(hashId);
+            }
+        }, 250);
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         // 1. GSAP Entrance Animations
         if (window.gsap) {
