@@ -425,7 +425,7 @@
                                 </div>
 
                                 {{-- Capsule Integrated Footer: 4-Reel Switcher Tabs --}}
-                                <div class="p-2 sm:p-2.5 bg-black/95 border-t border-white/10 z-20">
+                                <div class="px-3 pt-2.5 sm:pt-3 pb-4 sm:pb-5 bg-black/95 border-t border-white/10 z-20">
                                     {{-- 4 Reels Tabs (Antes & Después, Sesión en Vivo, Cover Up Épico, Primer Lugar Fest) --}}
                                     <div class="grid grid-cols-4 gap-1 sm:gap-1.5">
                                         <template x-for="(reel, rIndex) in reels" :key="rIndex">
@@ -468,6 +468,7 @@
                     badge: 'TRAZO & ESTRUCTURA',
                     title: 'Trazado Estructural de Líneas Sólidas',
                     short: '01. Líneas Guía',
+                    sub: 'Líneas Guía',
                     tag: 'Precisión Rotativa',
                     featured: false,
                     mediaType: 'video',
@@ -486,6 +487,7 @@
                     badge: 'PREPARACIÓN & ANATOMÍA',
                     title: 'Calco y Adaptación Anatómica',
                     short: '02. Calco en Piel',
+                    sub: 'Calco en Piel',
                     tag: 'Transfer Stencil',
                     featured: false,
                     mediaType: 'video',
@@ -504,6 +506,7 @@
                     badge: 'BIOSEGURIDAD & PIGMENTOS',
                     title: 'Asepsia Clínica y Pigmentos Sellados',
                     short: '03. Asepsia & Tintas',
+                    sub: 'Asepsia & Tintas',
                     tag: 'Grado Médico',
                     featured: false,
                     mediaType: 'video',
@@ -522,6 +525,7 @@
                     badge: 'VOLUMEN & PROFUNDIDAD',
                     title: 'Sombreado y Textura Tridimensional',
                     short: '04. Sombras & Relieve',
+                    sub: 'Sombras',
                     tag: 'Black & Grey Base',
                     featured: false,
                     mediaType: 'video',
@@ -540,6 +544,7 @@
                     badge: 'SATURACIÓN VIVA',
                     title: 'Saturación de Color: El Dragón Sagrado',
                     short: '05. Color Shenlong ★',
+                    sub: 'Color Shenlong',
                     tag: 'Full Color',
                     featured: true,
                     mediaType: 'video',
@@ -558,6 +563,7 @@
                     badge: 'OBRA CULMINADA',
                     title: 'Resultado Final y Protocolo Post-Cuidado',
                     short: '06. Pieza Final',
+                    sub: 'Pieza Final',
                     tag: 'Masterpiece',
                     featured: false,
                     mediaType: 'image',
@@ -883,19 +889,20 @@
                                 </div>
 
                                 {{-- Capsule Integrated Footer: 6-Step Switcher Tabs + Action Button --}}
-                                <div class="p-2 sm:p-2.5 bg-black/95 border-t border-white/10 z-20 space-y-2">
-                                    {{-- 6-Step Switcher Tabs --}}
-                                    <div class="grid grid-cols-6 gap-1.5">
+                                <div class="px-3 pt-3 pb-4 sm:pb-5 bg-black/95 border-t border-white/10 z-20 space-y-2.5">
+                                    {{-- 6-Step Switcher Tabs with Number & Subtitle Label --}}
+                                    <div class="grid grid-cols-6 gap-1 sm:gap-1.5">
                                         <template x-for="(step, sIdx) in steps" :key="sIdx">
                                             <button
                                                 @click="selectStep(sIdx)"
                                                 :class="activeStep === sIdx 
-                                                    ? 'bg-accent/20 border-accent text-accent font-bold shadow-[0_0_8px_rgba(212,175,55,0.25)] scale-105' 
-                                                    : 'bg-card/70 border-border/70 text-muted hover:border-accent/40 hover:text-foreground'"
-                                                class="py-2 px-0.5 border text-center text-[9px] uppercase font-mono font-bold tracking-wider transition-all rounded flex flex-col items-center justify-center gap-0.5 focus:outline-none cursor-pointer hover:border-accent hover:text-accent hover:scale-105 active:scale-95 select-none"
+                                                    ? 'bg-accent/20 border-accent text-accent font-bold shadow-[0_0_10px_rgba(212,175,55,0.3)] scale-[1.02]' 
+                                                    : 'bg-card/75 border-border/70 text-muted hover:border-accent/50 hover:text-foreground'"
+                                                class="py-2 px-0.5 border text-center transition-all rounded-md flex flex-col items-center justify-center gap-0.5 focus:outline-none cursor-pointer hover:border-accent hover:text-accent hover:scale-[1.02] active:scale-95 select-none"
                                                 :title="step.title"
                                             >
-                                                <span class="font-bold" x-text="'0' + (sIdx + 1)"></span>
+                                                <span class="font-mono font-black text-[11px] sm:text-xs" :class="activeStep === sIdx ? 'text-accent' : 'text-foreground/90'" x-text="'0' + (sIdx + 1)"></span>
+                                                <span class="text-[7px] sm:text-[7.5px] leading-tight font-sans font-bold uppercase tracking-tight text-center truncate max-w-full px-0.5" :class="activeStep === sIdx ? 'text-accent' : 'text-muted'" x-text="step.sub"></span>
                                             </button>
                                         </template>
                                     </div>
@@ -1297,7 +1304,7 @@
                                 </div>
 
                                 {{-- Capsule Integrated Footer --}}
-                                <div class="px-4 py-3 bg-black/95 border-t border-white/10 z-20 flex items-center justify-between text-[10px] text-muted font-mono uppercase tracking-wider">
+                                <div class="px-4 pt-3.5 pb-4 sm:pb-5 bg-black/95 border-t border-white/10 z-20 flex items-center justify-between text-[10px] sm:text-[10.5px] text-muted font-mono uppercase tracking-wider">
                                     <div class="flex items-center gap-2">
                                         <span class="relative flex h-2 w-2">
                                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
