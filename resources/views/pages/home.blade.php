@@ -207,54 +207,82 @@
         ></div>
 
         <div class="container mx-auto px-6 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
                 
-                {{-- Left Column: Story, Philosophy & Controls (5 cols) --}}
-                <div class="lg:col-span-5 space-y-8">
+                {{-- Left Column (7 cols on desktop): Story, Philosophy & Encapsulated Technical Console --}}
+                <div class="lg:col-span-7 space-y-7">
+                    
                     {{-- Section Badge --}}
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/10">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/25 bg-accent/10">
                         <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent"></i>
                         <span class="text-accent uppercase tracking-[0.35em] text-[10px] font-black">Filosofía & Trayectoria</span>
                     </div>
 
                     {{-- Section Title --}}
-                    <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif font-black uppercase tracking-tighter leading-[0.95]">
-                        El Ritual de las <span class="text-accent italic">Imágenes</span>, <br />
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-serif font-black uppercase tracking-tight leading-[1.05]">
+                        El Ritual de las <span class="text-accent italic">Imágenes</span>, <br class="hidden sm:inline" />
                         Historias en tu <span class="text-accent italic">Piel</span>.
                     </h2>
 
                     {{-- Description --}}
-                    <p class="text-muted leading-relaxed uppercase tracking-[0.16em] text-xs font-semibold max-w-xl">
+                    <p class="text-muted leading-relaxed uppercase tracking-[0.14em] text-xs font-semibold max-w-2xl">
                         Sebastián, El Farfo, combina su formación académica con la maestría del tatuaje moderno. Cada diseño es un diálogo consciente sobre un soporte vivo, transformando memorias, tributos y pasiones en obras imperecederas.
                     </p>
 
-                    {{-- Interactive Spec Switcher Pills --}}
-                    <div class="pt-2 space-y-3">
-                        <div class="text-[10px] uppercase tracking-[0.25em] text-accent font-black flex items-center gap-2">
-                            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
-                            Pilares de Excelencia Técnica
+                    {{-- Encapsulated Technical Excellence Console --}}
+                    <div class="bg-card/85 border border-border/80 rounded-2xl p-5 sm:p-6 backdrop-blur-xl relative overflow-hidden shadow-xl space-y-4">
+                        
+                        {{-- Top Header / Capsule Bar --}}
+                        <div class="flex items-center justify-between border-b border-border/50 pb-3">
+                            <div class="flex items-center gap-2 text-accent font-black text-[10px] uppercase tracking-[0.25em]">
+                                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                                <span>Pilares de Excelencia Técnica</span>
+                            </div>
+                            <span class="text-[10px] font-mono uppercase tracking-widest text-muted">
+                                Pilar 0<span x-text="activeIndex + 1"></span> / 04
+                            </span>
                         </div>
-                        <div class="grid grid-cols-2 gap-2.5">
+
+                        {{-- 4-Pill Segmented Selector Tabs --}}
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
                             <template x-for="(spec, i) in specs" :key="i">
                                 <button
                                     @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })"
                                     :class="activeIndex === i 
-                                        ? 'bg-accent text-accent-foreground border-accent font-black shadow-[0_0_15px_rgba(212,175,55,0.25)]' 
-                                        : 'bg-card/70 text-foreground/70 border-border hover:border-accent/40 hover:text-foreground'"
-                                    class="p-3 border text-left flex items-center gap-2.5 text-xs uppercase tracking-wider transition-all duration-300 focus:outline-none"
+                                        ? 'bg-accent text-accent-foreground border-accent font-black shadow-[0_0_15px_rgba(212,175,55,0.3)]' 
+                                        : 'bg-surface/80 text-foreground/70 border-border/70 hover:border-accent/40 hover:text-foreground'"
+                                    class="p-2.5 rounded-lg border text-left flex items-center gap-2 text-[10px] uppercase tracking-wider transition-all duration-300 focus:outline-none"
                                 >
-                                    <i :data-lucide="spec.icon" class="w-4 h-4 shrink-0"></i>
-                                    <span class="truncate text-[11px] font-bold" x-text="spec.title"></span>
+                                    <i :data-lucide="spec.icon" class="w-3.5 h-3.5 shrink-0"></i>
+                                    <span class="truncate font-bold" x-text="spec.title"></span>
                                 </button>
                             </template>
+                        </div>
+
+                        {{-- Active Pillar Content Box --}}
+                        <div class="bg-surface/60 rounded-xl p-4 border border-border/50 transition-all duration-300">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-accent text-[9px] uppercase tracking-[0.25em] font-black" x-text="specs[activeIndex].category"></span>
+                                <div class="flex items-center gap-1">
+                                    <template x-for="(s, i) in specs" :key="i">
+                                        <button 
+                                            @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })" 
+                                            :class="i === activeIndex ? 'w-6 bg-accent' : 'w-2 bg-border hover:bg-muted'"
+                                            class="h-1 rounded-full transition-all duration-300 focus:outline-none"
+                                        ></button>
+                                    </template>
+                                </div>
+                            </div>
+                            <h4 x-text="specs[activeIndex].title" class="font-serif font-black text-xl uppercase tracking-tight text-foreground mb-1"></h4>
+                            <p x-text="specs[activeIndex].description" class="text-xs text-muted uppercase tracking-[0.12em] leading-relaxed font-semibold"></p>
                         </div>
                     </div>
 
                     {{-- Action Buttons --}}
-                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <div class="flex flex-col sm:flex-row gap-4 pt-1">
                         <a 
                             href="{{ route('portfolio') }}" 
-                            class="group relative px-8 py-4 bg-accent text-accent-foreground text-xs uppercase font-black tracking-[0.25em] overflow-hidden transition-all hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] text-center"
+                            class="group relative px-8 py-3.5 bg-accent text-accent-foreground text-xs uppercase font-black tracking-[0.25em] overflow-hidden transition-all hover:shadow-[0_0_25px_rgba(212,175,55,0.35)] text-center rounded-sm"
                         >
                             <span class="relative z-10 flex items-center justify-center gap-2">
                                 Ver Portafolio 
@@ -264,7 +292,7 @@
                         </a>
                         <a 
                             href="{{ route('about') }}" 
-                            class="group px-8 py-4 border border-border text-foreground text-xs uppercase font-black tracking-[0.25em] hover:border-accent transition-all duration-500 text-center"
+                            class="group px-8 py-3.5 border border-border text-foreground text-xs uppercase font-black tracking-[0.25em] hover:border-accent hover:text-accent transition-all duration-500 text-center rounded-sm"
                         >
                             <span class="flex items-center justify-center gap-2">
                                 Sobre Mí 
@@ -274,153 +302,119 @@
                     </div>
                 </div>
 
-                {{-- Right Column (7 cols): Interactive Video Reel Slider + Rotating Pillar Card --}}
-                <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-                    
-                    {{-- 1. Video Reels Slider Card (7 cols of 12) --}}
-                    <div class="md:col-span-7 flex flex-col space-y-3">
-                        <div class="relative aspect-[9/16] bg-card border border-border/80 overflow-hidden shadow-2xl group flex items-center justify-center">
+                {{-- Right Column (5 cols on desktop): Encapsulated Studio Reel Showcase with Brand Wave Border --}}
+                <div class="lg:col-span-5 flex justify-center items-center">
+                    <div class="w-full max-w-[320px] sm:max-w-[340px] relative">
+                        
+                        {{-- Ambient Brand Golden Wave Breathing in Background --}}
+                        <div class="absolute -inset-3 bg-gradient-to-tr from-accent/25 via-accent/40 to-accent/15 rounded-[34px] blur-2xl opacity-60 animate-gold-wave pointer-events-none"></div>
+
+                        {{-- Encapsulated Luxury Frame with Animated Golden Border Wave --}}
+                        <div class="relative p-[2px] rounded-[30px] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.95)] border border-accent/40">
                             
-                            {{-- Top Live Badge --}}
-                            <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
-                                <span class="bg-black/85 backdrop-blur-md border border-accent/40 text-accent px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] font-black flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
-                                    <span x-text="reels[activeReel].tag"></span>
-                                </span>
-                            </div>
+                            {{-- Rotating Golden Conic Wave (Subtle Moving Wave in Farfo Brand Color) --}}
+                            <div class="absolute -inset-[150%] bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,transparent_75deg,rgba(212,175,55,0.1)_105deg,rgba(212,175,55,0.95)_135deg,rgba(255,245,190,1)_150deg,rgba(212,175,55,0.95)_165deg,rgba(212,175,55,0.1)_195deg,transparent_225deg)] animate-spin-slow pointer-events-none"></div>
 
-                            {{-- Top Right Instagram Handle & Slide Counter --}}
-                            <a 
-                                :href="reels[activeReel].instagram"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="absolute top-4 right-4 z-20 bg-black/85 backdrop-blur-md border border-white/10 text-muted hover:text-accent px-2.5 py-1 text-[10px] font-mono tracking-wider transition-colors flex items-center gap-1"
-                                title="Ver en Instagram"
-                            >
-                                <span class="text-accent font-bold" x-text="'0' + (activeReel + 1) + '/0' + reels.length"></span>
-                                <i data-lucide="instagram" class="w-3 h-3 ml-1"></i>
-                            </a>
+                            {{-- Inner Studio Chassis --}}
+                            <div class="relative bg-black rounded-[28px] overflow-hidden flex flex-col border border-white/5">
+                                
+                                {{-- Studio Capsule Header Bar --}}
+                                <div class="px-4 py-3 bg-black/90 backdrop-blur-md border-b border-white/10 flex items-center justify-between z-20">
+                                    <div class="flex items-center gap-2">
+                                        <span class="relative flex h-2 w-2">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                                        </span>
+                                        <span class="text-[10px] uppercase tracking-[0.2em] font-black text-accent truncate" x-text="reels[activeReel].tag"></span>
+                                    </div>
 
-                            {{-- Active Video Reel --}}
-                            <video
-                                x-ref="ritualVideo"
-                                :src="reels[activeReel].video"
-                                :poster="reels[activeReel].poster"
-                                autoplay
-                                muted
-                                loop
-                                playsinline
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                            ></video>
-
-                            {{-- Slider Navigation Arrows Overlay --}}
-                            <button
-                                @click="prevReel()"
-                                class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/80 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md shadow-lg transition-all focus:outline-none"
-                                title="Video Anterior"
-                            >
-                                <i data-lucide="chevron-left" class="w-5 h-5"></i>
-                            </button>
-
-                            <button
-                                @click="nextReel()"
-                                class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/80 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md shadow-lg transition-all focus:outline-none"
-                                title="Siguiente Video"
-                            >
-                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
-                            </button>
-
-                            {{-- Play/Pause Overlay Button --}}
-                            <button
-                                @click="toggleRitualVideo()"
-                                class="absolute bottom-4 right-4 z-20 w-10 h-10 rounded-full bg-black/85 border border-accent/40 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none"
-                                :title="videoPlaying ? 'Pausar Video' : 'Reproducir Video'"
-                            >
-                                <i :data-lucide="videoPlaying ? 'pause' : 'play'" class="w-4 h-4"></i>
-                            </button>
-
-                            {{-- Bottom Left Video Title Tag --}}
-                            <div class="absolute bottom-4 left-4 z-20 max-w-[70%] bg-black/85 backdrop-blur-sm border border-white/10 px-3 py-1.5 text-[10px] uppercase tracking-wider text-foreground/90 font-bold flex items-center gap-1.5">
-                                <i data-lucide="video" class="w-3 h-3 text-accent shrink-0"></i>
-                                <span class="truncate" x-text="reels[activeReel].title"></span>
-                            </div>
-
-                            {{-- Corner Gold Accents --}}
-                            <div class="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 border-accent pointer-events-none z-30"></div>
-                            <div class="absolute -bottom-1 -right-1 w-5 h-5 border-b-2 border-r-2 border-accent pointer-events-none z-30"></div>
-                        </div>
-
-                        {{-- Reel Switcher Tabs Below Video Player --}}
-                        <div class="grid grid-cols-3 gap-1.5 sm:gap-2">
-                            <template x-for="(reel, rIndex) in reels" :key="rIndex">
-                                <button
-                                    @click="selectReel(rIndex)"
-                                    :class="activeReel === rIndex 
-                                        ? 'bg-accent/20 border-accent text-accent font-bold' 
-                                        : 'bg-card/60 border-border/70 text-muted hover:border-accent/40 hover:text-foreground'"
-                                    class="py-2 px-2 sm:px-2.5 border text-left text-[9px] sm:text-[10px] uppercase tracking-wider transition-all flex items-center justify-between"
-                                >
-                                    <span class="truncate" x-text="reel.label"></span>
-                                    <span :class="activeReel === rIndex ? 'w-1.5 h-1.5 rounded-full bg-accent shrink-0 ml-1' : 'w-1 h-1 rounded-full bg-border shrink-0 ml-1'"></span>
-                                </button>
-                            </template>
-                        </div>
-                    </div>
-
-                    {{-- 2. Rotating Spec Details Card (5 cols of 12) --}}
-                    <div class="md:col-span-5 flex flex-col justify-between bg-card/90 border border-border/80 p-6 sm:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl">
-                        {{-- Background Watermark Icon --}}
-                        <div class="absolute -right-6 -bottom-6 opacity-5 pointer-events-none text-accent">
-                            <i data-lucide="award" class="w-36 h-36"></i>
-                        </div>
-
-                        <div class="space-y-6 relative z-10">
-                            {{-- Top Category & Indicator --}}
-                            <div class="flex items-center justify-between">
-                                <div class="w-12 h-12 border border-accent/30 flex items-center justify-center text-accent bg-accent/10">
-                                    <i :data-lucide="specs[activeIndex].icon" class="w-6 h-6"></i>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-[10px] font-mono tracking-widest text-muted">
+                                            <span class="text-accent font-bold" x-text="'0' + (activeReel + 1)"></span>/0<span x-text="reels.length"></span>
+                                        </span>
+                                        <a 
+                                            :href="reels[activeReel].instagram"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="text-muted hover:text-accent p-1 transition-colors"
+                                            title="Ver reel original en Instagram"
+                                        >
+                                            <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
+                                        </a>
+                                    </div>
                                 </div>
-                                <span class="text-[10px] uppercase tracking-widest font-mono text-muted">
-                                    Pilar 0<span x-text="activeIndex + 1"></span> / 04
-                                </span>
-                            </div>
 
-                            {{-- Active Pillar Content --}}
-                            <div class="space-y-3">
-                                <span class="text-accent text-[10px] uppercase tracking-[0.3em] font-black" x-text="specs[activeIndex].category"></span>
-                                <h4 x-text="specs[activeIndex].title" class="font-serif font-black text-2xl sm:text-3xl uppercase tracking-tight text-foreground leading-tight"></h4>
-                                <p x-text="specs[activeIndex].description" class="text-xs text-muted uppercase tracking-[0.14em] leading-relaxed font-bold"></p>
+                                {{-- Video Viewport (Controlled Max Height for Balanced Proportions) --}}
+                                <div class="relative aspect-[9/16] max-h-[460px] sm:max-h-[480px] bg-card overflow-hidden group/video flex items-center justify-center">
+                                    
+                                    <video
+                                        x-ref="ritualVideo"
+                                        :src="reels[activeReel].video"
+                                        :poster="reels[activeReel].poster"
+                                        autoplay
+                                        muted
+                                        loop
+                                        playsinline
+                                        class="w-full h-full object-cover group-hover/video:scale-105 transition-transform duration-700"
+                                    ></video>
+
+                                    {{-- Vignette Overlay for Crisp Readability --}}
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30 pointer-events-none"></div>
+
+                                    {{-- Slider Navigation Arrows --}}
+                                    <button
+                                        @click="prevReel()"
+                                        class="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/75 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md transition-all shadow-lg focus:outline-none"
+                                        title="Video Anterior"
+                                    >
+                                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                    </button>
+
+                                    <button
+                                        @click="nextReel()"
+                                        class="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/75 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md transition-all shadow-lg focus:outline-none"
+                                        title="Siguiente Video"
+                                    >
+                                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                    </button>
+
+                                    {{-- Play / Pause Floating Toggle --}}
+                                    <button
+                                        @click="toggleRitualVideo()"
+                                        class="absolute bottom-3 right-3 z-20 w-9 h-9 rounded-full bg-black/80 border border-accent/50 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none"
+                                        :title="videoPlaying ? 'Pausar Video' : 'Reproducir Video'"
+                                    >
+                                        <i :data-lucide="videoPlaying ? 'pause' : 'play'" class="w-3.5 h-3.5"></i>
+                                    </button>
+
+                                    {{-- Artwork Title & Subtitle Badge --}}
+                                    <div class="absolute bottom-3 left-3 z-20 max-w-[70%]">
+                                        <p class="text-[11px] font-bold text-white tracking-wide truncate drop-shadow" x-text="reels[activeReel].title"></p>
+                                        <p class="text-[9px] text-accent/90 tracking-wider uppercase font-semibold truncate" x-text="reels[activeReel].desc"></p>
+                                    </div>
+                                </div>
+
+                                {{-- Capsule Integrated Footer: 3-Reel Switcher Tabs --}}
+                                <div class="p-2.5 bg-black/95 border-t border-white/10 z-20">
+                                    <div class="grid grid-cols-3 gap-1.5">
+                                        <template x-for="(reel, rIndex) in reels" :key="rIndex">
+                                            <button
+                                                @click="selectReel(rIndex)"
+                                                :class="activeReel === rIndex 
+                                                    ? 'bg-accent/20 border-accent text-accent font-bold shadow-[0_0_10px_rgba(212,175,55,0.25)]' 
+                                                    : 'bg-card/70 border-border/70 text-muted hover:border-accent/40 hover:text-foreground'"
+                                                class="py-2 px-1.5 border text-center text-[9px] uppercase tracking-wider transition-all rounded flex flex-col items-center justify-center gap-0.5 focus:outline-none"
+                                            >
+                                                <span class="truncate w-full font-bold" x-text="'0' + (rIndex + 1)"></span>
+                                                <span class="truncate w-full text-[8px] opacity-80" x-text="reel.tag"></span>
+                                            </button>
+                                        </template>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-
-                        {{-- Progress Dots & Direct Reel Link --}}
-                        <div class="pt-6 relative z-10 space-y-4">
-                            <div class="flex gap-2">
-                                <template x-for="(s, i) in specs" :key="i">
-                                    <button 
-                                        @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })" 
-                                        :class="i === activeIndex ? 'w-8 bg-accent' : 'w-2 bg-border hover:bg-muted'"
-                                        class="h-1 transition-all duration-300 focus:outline-none"
-                                    ></button>
-                                </template>
-                            </div>
-
-                            <a 
-                                :href="reels[activeReel].instagram" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-accent/80 hover:text-accent font-bold pt-2 transition-colors group"
-                            >
-                                <i data-lucide="instagram" class="w-3.5 h-3.5 text-accent"></i>
-                                <span>Ver reel activo en Instagram</span>
-                                <i data-lucide="arrow-up-right" class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-                            </a>
-                        </div>
-
-                        {{-- Corner Line --}}
-                        <div class="absolute -bottom-3 -right-3 w-16 h-16 border-r-2 border-b-2 border-accent/20 pointer-events-none"></div>
                     </div>
-
                 </div>
 
             </div>

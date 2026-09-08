@@ -73,3 +73,50 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
 }
+
+/* Animated Golden Brand Border Wave & Shimmer Effects */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes goldWavePulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes borderGlowGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 9s linear infinite;
+}
+
+.animate-gold-wave {
+  animation: goldWavePulse 4s ease-in-out infinite;
+}
+
+.gold-gradient-border {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.9), rgba(255, 245, 190, 0.95), rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.85));
+  background-size: 300% 300%;
+  animation: borderGlowGradient 6s ease infinite;
+}
