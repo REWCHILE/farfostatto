@@ -216,32 +216,6 @@
                     label: '04. Masters Fest'
                 }
             ],
-            specs: [
-                {
-                    icon: 'shield-check',
-                    title: 'Asepsia Clínica',
-                    category: 'Bioseguridad',
-                    description: 'Protocolos quirúrgicos rigurosos, campo estéril y desprecintado de insumos de grado médico frente al cliente.'
-                },
-                {
-                    icon: 'zap',
-                    title: 'Tecnología Rotativa',
-                    category: 'Precisión',
-                    description: 'Uso de máquinas rotativas de última generación para líneas microscópicas, trazo limpio y menor trauma en la piel.'
-                },
-                {
-                    icon: 'star',
-                    title: 'Insumos Premium',
-                    category: 'Pigmentos',
-                    description: 'Pigmentos veganos de alta fijación (Electric Ink) y cartuchos certificados internacionalmente para saturación duradera.'
-                },
-                {
-                    icon: 'palette',
-                    title: 'Diseño Anatómico',
-                    category: 'Composición',
-                    description: 'Cada obra es concebida y adaptada para fluir en armonía orgánica con la musculatura y contorno del cuerpo.'
-                }
-            ],
             selectReel(index) {
                 this.activeReel = index;
                 this.videoPlaying = true;
@@ -283,11 +257,6 @@
                 });
             },
             init() {
-                setInterval(() => {
-                    this.activeIndex = (this.activeIndex + 1) % this.specs.length;
-                    this.$nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); });
-                }, 5000);
-
                 this.$nextTick(() => {
                     if (this.$refs.ritualVideo) {
                         this.$refs.ritualVideo.muted = this.isMuted;
@@ -330,53 +299,27 @@
                         Farfo's Tattoo combina su formación académica con la maestría del tatuaje moderno. Diálogo consciente transformando memorias y pasiones en obras imperecederas.
                     </p>
 
-                    {{-- Enhanced Encapsulated Technical Excellence Console --}}
-                    <div class="bg-card/90 border border-border/80 rounded-xl p-4 sm:p-5 backdrop-blur-xl relative overflow-hidden shadow-xl space-y-3.5">
-                        
-                        {{-- Top Header / Capsule Bar --}}
-                        <div class="flex items-center justify-between border-b border-border/50 pb-2.5">
-                            <div class="flex items-center gap-2 text-accent font-black text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em]">
-                                <i data-lucide="shield-check" class="w-4 h-4"></i>
-                                <span>Pilares de Excelencia Técnica</span>
-                            </div>
-                            <span class="text-[9.5px] font-mono uppercase tracking-widest text-muted">
-                                Pilar 0<span x-text="activeIndex + 1"></span> / 04
+                    {{-- Action Buttons: Ver Portafolio & Sobre Mí (Directly below Farfo's Tattoo copy) --}}
+                    <div class="flex flex-wrap sm:flex-nowrap gap-3 pt-2 max-w-md">
+                        <a 
+                            href="{{ route('portfolio') }}" 
+                            class="group relative flex-1 py-3 px-5 bg-accent text-accent-foreground text-[11px] sm:text-xs uppercase font-black tracking-[0.18em] overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] text-center rounded flex items-center justify-center gap-2 cursor-pointer"
+                        >
+                            <span class="relative z-10 flex items-center justify-center gap-2">
+                                Ver Portafolio 
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                             </span>
-                        </div>
-
-                        {{-- 4-Pill Segmented Selector Tabs (Slightly larger and more prominent) --}}
-                        <div class="grid grid-cols-2 gap-2.5">
-                            <template x-for="(spec, i) in specs" :key="i">
-                                <button
-                                    @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })"
-                                    :class="activeIndex === i 
-                                        ? 'bg-accent text-accent-foreground border-accent font-black shadow-[0_0_12px_rgba(212,175,55,0.25)]' 
-                                        : 'bg-surface/80 text-foreground/75 border-border/70 hover:border-accent/50 hover:text-foreground'"
-                                    class="py-3 px-3 rounded-md border text-left flex items-center gap-2 text-[10.5px] sm:text-[11.5px] uppercase tracking-wider transition-all duration-200 focus:outline-none cursor-pointer select-none hover:scale-[1.02]"
-                                >
-                                    <i :data-lucide="spec.icon" class="w-3.5 h-3.5 shrink-0"></i>
-                                    <span class="truncate font-black" x-text="spec.title"></span>
-                                </button>
-                            </template>
-                        </div>
-
-                        {{-- Active Pillar Content Box (Larger text and clear description) --}}
-                        <div class="bg-surface/70 rounded-lg p-3.5 sm:p-4 border border-border/50 transition-all duration-300 space-y-1.5">
-                            <div class="flex items-center justify-between">
-                                <span class="text-accent text-[9.5px] uppercase tracking-[0.25em] font-black" x-text="specs[activeIndex].category"></span>
-                                <div class="flex items-center gap-1.5">
-                                    <template x-for="(s, i) in specs" :key="i">
-                                        <button 
-                                            @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })" 
-                                            :class="i === activeIndex ? 'w-5 bg-accent' : 'w-1.5 bg-border hover:bg-muted'"
-                                            class="h-1 rounded-full transition-all duration-300 focus:outline-none cursor-pointer"
-                                        ></button>
-                                    </template>
-                                </div>
-                            </div>
-                            <h4 x-text="specs[activeIndex].title" class="font-serif font-black text-base sm:text-lg uppercase tracking-tight text-foreground"></h4>
-                            <p x-text="specs[activeIndex].description" class="text-xs sm:text-[13px] text-muted uppercase tracking-[0.08em] leading-relaxed font-semibold"></p>
-                        </div>
+                            <div class="absolute inset-0 bg-white/15 -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                        </a>
+                        <a 
+                            href="{{ route('about') }}" 
+                            class="group flex-1 py-3 px-5 border border-border/80 bg-card/80 text-foreground text-[11px] sm:text-xs uppercase font-black tracking-[0.18em] hover:border-accent hover:text-accent transition-all duration-300 text-center rounded flex items-center justify-center gap-2 cursor-pointer"
+                        >
+                            <span class="flex items-center justify-center gap-2">
+                                Sobre Mí 
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </span>
+                        </a>
                     </div>
                 </div>
 
@@ -481,8 +424,8 @@
                                     </div>
                                 </div>
 
-                                {{-- Capsule Integrated Footer: 4-Reel Switcher Tabs + Action Buttons --}}
-                                <div class="p-2 sm:p-2.5 bg-black/95 border-t border-white/10 z-20 space-y-2">
+                                {{-- Capsule Integrated Footer: 4-Reel Switcher Tabs --}}
+                                <div class="p-2 sm:p-2.5 bg-black/95 border-t border-white/10 z-20">
                                     {{-- 4 Reels Tabs (Antes & Después, Sesión en Vivo, Cover Up Épico, Primer Lugar Fest) --}}
                                     <div class="grid grid-cols-4 gap-1 sm:gap-1.5">
                                         <template x-for="(reel, rIndex) in reels" :key="rIndex">
@@ -497,29 +440,6 @@
                                                 <span class="truncate w-full text-[8px] opacity-80" x-text="reel.tag"></span>
                                             </button>
                                         </template>
-                                    </div>
-
-                                    {{-- Action Buttons: Ver Portafolio & Sobre Mí (Together at bottom of card) --}}
-                                    <div class="grid grid-cols-2 gap-2 pt-0.5">
-                                        <a 
-                                            href="{{ route('portfolio') }}" 
-                                            class="group relative py-2.5 px-3 bg-accent text-accent-foreground text-[10.5px] sm:text-xs uppercase font-black tracking-[0.16em] overflow-hidden transition-all hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] text-center rounded flex items-center justify-center gap-1.5 cursor-pointer"
-                                        >
-                                            <span class="relative z-10 flex items-center justify-center gap-1.5 truncate">
-                                                Ver Portafolio 
-                                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
-                                            </span>
-                                            <div class="absolute inset-0 bg-white/15 -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
-                                        </a>
-                                        <a 
-                                            href="{{ route('about') }}" 
-                                            class="group py-2.5 px-3 border border-border/80 bg-surface/90 text-foreground text-[10.5px] sm:text-xs uppercase font-black tracking-[0.16em] hover:border-accent hover:text-accent transition-all duration-300 text-center rounded flex items-center justify-center gap-1.5 cursor-pointer"
-                                        >
-                                            <span class="flex items-center justify-center gap-1.5 truncate">
-                                                Sobre Mí 
-                                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
-                                            </span>
-                                        </a>
                                     </div>
                                 </div>
 
@@ -1081,6 +1001,33 @@
         id="contacto-cta"
         x-data="{
             ctaPlaying: true,
+            activeIndex: 1,
+            specs: [
+                {
+                    icon: 'shield-check',
+                    title: 'Asepsia Clínica',
+                    category: 'Bioseguridad',
+                    description: 'Protocolos quirúrgicos rigurosos, campo estéril y desprecintado de insumos de grado médico frente al cliente.'
+                },
+                {
+                    icon: 'zap',
+                    title: 'Tecnología Rotativa',
+                    category: 'Precisión',
+                    description: 'Uso de máquinas rotativas de última generación para líneas microscópicas, trazo limpio y menor trauma en la piel.'
+                },
+                {
+                    icon: 'star',
+                    title: 'Insumos Premium',
+                    category: 'Pigmentos',
+                    description: 'Pigmentos veganos de alta fijación (Electric Ink) y cartuchos certificados internacionalmente para saturación duradera.'
+                },
+                {
+                    icon: 'palette',
+                    title: 'Diseño Anatómico',
+                    category: 'Composición',
+                    description: 'Cada obra es concebida y adaptada para fluir en armonía orgánica con la musculatura y contorno del cuerpo.'
+                }
+            ],
             toggleCtaVideo() {
                 if (!this.$refs.ctaVideo) return;
                 if (this.$refs.ctaVideo.paused) {
@@ -1092,6 +1039,11 @@
                 }
             },
             init() {
+                setInterval(() => {
+                    this.activeIndex = (this.activeIndex + 1) % this.specs.length;
+                    this.$nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); });
+                }, 5000);
+
                 const obs = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
@@ -1137,6 +1089,55 @@
                         Cada tatuaje es una pieza de autor diseñada a tu medida. Conversemos directamente por WhatsApp para evaluar tu proyecto, resolver dudas sobre el diseño y agendar tu próxima sesión.
                     </p>
 
+                    {{-- Enhanced Encapsulated Technical Excellence Console (Moved to Last CTA) --}}
+                    <div class="bg-card/90 border border-border/80 rounded-xl p-4 sm:p-5 backdrop-blur-xl relative overflow-hidden shadow-xl space-y-3.5 max-w-xl">
+                        
+                        {{-- Top Header / Capsule Bar --}}
+                        <div class="flex items-center justify-between border-b border-border/50 pb-2.5">
+                            <div class="flex items-center gap-2 text-accent font-black text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em]">
+                                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                                <span>Pilares de Excelencia Técnica</span>
+                            </div>
+                            <span class="text-[9.5px] font-mono uppercase tracking-widest text-muted">
+                                Pilar 0<span x-text="activeIndex + 1"></span> / 04
+                            </span>
+                        </div>
+
+                        {{-- 4-Pill Segmented Selector Tabs --}}
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <template x-for="(spec, i) in specs" :key="i">
+                                <button
+                                    @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })"
+                                    :class="activeIndex === i 
+                                        ? 'bg-accent text-accent-foreground border-accent font-black shadow-[0_0_12px_rgba(212,175,55,0.25)]' 
+                                        : 'bg-surface/80 text-foreground/75 border-border/70 hover:border-accent/50 hover:text-foreground'"
+                                    class="py-3 px-3 rounded-md border text-left flex items-center gap-2 text-[10.5px] sm:text-[11.5px] uppercase tracking-wider transition-all duration-200 focus:outline-none cursor-pointer select-none hover:scale-[1.02]"
+                                >
+                                    <i :data-lucide="spec.icon" class="w-3.5 h-3.5 shrink-0"></i>
+                                    <span class="truncate font-black" x-text="spec.title"></span>
+                                </button>
+                            </template>
+                        </div>
+
+                        {{-- Active Pillar Content Box --}}
+                        <div class="bg-surface/70 rounded-lg p-3.5 sm:p-4 border border-border/50 transition-all duration-300 space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent text-[9.5px] uppercase tracking-[0.25em] font-black" x-text="specs[activeIndex].category"></span>
+                                <div class="flex items-center gap-1.5">
+                                    <template x-for="(s, i) in specs" :key="i">
+                                        <button 
+                                            @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })" 
+                                            :class="i === activeIndex ? 'w-5 bg-accent' : 'w-1.5 bg-border hover:bg-muted'"
+                                            class="h-1 rounded-full transition-all duration-300 focus:outline-none cursor-pointer"
+                                        ></button>
+                                    </template>
+                                </div>
+                            </div>
+                            <h4 x-text="specs[activeIndex].title" class="font-serif font-black text-base sm:text-lg uppercase tracking-tight text-foreground"></h4>
+                            <p x-text="specs[activeIndex].description" class="text-xs sm:text-[13px] text-muted uppercase tracking-[0.08em] leading-relaxed font-semibold"></p>
+                        </div>
+                    </div>
+
                     {{-- CTA Buttons: WhatsApp Direct (Priority) + Online Booking --}}
                     <div class="flex flex-col sm:flex-row gap-3.5 pt-2">
                         {{-- WhatsApp Direct Button --}}
@@ -1181,12 +1182,6 @@
                             <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-border/80 bg-card/80 text-muted text-xs font-mono">
                                 <i data-lucide="map-pin" class="w-3.5 h-3.5 text-accent"></i>
                                 <span>Santiago, Chile · Barrio Bellavista / Providencia</span>
-                            </div>
-
-                            {{-- Safety --}}
-                            <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-border/80 bg-card/80 text-muted text-xs font-mono">
-                                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-accent"></i>
-                                <span>Insumos 100% Esterilizados</span>
                             </div>
                         </div>
                     </div>
