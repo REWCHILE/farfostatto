@@ -81,6 +81,10 @@ class FarfoTest extends TestCase
 
         $this->actingAs($admin, 'admin')->get('/admin/dashboard')->assertStatus(200);
         $this->actingAs($admin, 'admin')->get('/admin/requests')->assertStatus(200);
-        $this->actingAs($admin, 'admin')->get('/admin/agenda')->assertStatus(200);
+        $agendaResponse = $this->actingAs($admin, 'admin')->get('/admin/agenda');
+        $agendaResponse->assertStatus(200)
+            ->assertSee('Lista')
+            ->assertSee('Grilla / Mes')
+            ->assertViewHas('agendaItems');
     }
 }

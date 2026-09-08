@@ -58,7 +58,68 @@ class AgendaController extends Controller
             ];
         }
 
-        return view('admin.agenda', compact('currentDate', 'calendarDays', 'year', 'month'));
+        // Build sorted agenda items for mobile list view and chronological overview
+        $agendaItems = collect();
+
+        foreach ($appointments as $app) {
+            $startDt = Carbon::parse($app->start_time);
+            $endDt = Carbon::parse($app->end_time);
+
+            $agendaItems->push([
+                'id' => $app->id,
+                'type' => 'APPOINTMENT',
+                'title' => $app->title,
+                'client_name' => $app->client->name ?? 'Cliente',
+                'client_email' => $app->client->email ?? '',
+                'client_phone' => $app->client->phone ?? '',
+                'start_time_raw' => $app->start_time,
+                'start_time' => $startDt->format('H:i'),
+                'end_time' => $endDt->format('H:i'),
+                'date_key' => $startDt->format('Y-m-d'),
+                'date_label' => $startDt->isoFormat('dddd D [de] MMMM'),
+                'date_day_num' => $startDt->format('d'),
+                'date_month_short' => $startDt->isoFormat('MMM'),
+                'is_today' => $startDt->isToday(),
+                'is_current_month' => $startDt->month === $month,
+                'payment_status' => $app->payment_status,
+                'deposit_amount' => number_format($app->deposit_amount, 0, ',', '.'),
+                'price' => number_format($app->price ?? 150000, 0, ',', '.'),
+                'description' => $app->description,
+                'location' => $app->location ?? 'INKNEFABLE',
+            ]);
+        }
+
+        foreach ($blocks as $blk) {
+            $startDt = Carbon::parse($blk->start_time);
+            $endDt = Carbon::parse($blk->end_time);
+
+            $agendaItems->push([
+                'id' => $blk->id,
+                'type' => 'BLOCK',
+                'title' => 'Bloqueo: '.$blk->type,
+                'client_name' => 'Estudio FARFO\'S',
+                'client_email' => '',
+                'client_phone' => '',
+                'start_time_raw' => $blk->start_time,
+                'start_time' => $startDt->format('H:i'),
+                'end_time' => $endDt->format('H:i'),
+                'date_key' => $startDt->format('Y-m-d'),
+                'date_label' => $startDt->isoFormat('dddd D [de] MMMM'),
+                'date_day_num' => $startDt->format('d'),
+                'date_month_short' => $startDt->isoFormat('MMM'),
+                'is_today' => $startDt->isToday(),
+                'is_current_month' => $startDt->month === $month,
+                'payment_status' => null,
+                'deposit_amount' => null,
+                'price' => null,
+                'description' => $blk->description ?? 'Horario reservado para descanso o mantención.',
+                'location' => 'INKNEFABLE',
+            ]);
+        }
+
+        $agendaItems = $agendaItems->sortBy('start_time_raw')->values();
+
+        return view('admin.agenda', compact('currentDate', 'calendarDays', 'year', 'month', 'agendaItems'));
     }
 
     public function confirmDeposit($id)
