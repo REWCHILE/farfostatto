@@ -59,10 +59,10 @@
             </h1>
 
             {{-- Call To Action Buttons --}}
-            <div id="hero-cta" class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12 opacity-0">
+            <div id="hero-cta" class="flex flex-col sm:flex-row items-center justify-center gap-5 mt-12 opacity-0">
                 <a
                     href="{{ route('booking') }}"
-                    class="group relative px-10 py-5 bg-accent text-accent-foreground font-bold uppercase tracking-widest text-xs overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.25)]"
+                    class="group relative px-9 py-4 bg-accent text-accent-foreground font-black uppercase tracking-[0.22em] text-xs overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.3)] transition-all duration-300 rounded-sm hover:scale-[1.02]"
                 >
                     <span class="relative z-10 flex items-center gap-3">
                         Reserva tu sesión 
@@ -73,9 +73,13 @@
 
                 <a
                     href="{{ route('portfolio') }}"
-                    class="px-10 py-5 border border-border hover:border-accent hover:text-accent transition-all font-bold uppercase tracking-widest text-xs"
+                    class="group relative px-9 py-4 bg-white hover:bg-neutral-100 text-neutral-950 font-black uppercase tracking-[0.22em] text-xs border-2 border-accent shadow-[0_0_25px_rgba(212,175,55,0.25)] transition-all duration-300 rounded-sm hover:scale-[1.02] overflow-hidden"
                 >
-                    Ver Portafolio
+                    <span class="relative z-10 flex items-center gap-2.5">
+                        <span>Ver Portafolio</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-accent stroke-[2.5] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"></i>
+                    </span>
+                    <div class="absolute inset-0 bg-accent/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </a>
             </div>
         </div>
@@ -207,116 +211,116 @@
         ></div>
 
         <div class="container mx-auto px-6 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                 
-                {{-- Left Column (7 cols on desktop): Story, Philosophy & Encapsulated Technical Console --}}
-                <div class="lg:col-span-7 space-y-7">
+                {{-- Left Column (5 cols on desktop): Compact Story, Philosophy & Technical Console --}}
+                <div class="lg:col-span-5 space-y-5">
                     
                     {{-- Section Badge --}}
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/25 bg-accent/10">
-                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent"></i>
-                        <span class="text-accent uppercase tracking-[0.35em] text-[10px] font-black">Filosofía & Trayectoria</span>
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/25 bg-accent/10">
+                        <i data-lucide="sparkles" class="w-3 h-3 text-accent"></i>
+                        <span class="text-accent uppercase tracking-[0.3em] text-[9px] font-black">Filosofía & Trayectoria</span>
                     </div>
 
                     {{-- Section Title --}}
-                    <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-serif font-black uppercase tracking-tight leading-[1.05]">
+                    <h2 class="text-2xl sm:text-3xl lg:text-[2.25rem] font-serif font-black uppercase tracking-tight leading-[1.1]">
                         El Ritual de las <span class="text-accent italic">Imágenes</span>, <br class="hidden sm:inline" />
                         Historias en tu <span class="text-accent italic">Piel</span>.
                     </h2>
 
                     {{-- Description --}}
-                    <p class="text-muted leading-relaxed uppercase tracking-[0.14em] text-xs font-semibold max-w-2xl">
-                        Sebastián, El Farfo, combina su formación académica con la maestría del tatuaje moderno. Cada diseño es un diálogo consciente sobre un soporte vivo, transformando memorias, tributos y pasiones en obras imperecederas.
+                    <p class="text-muted leading-relaxed uppercase tracking-[0.13em] text-[11px] font-semibold max-w-sm">
+                        Sebastián, El Farfo, combina su formación académica con la maestría del tatuaje moderno. Diálogo consciente transformando memorias y pasiones en obras imperecederas.
                     </p>
 
-                    {{-- Encapsulated Technical Excellence Console --}}
-                    <div class="bg-card/85 border border-border/80 rounded-2xl p-5 sm:p-6 backdrop-blur-xl relative overflow-hidden shadow-xl space-y-4">
+                    {{-- Compact Encapsulated Technical Excellence Console --}}
+                    <div class="bg-card/85 border border-border/80 rounded-xl p-4 backdrop-blur-xl relative overflow-hidden shadow-lg space-y-3">
                         
                         {{-- Top Header / Capsule Bar --}}
-                        <div class="flex items-center justify-between border-b border-border/50 pb-3">
-                            <div class="flex items-center gap-2 text-accent font-black text-[10px] uppercase tracking-[0.25em]">
-                                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        <div class="flex items-center justify-between border-b border-border/50 pb-2.5">
+                            <div class="flex items-center gap-1.5 text-accent font-black text-[9px] uppercase tracking-[0.2em]">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
                                 <span>Pilares de Excelencia Técnica</span>
                             </div>
-                            <span class="text-[10px] font-mono uppercase tracking-widest text-muted">
+                            <span class="text-[9px] font-mono uppercase tracking-widest text-muted">
                                 Pilar 0<span x-text="activeIndex + 1"></span> / 04
                             </span>
                         </div>
 
                         {{-- 4-Pill Segmented Selector Tabs --}}
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <div class="grid grid-cols-2 gap-1.5">
                             <template x-for="(spec, i) in specs" :key="i">
                                 <button
                                     @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })"
                                     :class="activeIndex === i 
-                                        ? 'bg-accent text-accent-foreground border-accent font-black shadow-[0_0_15px_rgba(212,175,55,0.3)]' 
+                                        ? 'bg-accent text-accent-foreground border-accent font-black shadow-[0_0_12px_rgba(212,175,55,0.25)]' 
                                         : 'bg-surface/80 text-foreground/70 border-border/70 hover:border-accent/40 hover:text-foreground'"
-                                    class="p-2.5 rounded-lg border text-left flex items-center gap-2 text-[10px] uppercase tracking-wider transition-all duration-300 focus:outline-none"
+                                    class="p-2 rounded-md border text-left flex items-center gap-2 text-[9px] uppercase tracking-wider transition-all duration-300 focus:outline-none"
                                 >
-                                    <i :data-lucide="spec.icon" class="w-3.5 h-3.5 shrink-0"></i>
+                                    <i :data-lucide="spec.icon" class="w-3 h-3 shrink-0"></i>
                                     <span class="truncate font-bold" x-text="spec.title"></span>
                                 </button>
                             </template>
                         </div>
 
                         {{-- Active Pillar Content Box --}}
-                        <div class="bg-surface/60 rounded-xl p-4 border border-border/50 transition-all duration-300">
-                            <div class="flex items-center justify-between mb-1.5">
-                                <span class="text-accent text-[9px] uppercase tracking-[0.25em] font-black" x-text="specs[activeIndex].category"></span>
+                        <div class="bg-surface/60 rounded-lg p-3 border border-border/40 transition-all duration-300">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-accent text-[8px] uppercase tracking-[0.25em] font-black" x-text="specs[activeIndex].category"></span>
                                 <div class="flex items-center gap-1">
                                     <template x-for="(s, i) in specs" :key="i">
                                         <button 
                                             @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })" 
-                                            :class="i === activeIndex ? 'w-6 bg-accent' : 'w-2 bg-border hover:bg-muted'"
+                                            :class="i === activeIndex ? 'w-5 bg-accent' : 'w-1.5 bg-border hover:bg-muted'"
                                             class="h-1 rounded-full transition-all duration-300 focus:outline-none"
                                         ></button>
                                     </template>
                                 </div>
                             </div>
-                            <h4 x-text="specs[activeIndex].title" class="font-serif font-black text-xl uppercase tracking-tight text-foreground mb-1"></h4>
-                            <p x-text="specs[activeIndex].description" class="text-xs text-muted uppercase tracking-[0.12em] leading-relaxed font-semibold"></p>
+                            <h4 x-text="specs[activeIndex].title" class="font-serif font-black text-base uppercase tracking-tight text-foreground mb-0.5"></h4>
+                            <p x-text="specs[activeIndex].description" class="text-[10px] text-muted uppercase tracking-[0.1em] leading-relaxed font-semibold"></p>
                         </div>
                     </div>
 
                     {{-- Action Buttons --}}
-                    <div class="flex flex-col sm:flex-row gap-4 pt-1">
+                    <div class="flex flex-col sm:flex-row gap-3 pt-0.5">
                         <a 
                             href="{{ route('portfolio') }}" 
-                            class="group relative px-8 py-3.5 bg-accent text-accent-foreground text-xs uppercase font-black tracking-[0.25em] overflow-hidden transition-all hover:shadow-[0_0_25px_rgba(212,175,55,0.35)] text-center rounded-sm"
+                            class="group relative px-6 py-3 bg-accent text-accent-foreground text-[11px] uppercase font-black tracking-[0.2em] overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center rounded-sm"
                         >
                             <span class="relative z-10 flex items-center justify-center gap-2">
                                 Ver Portafolio 
-                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-500"></i>
+                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-500"></i>
                             </span>
                             <div class="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
                         </a>
                         <a 
                             href="{{ route('about') }}" 
-                            class="group px-8 py-3.5 border border-border text-foreground text-xs uppercase font-black tracking-[0.25em] hover:border-accent hover:text-accent transition-all duration-500 text-center rounded-sm"
+                            class="group px-6 py-3 border border-border text-foreground text-[11px] uppercase font-black tracking-[0.2em] hover:border-accent hover:text-accent transition-all duration-500 text-center rounded-sm"
                         >
                             <span class="flex items-center justify-center gap-2">
                                 Sobre Mí 
-                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-500"></i>
+                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-500"></i>
                             </span>
                         </a>
                     </div>
                 </div>
 
-                {{-- Right Column (5 cols on desktop): Encapsulated Studio Reel Showcase with Brand Wave Border --}}
-                <div class="lg:col-span-5 flex justify-center items-center">
-                    <div class="w-full max-w-[320px] sm:max-w-[340px] relative">
+                {{-- Right Column (7 cols on desktop): Wider & Centered Studio Reel Showcase with Brand Wave Border --}}
+                <div class="lg:col-span-7 flex justify-center lg:justify-start lg:pl-6">
+                    <div class="w-full max-w-[420px] sm:max-w-[440px] md:max-w-[460px] relative">
                         
                         {{-- Ambient Brand Golden Wave Breathing in Background --}}
-                        <div class="absolute -inset-3 bg-gradient-to-tr from-accent/25 via-accent/40 to-accent/15 rounded-[34px] blur-2xl opacity-60 animate-gold-wave pointer-events-none"></div>
+                        <div class="absolute -inset-3 bg-gradient-to-tr from-accent/25 via-accent/40 to-accent/15 rounded-[36px] blur-2xl opacity-60 animate-gold-wave pointer-events-none"></div>
 
                         {{-- Encapsulated Luxury Frame with Animated Golden Border Wave --}}
-                        <div class="relative p-[2px] rounded-[30px] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.95)] border border-accent/40">
+                        <div class="relative p-[2.5px] rounded-[32px] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.95)] border border-accent/40">
                             
                             {{-- Rotating Golden Conic Wave (Subtle Moving Wave in Farfo Brand Color) --}}
                             <div class="absolute -inset-[150%] bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,transparent_75deg,rgba(212,175,55,0.1)_105deg,rgba(212,175,55,0.95)_135deg,rgba(255,245,190,1)_150deg,rgba(212,175,55,0.95)_165deg,rgba(212,175,55,0.1)_195deg,transparent_225deg)] animate-spin-slow pointer-events-none"></div>
 
                             {{-- Inner Studio Chassis --}}
-                            <div class="relative bg-black rounded-[28px] overflow-hidden flex flex-col border border-white/5">
+                            <div class="relative bg-black rounded-[30px] overflow-hidden flex flex-col border border-white/5">
                                 
                                 {{-- Studio Capsule Header Bar --}}
                                 <div class="px-4 py-3 bg-black/90 backdrop-blur-md border-b border-white/10 flex items-center justify-between z-20">
@@ -344,8 +348,8 @@
                                     </div>
                                 </div>
 
-                                {{-- Video Viewport (Controlled Max Height for Balanced Proportions) --}}
-                                <div class="relative aspect-[9/16] max-h-[460px] sm:max-h-[480px] bg-card overflow-hidden group/video flex items-center justify-center">
+                                {{-- Video Viewport (Generous Width & Proportional Height) --}}
+                                <div class="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] max-h-[500px] bg-card overflow-hidden group/video flex items-center justify-center">
                                     
                                     <video
                                         x-ref="ritualVideo"
@@ -364,7 +368,7 @@
                                     {{-- Slider Navigation Arrows --}}
                                     <button
                                         @click="prevReel()"
-                                        class="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/75 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md transition-all shadow-lg focus:outline-none"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/75 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md transition-all shadow-lg focus:outline-none"
                                         title="Video Anterior"
                                     >
                                         <i data-lucide="chevron-left" class="w-4 h-4"></i>
@@ -372,7 +376,7 @@
 
                                     <button
                                         @click="nextReel()"
-                                        class="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/75 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md transition-all shadow-lg focus:outline-none"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/75 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md transition-all shadow-lg focus:outline-none"
                                         title="Siguiente Video"
                                     >
                                         <i data-lucide="chevron-right" class="w-4 h-4"></i>
@@ -388,8 +392,8 @@
                                     </button>
 
                                     {{-- Artwork Title & Subtitle Badge --}}
-                                    <div class="absolute bottom-3 left-3 z-20 max-w-[70%]">
-                                        <p class="text-[11px] font-bold text-white tracking-wide truncate drop-shadow" x-text="reels[activeReel].title"></p>
+                                    <div class="absolute bottom-3 left-3 z-20 max-w-[75%]">
+                                        <p class="text-xs font-bold text-white tracking-wide truncate drop-shadow" x-text="reels[activeReel].title"></p>
                                         <p class="text-[9px] text-accent/90 tracking-wider uppercase font-semibold truncate" x-text="reels[activeReel].desc"></p>
                                     </div>
                                 </div>
