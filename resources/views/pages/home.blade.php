@@ -129,6 +129,16 @@
                     poster: '{{ asset('videos/ritual_slider_3_final.jpg') }}',
                     instagram: 'https://www.instagram.com/p/DYXQlSeRfJy/',
                     label: '03. Cover Up Mewtwo'
+                },
+                {
+                    title: '1° Lugar Tattoo Masters Fest 2025',
+                    category: 'Premios & Convención',
+                    tag: '🏆 1° Lugar Fest',
+                    desc: 'Máscara La Tirana a color en pecho y Angelita Aries Black & Grey.',
+                    video: '{{ asset('videos/ritual_slider_4.mp4') }}',
+                    poster: '{{ asset('videos/ritual_slider_4.jpg') }}',
+                    instagram: 'https://www.instagram.com/reel/DHUhHOlOcbO/',
+                    label: '04. Masters Fest'
                 }
             ],
             specs: [
@@ -398,19 +408,19 @@
                                     </div>
                                 </div>
 
-                                {{-- Capsule Integrated Footer: 3-Reel Switcher Tabs --}}
-                                <div class="p-2.5 bg-black/95 border-t border-white/10 z-20">
-                                    <div class="grid grid-cols-3 gap-1.5">
+                                {{-- Capsule Integrated Footer: 4-Reel Switcher Tabs --}}
+                                <div class="p-2 sm:p-2.5 bg-black/95 border-t border-white/10 z-20">
+                                    <div class="grid grid-cols-4 gap-1 sm:gap-1.5">
                                         <template x-for="(reel, rIndex) in reels" :key="rIndex">
                                             <button
                                                 @click="selectReel(rIndex)"
                                                 :class="activeReel === rIndex 
                                                     ? 'bg-accent/20 border-accent text-accent font-bold shadow-[0_0_10px_rgba(212,175,55,0.25)]' 
                                                     : 'bg-card/70 border-border/70 text-muted hover:border-accent/40 hover:text-foreground'"
-                                                class="py-2 px-1.5 border text-center text-[9px] uppercase tracking-wider transition-all rounded flex flex-col items-center justify-center gap-0.5 focus:outline-none"
+                                                class="py-1.5 sm:py-2 px-1 border text-center text-[8.5px] sm:text-[9px] uppercase tracking-wider transition-all rounded flex flex-col items-center justify-center gap-0.5 focus:outline-none"
                                             >
                                                 <span class="truncate w-full font-bold" x-text="'0' + (rIndex + 1)"></span>
-                                                <span class="truncate w-full text-[8px] opacity-80" x-text="reel.tag"></span>
+                                                <span class="truncate w-full text-[7.5px] sm:text-[8px] opacity-80" x-text="reel.tag"></span>
                                             </button>
                                         </template>
                                     </div>
