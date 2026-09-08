@@ -325,7 +325,7 @@
 
                 {{-- Right Column (7 cols on desktop): Wider Video Showcase shifted right and lowered 5px --}}
                 <div class="lg:col-span-7 flex justify-center lg:justify-end lg:pr-2 translate-y-[5px]">
-                    <div class="w-full max-w-[460px] sm:max-w-[490px] md:max-w-[510px] lg:max-w-[520px] relative">
+                    <div class="w-full max-w-[460px] sm:max-w-[490px] md:max-w-[520px] lg:max-w-[540px] relative">
                         
                         {{-- Ambient Brand Golden Wave Breathing in Background --}}
                         <div class="absolute -inset-3 bg-gradient-to-tr from-accent/25 via-accent/40 to-accent/15 rounded-[36px] blur-2xl opacity-60 animate-gold-wave pointer-events-none"></div>
@@ -366,7 +366,7 @@
                                 </div>
 
                                 {{-- Video Viewport (Generous Width & Proportional Height) --}}
-                                <div class="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] max-h-[500px] bg-card overflow-hidden group/video flex items-center justify-center">
+                                <div class="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] max-h-[560px] bg-card overflow-hidden group/video flex items-center justify-center">
                                     
                                     <video
                                         x-ref="ritualVideo"
@@ -475,9 +475,9 @@
                     image: '{{ asset('images/proceso/paso-3-lineas.jpg') }}',
                     description: 'Con máquina rotativa calibrada, se trazan las líneas fundamentales de la obra. Líneas firmes, uniformes y limpias que aseguran la máxima definición a través de los años.',
                     specs: [
-                        { label: 'Máquinas', val: 'Rotativas de precisión milimétrica' },
-                        { label: 'Trazo', val: 'Línea sólida, continua y nítida' },
-                        { label: 'Profundidad', val: 'Penetración dérmica exacta sin sobretrauma' }
+                        { icon: 'cpu', label: 'Máquinas', val: 'Rotativas de precisión milimétrica' },
+                        { icon: 'pen-tool', label: 'Trazo', val: 'Línea sólida, continua y nítida' },
+                        { icon: 'target', label: 'Profundidad', val: 'Penetración dérmica exacta sin sobretrauma' }
                     ],
                     quote: 'La línea es el cimiento de la obra: si la estructura es impecable, el tatuaje lucirá imponente por décadas.'
                 },
@@ -493,9 +493,9 @@
                     image: '{{ asset('images/proceso/paso-1-calco.jpg') }}',
                     description: 'Posicionamiento milimétrico de la plantilla sobre el cuerpo. Cada curvatura es respetada para que el diseño fluya de manera orgánica con los tendones y la musculatura viva en movimiento.',
                     specs: [
-                        { label: 'Técnica', val: 'Estudio Anatómico & Transfer Stencil' },
-                        { label: 'Zona', val: 'Brazo y Antebrazo Completo' },
-                        { label: 'Propósito', val: 'Dinamismo visual y escala armónica' }
+                        { icon: 'compass', label: 'Técnica', val: 'Estudio Anatómico & Transfer Stencil' },
+                        { icon: 'user', label: 'Zona', val: 'Brazo y Antebrazo Completo' },
+                        { icon: 'maximize-2', label: 'Propósito', val: 'Dinamismo visual y escala armónica' }
                     ],
                     quote: 'Un tatuaje de alto impacto dialoga directamente con la silueta viva de tu cuerpo.'
                 },
@@ -511,9 +511,9 @@
                     image: '{{ asset('images/proceso/paso-2-tintas.jpg') }}',
                     description: 'Apertura de insumos 100% esterilizados en presencia directa del cliente. Pigmentos premium certificados (Electric Ink) desprecintados de fábrica garantizan pureza y bioseguridad absoluta.',
                     specs: [
-                        { label: 'Tintas', val: 'Electric Ink Selladas de Fábrica' },
-                        { label: 'Bioseguridad', val: 'Campos y barreras estériles descartables' },
-                        { label: 'Normativa', val: 'Cumplimiento riguroso de asepsia clínica' }
+                        { icon: 'droplet', label: 'Tintas', val: 'Electric Ink Selladas de Fábrica' },
+                        { icon: 'shield-check', label: 'Bioseguridad', val: 'Campos y barreras estériles descartables' },
+                        { icon: 'check-circle-2', label: 'Normativa', val: 'Cumplimiento riguroso de asepsia clínica' }
                     ],
                     quote: 'La seguridad no es negociable: cada aguja, tetina y pigmento se desprecinta frente a tus ojos.'
                 },
@@ -529,9 +529,9 @@
                     image: '{{ asset('images/proceso/paso-4-sombras.jpg') }}',
                     description: 'Construcción de volumen mediante degradados progresivos de escala de grises. Este paso define las escamas, la textura de los cuernos y la ferocidad en la mirada de la pieza.',
                     specs: [
-                        { label: 'Gradación', val: 'Escala tonal de negros puros y grises' },
-                        { label: 'Efecto', val: 'Sensación de volumen y relieve tridimensional' },
-                        { label: 'Detalle', val: 'Texturizado escama por escama' }
+                        { icon: 'layers', label: 'Gradación', val: 'Escala tonal de negros puros y grises' },
+                        { icon: 'sparkles', label: 'Efecto', val: 'Sensación de volumen y relieve tridimensional' },
+                        { icon: 'zoom-in', label: 'Detalle', val: 'Texturizado escama por escama' }
                     ],
                     quote: 'El contraste le da alma a la pieza: separa las capas y le otorga esa presencia que parece emerger de la piel.'
                 },
@@ -547,9 +547,9 @@
                     image: '{{ asset('images/proceso/paso-5-color.jpg') }}',
                     description: 'El punto culminante: saturación densa de verdes esmeralda, destellos llameantes y el fulgor dorado de las esferas. Técnica de empaque de color sólido de máxima fijación.',
                     specs: [
-                        { label: 'Paleta', val: 'Verde esmeralda, oro, carmín y blanco óptico' },
-                        { label: 'Técnica', val: 'Empaque de pigmento denso de alta fijación' },
-                        { label: 'Resultado', val: 'Intensidad cromática y brillo duradero' }
+                        { icon: 'palette', label: 'Paleta', val: 'Verde esmeralda, oro, carmín y blanco óptico' },
+                        { icon: 'flame', label: 'Técnica', val: 'Empaque de pigmento denso de alta fijación' },
+                        { icon: 'sun', label: 'Resultado', val: 'Intensidad cromática y brillo duradero' }
                     ],
                     quote: '⚡️ ¿Qué pedirías si tuvieras las 7 esferas? Un diseño con significado plasmado con máxima fidelidad.'
                 },
@@ -565,9 +565,9 @@
                     image2: '{{ asset('images/proceso/paso-6-resultado-2.jpg') }}',
                     description: 'La pieza culminada en su máximo esplendor. Desinfección suave, aplicación de apósito dérmico hipoalergénico (segunda piel) e indicaciones para una cicatrización brillante.',
                     specs: [
-                        { label: 'Cuidado', val: 'Película dérmica protectora de última generación' },
-                        { label: 'Estilo', val: 'Anime Ink & Geek Culture Premium' },
-                        { label: 'Artista', val: 'Sebastián El Farfo' }
+                        { icon: 'shield', label: 'Cuidado', val: 'Película dérmica protectora de última generación' },
+                        { icon: 'award', label: 'Estilo', val: 'Anime Ink & Geek Culture Premium' },
+                        { icon: 'feather', label: 'Artista', val: 'Sebastián El Farfo' }
                     ],
                     quote: 'Me encanta cuando los tatuajes se transforman en portadores de recuerdos personales, guardianes de historias únicas.'
                 }
@@ -672,7 +672,7 @@
                 
                 {{-- Column 1: Video / Media Showcase on LEFT (7 cols on desktop, +40px wider, lowered 5px) --}}
                 <div class="lg:col-span-7 flex justify-center lg:justify-start lg:pl-2 order-1 lg:order-1 translate-y-[5px]">
-                    <div class="w-full max-w-[460px] sm:max-w-[490px] md:max-w-[510px] lg:max-w-[520px] relative">
+                    <div class="w-full max-w-[460px] sm:max-w-[490px] md:max-w-[520px] lg:max-w-[540px] relative">
                         
                         {{-- Ambient Brand Golden Wave Breathing in Background --}}
                         <div class="absolute -inset-3 bg-gradient-to-tr from-accent/25 via-accent/40 to-accent/15 rounded-[36px] blur-2xl opacity-60 animate-gold-wave pointer-events-none"></div>
@@ -732,7 +732,7 @@
                                 </div>
 
                                 {{-- Media Viewport --}}
-                                <div class="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] max-h-[500px] bg-card overflow-hidden group/video flex items-center justify-center">
+                                <div class="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] max-h-[560px] bg-card overflow-hidden group/video flex items-center justify-center">
                                     
                                     {{-- Video Mode --}}
                                     <template x-if="steps[activeStep].mediaType === 'video'">
@@ -950,43 +950,62 @@
                                 <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
                                 <span x-text="steps[activeStep].badge"></span>
                             </div>
-                            <span class="text-[9.5px] font-mono uppercase tracking-widest text-muted">
-                                Etapa 0<span x-text="activeStep + 1"></span> / 0<span x-text="steps.length"></span>
+                            <span class="text-[10px] font-mono uppercase tracking-widest text-muted">
+                                Etapa <span class="text-accent font-black text-xs" x-text="'0' + (activeStep + 1)"></span> / 0<span x-text="steps.length"></span>
                             </span>
                         </div>
 
                         {{-- Active Step Content Box --}}
-                        <div class="bg-surface/70 rounded-lg p-3.5 sm:p-4 border border-border/50 transition-all duration-300 space-y-2">
-                            <div class="flex items-center justify-between">
-                                <span class="text-accent text-[9px] uppercase tracking-[0.25em] font-black" x-text="steps[activeStep].tag"></span>
+                        <div class="bg-surface/70 rounded-lg p-3.5 sm:p-4 border border-border/50 transition-all duration-300 space-y-3">
+                            
+                            {{-- Tag Pill & Step Indicators --}}
+                            <div class="flex items-center justify-between gap-2">
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent/40 bg-accent/15 text-accent text-[9.5px] sm:text-[10px] uppercase tracking-[0.2em] font-black shadow-[0_0_12px_rgba(212,175,55,0.15)]">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+                                    <span x-text="steps[activeStep].tag"></span>
+                                </div>
                                 <div class="flex items-center gap-1">
                                     <template x-for="(s, i) in steps" :key="i">
                                         <button 
                                             @click="selectStep(i)" 
                                             :class="i === activeStep ? 'w-4 bg-accent' : 'w-1 bg-border hover:bg-muted'"
                                             class="h-1 rounded-full transition-all duration-300 focus:outline-none cursor-pointer"
+                                            :title="`Paso 0${i + 1}`"
                                         ></button>
                                     </template>
                                 </div>
                             </div>
 
-                            <h4 x-text="steps[activeStep].title" class="font-serif font-black text-base sm:text-lg uppercase tracking-tight text-foreground"></h4>
-                            <p x-text="steps[activeStep].description" class="text-[11px] sm:text-xs text-muted uppercase tracking-[0.08em] leading-relaxed font-semibold"></p>
+                            {{-- Step Title & Description --}}
+                            <div class="space-y-1">
+                                <h4 x-text="steps[activeStep].title" class="font-serif font-black text-base sm:text-lg uppercase tracking-tight text-foreground"></h4>
+                                <p x-text="steps[activeStep].description" class="text-[11px] sm:text-xs text-muted uppercase tracking-[0.08em] leading-relaxed font-semibold"></p>
+                            </div>
 
-                            {{-- Technical Specs List --}}
-                            <div class="pt-2 border-t border-border/50 space-y-1.5">
+                            {{-- Technical Specs List: Distinguished Cards with Icons --}}
+                            <div class="space-y-2 pt-1 border-t border-border/50">
                                 <template x-for="(spec, i) in steps[activeStep].specs" :key="i">
-                                    <div class="flex items-center justify-between text-[10px]">
-                                        <span class="text-muted uppercase tracking-wider font-bold" x-text="spec.label"></span>
-                                        <span class="text-foreground font-semibold text-right" x-text="spec.val"></span>
+                                    <div class="bg-black/50 border border-white/10 rounded-lg p-2.5 sm:p-3 flex items-center justify-between gap-3 hover:border-accent/40 transition-colors">
+                                        <div class="flex items-center gap-2.5 shrink-0">
+                                            <div class="w-7 h-7 rounded-md bg-accent/10 border border-accent/25 flex items-center justify-center text-accent shrink-0">
+                                                <i :data-lucide="spec.icon || 'check'" class="w-3.5 h-3.5"></i>
+                                            </div>
+                                            <span class="text-muted uppercase tracking-wider font-bold text-[10px] sm:text-[10.5px]" x-text="spec.label"></span>
+                                        </div>
+                                        <span class="text-foreground font-bold text-xs sm:text-[12.5px] text-right truncate" x-text="spec.val"></span>
                                     </div>
                                 </template>
                             </div>
 
-                            {{-- Quote Pill --}}
-                            <div class="pt-2 border-t border-border/40 flex items-start gap-1.5 text-accent text-[9.5px] italic">
-                                <i data-lucide="quote" class="w-3 h-3 shrink-0 mt-0.5"></i>
-                                <span x-text="steps[activeStep].quote"></span>
+                            {{-- Quote Box: Golden Callout with White Lettering --}}
+                            <div class="relative overflow-hidden rounded-lg border border-accent/50 bg-gradient-to-r from-accent/20 via-accent/10 to-transparent p-3 sm:p-3.5 shadow-[0_0_20px_rgba(212,175,55,0.12)]">
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent"></div>
+                                <div class="flex items-start gap-2.5 pl-1">
+                                    <div class="w-6 h-6 rounded-full bg-accent text-accent-foreground flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                                        <i data-lucide="quote" class="w-3 h-3 fill-current"></i>
+                                    </div>
+                                    <p class="text-white text-xs sm:text-[12.5px] italic leading-relaxed font-medium" x-text="steps[activeStep].quote"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1001,6 +1020,7 @@
         id="contacto-cta"
         x-data="{
             ctaPlaying: true,
+            isCtaMuted: true,
             activeIndex: 1,
             specs: [
                 {
@@ -1038,7 +1058,16 @@
                     this.ctaPlaying = false;
                 }
             },
+            toggleCtaMute() {
+                if (!this.$refs.ctaVideo) return;
+                this.isCtaMuted = !this.isCtaMuted;
+                this.$refs.ctaVideo.muted = this.isCtaMuted;
+                this.$nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); });
+            },
             init() {
+                if (this.$refs.ctaVideo) {
+                    this.$refs.ctaVideo.muted = true;
+                }
                 setInterval(() => {
                     this.activeIndex = (this.activeIndex + 1) % this.specs.length;
                     this.$nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); });
@@ -1048,6 +1077,7 @@
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             if (this.$refs.ctaVideo && this.ctaPlaying) {
+                                this.$refs.ctaVideo.muted = this.isCtaMuted;
                                 this.$refs.ctaVideo.play().catch(() => {});
                             }
                         } else {
@@ -1069,8 +1099,8 @@
         <div class="container mx-auto px-6 relative z-10">
             <div class="section-content-grid max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
                 
-                {{-- Left Column (7 cols on lg): Texts, WhatsApp Direct CTA, Online Booking & Socials --}}
-                <div class="lg:col-span-7 space-y-6">
+                {{-- Left Column (6 cols on lg): Texts, WhatsApp Direct CTA, Online Booking & Socials --}}
+                <div class="lg:col-span-6 space-y-6">
                     
                     {{-- Badge --}}
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/25 bg-accent/10">
@@ -1078,8 +1108,8 @@
                         <span class="text-accent uppercase tracking-[0.3em] text-[9.5px] font-black">Atención Directa & Reserva</span>
                     </div>
 
-                    {{-- Title (Enlarged & Majestic) --}}
-                    <h2 class="text-3xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-serif font-black uppercase tracking-tight leading-[1.02] text-foreground">
+                    {{-- Title (Majestic & Balanced) --}}
+                    <h2 class="text-3xl sm:text-4xl lg:text-[2.65rem] xl:text-[2.85rem] font-serif font-black uppercase tracking-tight leading-[1.08] text-foreground">
                         ¿Tienes una idea en mente? <br />
                         <span class="text-accent italic">Hagámosla Realidad</span>
                     </h2>
@@ -1142,13 +1172,13 @@
                     <div class="flex flex-col sm:flex-row gap-3.5 pt-2">
                         {{-- WhatsApp Direct Button --}}
                         <a 
-                            href="https://wa.me/56934424269?text=Hola%20Sebasti%C3%A1n%2C%20quiero%20cotizar%20un%20tatuaje%20contigo." 
+                            href="https://wa.me/56958747816?text=Hola%20Sebasti%C3%A1n%2C%20quiero%20cotizar%20un%20tatuaje%20contigo." 
                             target="_blank"
                             rel="noopener noreferrer"
                             class="group px-7 py-4 bg-[#25D366] text-black font-black uppercase tracking-[0.2em] text-xs transition-all hover:shadow-[0_0_25px_rgba(37,211,102,0.4)] hover:scale-[1.02] flex items-center justify-center gap-3 rounded-sm"
                         >
                             <i data-lucide="message-circle" class="w-4 h-4 fill-current"></i>
-                            <span>+56 9 3442 4269 · Escríbeme al WhatsApp</span>
+                            <span>+56 9 5874 7816 · Escríbeme al WhatsApp</span>
                         </a>
 
                         {{-- Online Booking Button --}}
@@ -1188,14 +1218,14 @@
 
                 </div>
 
-                {{-- Right Column (5 cols on lg): Live Studio Video Capsule --}}
-                <div class="lg:col-span-5 flex justify-center lg:justify-end">
-                    <div class="w-full max-w-[340px] sm:max-w-[360px] relative">
+                {{-- Right Column (6 cols on lg): Live Studio Video Capsule (Enlarged & Majestic for Desktop) --}}
+                <div class="lg:col-span-6 flex justify-center lg:justify-end translate-y-[5px]">
+                    <div class="w-full max-w-[460px] sm:max-w-[490px] md:max-w-[520px] lg:max-w-[540px] relative">
                         
                         {{-- Golden Glow Wave in Background --}}
                         <div class="absolute -inset-3 bg-gradient-to-tr from-accent/25 via-accent/40 to-accent/15 rounded-[36px] blur-2xl opacity-60 animate-gold-wave pointer-events-none"></div>
 
-                        {{-- Frame --}}
+                        {{-- Frame with Rotating Golden Conic Wave --}}
                         <div class="relative p-[2.5px] rounded-[32px] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.95)] border border-accent/40">
                             
                             {{-- Rotating Golden Conic Wave --}}
@@ -1205,31 +1235,32 @@
                             <div class="relative bg-black rounded-[30px] overflow-hidden flex flex-col border border-white/5">
                                 
                                 {{-- Top Bar --}}
-                                <div class="px-4 py-2.5 bg-black/90 backdrop-blur-md border-b border-white/10 flex items-center justify-between z-20">
+                                <div class="px-4 py-3 bg-black/90 backdrop-blur-md border-b border-white/10 flex items-center justify-between z-20">
                                     <div class="flex items-center gap-2">
                                         <span class="relative flex h-2 w-2">
                                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                                             <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                                         </span>
-                                        <span class="text-[9.5px] uppercase tracking-[0.2em] font-black text-accent">Sesión en Vivo</span>
+                                        <span class="text-[10px] uppercase tracking-[0.2em] font-black text-accent">Sesión en Vivo · Precisión</span>
                                     </div>
                                     <a 
-                                        href="https://www.instagram.com/farfos_tattoo/" 
+                                        href="https://www.instagram.com/reel/C-LAeIHO0gX/" 
                                         target="_blank" 
                                         rel="noopener noreferrer"
-                                        class="text-[9.5px] font-mono tracking-wider text-muted hover:text-accent flex items-center gap-1 transition-colors"
+                                        class="text-[9.5px] font-mono tracking-wider text-muted hover:text-accent flex items-center gap-1.5 transition-colors cursor-pointer"
+                                        title="Ver reel original en Instagram"
                                     >
-                                        <i data-lucide="instagram" class="w-3 h-3"></i>
+                                        <i data-lucide="instagram" class="w-3.5 h-3.5 text-accent"></i>
                                         <span>@farfos_tattoo</span>
                                     </a>
                                 </div>
 
-                                {{-- Video Viewport --}}
-                                <div class="relative aspect-[9/16] bg-card overflow-hidden group/cta flex items-center justify-center">
+                                {{-- Video Viewport (Enlarged & Cinematic Aspect Ratio) --}}
+                                <div class="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] max-h-[560px] bg-card overflow-hidden group/cta flex items-center justify-center">
                                     <video
                                         x-ref="ctaVideo"
-                                        src="{{ asset('videos/cta_short.mp4') }}"
-                                        poster="{{ asset('videos/cta_banner.jpg') }}"
+                                        src="{{ asset('videos/cta_final.mp4') }}"
+                                        poster="{{ asset('videos/cta_final_banner.jpg') }}"
                                         autoplay
                                         muted
                                         loop
@@ -1240,19 +1271,43 @@
                                     {{-- Vignette Overlay --}}
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30 pointer-events-none"></div>
 
+                                    {{-- Floating Audio Mute / Unmute Toggle Button --}}
+                                    <button
+                                        @click.stop="toggleCtaMute()"
+                                        class="absolute bottom-16 right-3.5 z-20 w-9 h-9 rounded-full bg-black/80 border border-accent/50 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none cursor-pointer"
+                                        :title="isCtaMuted ? 'Activar Sonido' : 'Silenciar'"
+                                    >
+                                        <i :data-lucide="isCtaMuted ? 'volume-x' : 'volume-2'" class="w-3.5 h-3.5"></i>
+                                    </button>
+
                                     {{-- Play / Pause Floating Toggle --}}
                                     <button
-                                        @click="toggleCtaVideo()"
-                                        class="absolute bottom-3 right-3 z-20 w-9 h-9 rounded-full bg-black/80 border border-accent/50 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none cursor-pointer"
+                                        @click.stop="toggleCtaVideo()"
+                                        class="absolute bottom-3.5 right-3.5 z-20 w-9 h-9 rounded-full bg-black/80 border border-accent/50 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none cursor-pointer"
                                         :title="ctaPlaying ? 'Pausar Video' : 'Reproducir Video'"
                                     >
                                         <i :data-lucide="ctaPlaying ? 'pause' : 'play'" class="w-3.5 h-3.5"></i>
                                     </button>
 
                                     {{-- Bottom Badge --}}
-                                    <div class="absolute bottom-3 left-3 z-20 max-w-[75%]">
-                                        <p class="text-xs font-bold text-white tracking-wide truncate drop-shadow">Sebastián, El Farfo</p>
-                                        <p class="text-[9px] text-accent tracking-wider uppercase font-semibold truncate">En plena creación</p>
+                                    <div class="absolute bottom-3.5 left-3.5 z-20 max-w-[75%]">
+                                        <p class="text-xs sm:text-[13px] font-bold text-white tracking-wide truncate drop-shadow">Sebastián, El Farfo</p>
+                                        <p class="text-[9.5px] text-accent tracking-wider uppercase font-semibold truncate">Trazo & Precisión en Piel</p>
+                                    </div>
+                                </div>
+
+                                {{-- Capsule Integrated Footer --}}
+                                <div class="px-4 py-3 bg-black/95 border-t border-white/10 z-20 flex items-center justify-between text-[10px] text-muted font-mono uppercase tracking-wider">
+                                    <div class="flex items-center gap-2">
+                                        <span class="relative flex h-2 w-2">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                        </span>
+                                        <span class="text-white/80 font-bold">Sesiones Disponibles</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5 text-accent font-bold">
+                                        <span>Santiago, Chile</span>
+                                        <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
                                     </div>
                                 </div>
 
