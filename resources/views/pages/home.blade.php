@@ -319,18 +319,18 @@
                         <span class="text-accent uppercase tracking-[0.3em] text-[10px] font-black">Filosofía & Trayectoria</span>
                     </div>
 
-                    {{-- Section Title (Enlarged) --}}
-                    <h2 class="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif font-black uppercase tracking-tight leading-[1.08] text-foreground">
+                    {{-- Section Title (Proportionate so it doesn't get cut off) --}}
+                    <h2 class="text-2xl sm:text-3xl lg:text-[1.85rem] font-serif font-black uppercase tracking-tight leading-[1.12] text-foreground">
                         El Ritual de las <span class="text-accent italic">Imágenes</span>, <br class="hidden sm:inline" />
                         Historias en tu <span class="text-accent italic">Piel</span>.
                     </h2>
 
-                    {{-- Description (Enlarged & Crisp) --}}
-                    <p class="text-muted leading-relaxed uppercase tracking-[0.14em] text-xs sm:text-[12.5px] font-medium max-w-md">
-                        Sebastián, El Farfo, combina su formación académica con la maestría del tatuaje moderno. Diálogo consciente transformando memorias y pasiones en obras imperecederas.
+                    {{-- Description (Farfo's Tattoo copy) --}}
+                    <p class="text-muted leading-relaxed uppercase tracking-[0.12em] text-[11px] sm:text-xs font-medium max-w-md">
+                        Farfo's Tattoo combina su formación académica con la maestría del tatuaje moderno. Diálogo consciente transformando memorias y pasiones en obras imperecederas.
                     </p>
 
-                    {{-- Enhanced Encapsulated Technical Excellence Console (Slightly larger, clear form) --}}
+                    {{-- Enhanced Encapsulated Technical Excellence Console --}}
                     <div class="bg-card/90 border border-border/80 rounded-xl p-4 sm:p-5 backdrop-blur-xl relative overflow-hidden shadow-xl space-y-3.5">
                         
                         {{-- Top Header / Capsule Bar --}}
@@ -344,26 +344,26 @@
                             </span>
                         </div>
 
-                        {{-- 4-Pill Segmented Selector Tabs --}}
-                        <div class="grid grid-cols-2 gap-2">
+                        {{-- 4-Pill Segmented Selector Tabs (Slightly larger and more prominent) --}}
+                        <div class="grid grid-cols-2 gap-2.5">
                             <template x-for="(spec, i) in specs" :key="i">
                                 <button
                                     @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })"
                                     :class="activeIndex === i 
                                         ? 'bg-accent text-accent-foreground border-accent font-black shadow-[0_0_12px_rgba(212,175,55,0.25)]' 
-                                        : 'bg-surface/80 text-foreground/70 border-border/70 hover:border-accent/50 hover:text-foreground'"
-                                    class="p-2.5 rounded-md border text-left flex items-center gap-2 text-[10px] sm:text-[10.5px] uppercase tracking-wider transition-all duration-200 focus:outline-none cursor-pointer select-none hover:scale-[1.02]"
+                                        : 'bg-surface/80 text-foreground/75 border-border/70 hover:border-accent/50 hover:text-foreground'"
+                                    class="py-3 px-3 rounded-md border text-left flex items-center gap-2 text-[10.5px] sm:text-[11.5px] uppercase tracking-wider transition-all duration-200 focus:outline-none cursor-pointer select-none hover:scale-[1.02]"
                                 >
                                     <i :data-lucide="spec.icon" class="w-3.5 h-3.5 shrink-0"></i>
-                                    <span class="truncate font-bold" x-text="spec.title"></span>
+                                    <span class="truncate font-black" x-text="spec.title"></span>
                                 </button>
                             </template>
                         </div>
 
-                        {{-- Active Pillar Content Box (Larger & clearer) --}}
+                        {{-- Active Pillar Content Box (Larger text and clear description) --}}
                         <div class="bg-surface/70 rounded-lg p-3.5 sm:p-4 border border-border/50 transition-all duration-300 space-y-1.5">
                             <div class="flex items-center justify-between">
-                                <span class="text-accent text-[9px] uppercase tracking-[0.25em] font-black" x-text="specs[activeIndex].category"></span>
+                                <span class="text-accent text-[9.5px] uppercase tracking-[0.25em] font-black" x-text="specs[activeIndex].category"></span>
                                 <div class="flex items-center gap-1.5">
                                     <template x-for="(s, i) in specs" :key="i">
                                         <button 
@@ -375,36 +375,13 @@
                                 </div>
                             </div>
                             <h4 x-text="specs[activeIndex].title" class="font-serif font-black text-base sm:text-lg uppercase tracking-tight text-foreground"></h4>
-                            <p x-text="specs[activeIndex].description" class="text-[11px] sm:text-xs text-muted uppercase tracking-[0.08em] leading-relaxed font-semibold"></p>
+                            <p x-text="specs[activeIndex].description" class="text-xs sm:text-[13px] text-muted uppercase tracking-[0.08em] leading-relaxed font-semibold"></p>
                         </div>
-                    </div>
-
-                    {{-- Action Buttons --}}
-                    <div class="flex flex-col sm:flex-row gap-3 pt-1">
-                        <a 
-                            href="{{ route('portfolio') }}" 
-                            class="group relative px-6 py-3.5 bg-accent text-accent-foreground text-xs uppercase font-black tracking-[0.2em] overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center rounded-sm cursor-pointer"
-                        >
-                            <span class="relative z-10 flex items-center justify-center gap-2">
-                                Ver Portafolio 
-                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-500"></i>
-                            </span>
-                            <div class="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
-                        </a>
-                        <a 
-                            href="{{ route('about') }}" 
-                            class="group px-6 py-3.5 border border-border text-foreground text-xs uppercase font-black tracking-[0.2em] hover:border-accent hover:text-accent transition-all duration-500 text-center rounded-sm cursor-pointer"
-                        >
-                            <span class="flex items-center justify-center gap-2">
-                                Sobre Mí 
-                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-500"></i>
-                            </span>
-                        </a>
                     </div>
                 </div>
 
-                {{-- Right Column (7 cols on desktop): Wider Video Showcase shifted right --}}
-                <div class="lg:col-span-7 flex justify-center lg:justify-end lg:pr-2">
+                {{-- Right Column (7 cols on desktop): Wider Video Showcase shifted right and lowered 5px --}}
+                <div class="lg:col-span-7 flex justify-center lg:justify-end lg:pr-2 translate-y-[5px]">
                     <div class="w-full max-w-[460px] sm:max-w-[490px] md:max-w-[510px] lg:max-w-[520px] relative">
                         
                         {{-- Ambient Brand Golden Wave Breathing in Background --}}
@@ -504,8 +481,9 @@
                                     </div>
                                 </div>
 
-                                {{-- Capsule Integrated Footer: 4-Reel Switcher Tabs --}}
-                                <div class="p-2 sm:p-2.5 bg-black/95 border-t border-white/10 z-20">
+                                {{-- Capsule Integrated Footer: 4-Reel Switcher Tabs + Action Buttons --}}
+                                <div class="p-2 sm:p-2.5 bg-black/95 border-t border-white/10 z-20 space-y-2">
+                                    {{-- 4 Reels Tabs (Antes & Después, Sesión en Vivo, Cover Up Épico, Primer Lugar Fest) --}}
                                     <div class="grid grid-cols-4 gap-1 sm:gap-1.5">
                                         <template x-for="(reel, rIndex) in reels" :key="rIndex">
                                             <button
@@ -519,6 +497,29 @@
                                                 <span class="truncate w-full text-[8px] opacity-80" x-text="reel.tag"></span>
                                             </button>
                                         </template>
+                                    </div>
+
+                                    {{-- Action Buttons: Ver Portafolio & Sobre Mí (Together at bottom of card) --}}
+                                    <div class="grid grid-cols-2 gap-2 pt-0.5">
+                                        <a 
+                                            href="{{ route('portfolio') }}" 
+                                            class="group relative py-2.5 px-3 bg-accent text-accent-foreground text-[10.5px] sm:text-xs uppercase font-black tracking-[0.16em] overflow-hidden transition-all hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] text-center rounded flex items-center justify-center gap-1.5 cursor-pointer"
+                                        >
+                                            <span class="relative z-10 flex items-center justify-center gap-1.5 truncate">
+                                                Ver Portafolio 
+                                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
+                                            </span>
+                                            <div class="absolute inset-0 bg-white/15 -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                                        </a>
+                                        <a 
+                                            href="{{ route('about') }}" 
+                                            class="group py-2.5 px-3 border border-border/80 bg-surface/90 text-foreground text-[10.5px] sm:text-xs uppercase font-black tracking-[0.16em] hover:border-accent hover:text-accent transition-all duration-300 text-center rounded flex items-center justify-center gap-1.5 cursor-pointer"
+                                        >
+                                            <span class="flex items-center justify-center gap-1.5 truncate">
+                                                Sobre Mí 
+                                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
+                                            </span>
+                                        </a>
                                     </div>
                                 </div>
 
@@ -1011,8 +1012,8 @@
                         <span class="text-accent uppercase tracking-[0.3em] text-[10px] font-black">Metodología & Flujo Real</span>
                     </div>
 
-                    {{-- Section Title (Enlarged) --}}
-                    <h2 class="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif font-black uppercase tracking-tight leading-[1.08] text-foreground">
+                    {{-- Section Title (Proportionate so it doesn't get cut off) --}}
+                    <h2 class="text-2xl sm:text-3xl lg:text-[1.85rem] font-serif font-black uppercase tracking-tight leading-[1.12] text-foreground">
                         El Proceso de <span class="text-accent italic">Tatuaje</span>, <br class="hidden sm:inline" />
                         De la Idea a la <span class="text-accent italic">Piel</span>.
                     </h2>
