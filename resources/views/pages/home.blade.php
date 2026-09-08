@@ -308,7 +308,7 @@
         ></div>
 
         <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            <div class="section-content-grid max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                 
                 {{-- Left Column (5 cols on desktop): Story, Philosophy & Enhanced Technical Console --}}
                 <div class="lg:col-span-5 space-y-4">
@@ -766,10 +766,10 @@
         ></div>
 
         <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            <div class="section-content-grid max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                 
-                {{-- Column 1: Video / Media Showcase on LEFT (7 cols on desktop, +40px wider) --}}
-                <div class="lg:col-span-7 flex justify-center lg:justify-start lg:pl-2 order-1 lg:order-1">
+                {{-- Column 1: Video / Media Showcase on LEFT (7 cols on desktop, +40px wider, lowered 5px) --}}
+                <div class="lg:col-span-7 flex justify-center lg:justify-start lg:pl-2 order-1 lg:order-1 translate-y-[5px]">
                     <div class="w-full max-w-[460px] sm:max-w-[490px] md:max-w-[510px] lg:max-w-[520px] relative">
                         
                         {{-- Ambient Brand Golden Wave Breathing in Background --}}
@@ -980,8 +980,9 @@
 
                                 </div>
 
-                                {{-- Capsule Integrated Footer: 7-Step Switcher Tabs --}}
-                                <div class="p-2 bg-black/95 border-t border-white/10 z-20">
+                                {{-- Capsule Integrated Footer: 7-Step Switcher Tabs + Action Button --}}
+                                <div class="p-2 sm:p-2.5 bg-black/95 border-t border-white/10 z-20 space-y-2">
+                                    {{-- 7-Step Switcher Tabs --}}
                                     <div class="grid grid-cols-7 gap-1">
                                         <template x-for="(step, sIdx) in steps" :key="sIdx">
                                             <button
@@ -995,6 +996,21 @@
                                                 <span class="font-bold" x-text="'0' + (sIdx + 1)"></span>
                                             </button>
                                         </template>
+                                    </div>
+
+                                    {{-- Action Button: Agendar Cita (Under the 7 buttons of the video card) --}}
+                                    <div class="pt-0.5">
+                                        <a 
+                                            href="{{ route('booking') }}" 
+                                            class="group relative w-full py-2.5 px-4 bg-accent text-accent-foreground text-[10.5px] sm:text-xs uppercase font-black tracking-[0.18em] overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] text-center rounded flex items-center justify-center gap-2 cursor-pointer"
+                                        >
+                                            <span class="relative z-10 flex items-center justify-center gap-2">
+                                                Agendar Cita 
+                                                <i data-lucide="calendar" class="w-3.5 h-3.5 group-hover:scale-110 transition-transform"></i>
+                                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+                                            </span>
+                                            <div class="absolute inset-0 bg-white/15 -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                                        </a>
                                     </div>
                                 </div>
 
@@ -1019,7 +1035,7 @@
                     </h2>
 
                     {{-- Description (Enlarged & Crisp) --}}
-                    <p class="text-muted leading-relaxed uppercase tracking-[0.14em] text-xs sm:text-[12.5px] font-medium max-w-md">
+                    <p class="text-muted leading-relaxed uppercase tracking-[0.12em] text-[11px] sm:text-xs font-medium max-w-md">
                         Desde la concepción digital y el calco anatómico hasta la saturación viva y la segunda piel. Acompaña cada etapa real del ritual con Sebastián Farfo.
                     </p>
 
@@ -1072,29 +1088,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- Action Buttons --}}
-                    <div class="flex flex-col sm:flex-row gap-3 pt-1">
-                        <a 
-                            href="{{ route('booking') }}" 
-                            class="group relative px-6 py-3.5 bg-accent text-accent-foreground text-xs uppercase font-black tracking-[0.2em] overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center rounded-sm cursor-pointer"
-                        >
-                            <span class="relative z-10 flex items-center justify-center gap-2">
-                                Cotizar Proyecto 
-                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-500"></i>
-                            </span>
-                            <div class="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
-                        </a>
-                        <a 
-                            href="{{ route('portfolio') }}" 
-                            class="group px-6 py-3.5 border border-border text-foreground text-xs uppercase font-black tracking-[0.2em] hover:border-accent hover:text-accent transition-all duration-500 text-center rounded-sm cursor-pointer"
-                        >
-                            <span class="flex items-center justify-center gap-2">
-                                Ver Portafolio 
-                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-500"></i>
-                            </span>
-                        </a>
-                    </div>
                 </div>
 
             </div>
@@ -1140,7 +1133,7 @@
         <div class="absolute -bottom-1/2 left-0 w-[500px] h-[500px] rounded-full bg-accent/5 blur-[140px] pointer-events-none"></div>
 
         <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div class="section-content-grid max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
                 
                 {{-- Left Column (7 cols on lg): Texts, WhatsApp Direct CTA, Online Booking & Socials --}}
                 <div class="lg:col-span-7 space-y-6">
@@ -1309,8 +1302,8 @@
         const section = document.getElementById(id);
         if (!section) return;
 
-        // Find the inner grid or container inside the section
-        const content = section.querySelector('.grid') || section.querySelector('.container') || section;
+        // Find the inner content grid or container inside the section
+        const content = section.querySelector('.section-content-grid') || section.querySelector('.grid') || section.querySelector('.container') || section;
         const rect = content.getBoundingClientRect();
         const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
         
