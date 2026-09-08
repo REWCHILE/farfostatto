@@ -545,21 +545,21 @@
             steps: [
                 {
                     num: '01',
-                    badge: 'GÉNESIS CONCEPTUAL',
-                    title: 'Ilustración Digital y Flashes de Autor',
-                    short: '01. Bocetaje Digital',
-                    tag: 'Diseño en Tablet',
+                    badge: 'TRAZO & ESTRUCTURA',
+                    title: 'Trazado Estructural de Líneas Sólidas',
+                    short: '01. Líneas Guía',
+                    tag: 'Precisión Rotativa',
                     featured: false,
                     mediaType: 'video',
-                    video: '{{ asset('videos/about/about_6.mp4') }}',
-                    image: '{{ asset('videos/about/about_6.jpg') }}',
-                    description: 'Todo tatuaje nace en el trazo libre. Sebastián ilustra y estructura cada pieza personalizada en su tablet, estudiando proporciones, dinamismo y armonía anatómica antes de preparar el calco para la piel.',
+                    video: '{{ asset('images/proceso/paso-3-lineas.mp4') }}',
+                    image: '{{ asset('images/proceso/paso-3-lineas.jpg') }}',
+                    description: 'Con máquina rotativa calibrada, se trazan las líneas fundamentales de la obra. Líneas firmes, uniformes y limpias que aseguran la máxima definición a través de los años.',
                     specs: [
-                        { label: 'Herramienta', val: 'Ilustración Digital en Alta Definición' },
-                        { label: 'Enfoque', val: 'Diseño Autoral a la Medida del Cuerpo' },
-                        { label: 'Propósito', val: 'Composición y Escala Anatómica Previa' }
+                        { label: 'Máquinas', val: 'Rotativas de precisión milimétrica' },
+                        { label: 'Trazo', val: 'Línea sólida, continua y nítida' },
+                        { label: 'Profundidad', val: 'Penetración dérmica exacta sin sobretrauma' }
                     ],
-                    quote: 'El dibujo digital es la cocina de la idea: donde la libertad visual encuentra la armonía perfecta con el cuerpo.'
+                    quote: 'La línea es el cimiento de la obra: si la estructura es impecable, el tatuaje lucirá imponente por décadas.'
                 },
                 {
                     num: '02',
@@ -599,27 +599,9 @@
                 },
                 {
                     num: '04',
-                    badge: 'TRAZO & ESTRUCTURA',
-                    title: 'Trazado Estructural de Líneas Sólidas',
-                    short: '04. Líneas Guía',
-                    tag: 'Precisión Rotativa',
-                    featured: false,
-                    mediaType: 'video',
-                    video: '{{ asset('images/proceso/paso-3-lineas.mp4') }}',
-                    image: '{{ asset('images/proceso/paso-3-lineas.jpg') }}',
-                    description: 'Con máquina rotativa calibrada, se trazan las líneas fundamentales de la obra. Líneas firmes, uniformes y limpias que aseguran la máxima definición a través de los años.',
-                    specs: [
-                        { label: 'Máquinas', val: 'Rotativas de precisión milimétrica' },
-                        { label: 'Trazo', val: 'Línea sólida, continua y nítida' },
-                        { label: 'Profundidad', val: 'Penetración dérmica exacta sin sobretrauma' }
-                    ],
-                    quote: 'La línea es el cimiento de la obra: si la estructura es impecable, el tatuaje lucirá imponente por décadas.'
-                },
-                {
-                    num: '05',
                     badge: 'VOLUMEN & PROFUNDIDAD',
                     title: 'Sombreado y Textura Tridimensional',
-                    short: '05. Sombras & Relieve',
+                    short: '04. Sombras & Relieve',
                     tag: 'Black & Grey Base',
                     featured: false,
                     mediaType: 'video',
@@ -634,10 +616,10 @@
                     quote: 'El contraste le da alma a la pieza: separa las capas y le otorga esa presencia que parece emerger de la piel.'
                 },
                 {
-                    num: '06',
+                    num: '05',
                     badge: 'SATURACIÓN VIVA',
                     title: 'Saturación de Color: El Dragón Sagrado',
-                    short: '06. Color Shenlong ★',
+                    short: '05. Color Shenlong ★',
                     tag: 'Full Color',
                     featured: true,
                     mediaType: 'video',
@@ -652,10 +634,10 @@
                     quote: '⚡️ ¿Qué pedirías si tuvieras las 7 esferas? Un diseño con significado plasmado con máxima fidelidad.'
                 },
                 {
-                    num: '07',
+                    num: '06',
                     badge: 'OBRA CULMINADA',
                     title: 'Resultado Final y Protocolo Post-Cuidado',
-                    short: '07. Pieza Final',
+                    short: '06. Pieza Final',
                     tag: 'Masterpiece',
                     featured: false,
                     mediaType: 'image',
@@ -863,7 +845,7 @@
                                         </div>
                                     </template>
 
-                                    {{-- Image Mode (Paso 07) --}}
+                                    {{-- Image Mode (Paso 06) --}}
                                     <template x-if="steps[activeStep].mediaType === 'image'">
                                         <div class="relative w-full h-full">
                                             <img
@@ -980,10 +962,10 @@
 
                                 </div>
 
-                                {{-- Capsule Integrated Footer: 7-Step Switcher Tabs + Action Button --}}
+                                {{-- Capsule Integrated Footer: 6-Step Switcher Tabs + Action Button --}}
                                 <div class="p-2 sm:p-2.5 bg-black/95 border-t border-white/10 z-20 space-y-2">
-                                    {{-- 7-Step Switcher Tabs --}}
-                                    <div class="grid grid-cols-7 gap-1">
+                                    {{-- 6-Step Switcher Tabs --}}
+                                    <div class="grid grid-cols-6 gap-1.5">
                                         <template x-for="(step, sIdx) in steps" :key="sIdx">
                                             <button
                                                 @click="selectStep(sIdx)"
@@ -998,7 +980,7 @@
                                         </template>
                                     </div>
 
-                                    {{-- Action Button: Agendar Cita (Under the 7 buttons of the video card) --}}
+                                    {{-- Action Button: Agendar Cita (Under the 6 buttons of the video card) --}}
                                     <div class="pt-0.5">
                                         <a 
                                             href="{{ route('booking') }}" 
@@ -1036,7 +1018,7 @@
 
                     {{-- Description (Enlarged & Crisp) --}}
                     <p class="text-muted leading-relaxed uppercase tracking-[0.12em] text-[11px] sm:text-xs font-medium max-w-md">
-                        Desde la concepción digital y el calco anatómico hasta la saturación viva y la segunda piel. Acompaña cada etapa real del ritual con Sebastián Farfo.
+                        Desde el trazado estructural y el calco anatómico hasta la saturación viva y la segunda piel. Acompaña cada etapa real del ritual con Sebastián Farfo.
                     </p>
 
                     {{-- Compact Encapsulated Step Console --}}
@@ -1049,7 +1031,7 @@
                                 <span x-text="steps[activeStep].badge"></span>
                             </div>
                             <span class="text-[9.5px] font-mono uppercase tracking-widest text-muted">
-                                Etapa 0<span x-text="activeStep + 1"></span> / 07
+                                Etapa 0<span x-text="activeStep + 1"></span> / 0<span x-text="steps.length"></span>
                             </span>
                         </div>
 
