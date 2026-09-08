@@ -70,40 +70,65 @@
         </div>
     </section>
 
-    {{-- Presentation Section --}}
+    {{-- Presentation Section: El Ritual de las Imágenes --}}
     <section 
+        id="ritual"
         x-data="{
             activeIndex: 0,
+            videoPlaying: true,
             specs: [
                 {
                     icon: 'shield-check',
                     title: 'Asepsia Clínica',
-                    description: 'Protocolos quirúrgicos rigurosos y esterilización de grado médico para tu total seguridad.'
+                    category: 'Bioseguridad',
+                    description: 'Protocolos quirúrgicos rigurosos, campo estéril y desprecintado de insumos de grado médico frente al cliente.'
                 },
                 {
                     icon: 'zap',
                     title: 'Tecnología Rotativa',
-                    description: 'Uso de máquinas rotativas de última generación para precisión extrema y menor trauma en la piel.'
+                    category: 'Precisión',
+                    description: 'Uso de máquinas rotativas de última generación para líneas microscópicas, trazo limpio y menor trauma en la piel.'
                 },
                 {
                     icon: 'star',
                     title: 'Insumos Premium',
-                    description: 'Pigmentos veganos de alta fijación y materiales descartables certificados internacionalmente.'
+                    category: 'Pigmentos',
+                    description: 'Pigmentos veganos de alta fijación (Electric Ink) y cartuchos certificados internacionalmente para saturación duradera.'
                 },
                 {
                     icon: 'palette',
                     title: 'Diseño Anatómico',
-                    description: 'Cada pieza es diseñada para fluir naturalmente con la musculatura y forma de tu cuerpo.'
+                    category: 'Composición',
+                    description: 'Cada obra es concebida y adaptada para fluir en armonía orgánica con la musculatura y contorno del cuerpo.'
                 }
             ],
+            toggleRitualVideo() {
+                if (!this.$refs.ritualVideo) return;
+                if (this.$refs.ritualVideo.paused) {
+                    this.$refs.ritualVideo.play();
+                    this.videoPlaying = true;
+                } else {
+                    this.$refs.ritualVideo.pause();
+                    this.videoPlaying = false;
+                }
+            },
             init() {
                 setInterval(() => {
                     this.activeIndex = (this.activeIndex + 1) % this.specs.length;
                     this.$nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); });
                 }, 5000);
+
+                this.$nextTick(() => {
+                    if (this.$refs.ritualVideo) {
+                        this.$refs.ritualVideo.play().catch(() => {});
+                    }
+                    if (window.lucide) {
+                        window.lucide.createIcons({ icons: window.lucide.icons });
+                    }
+                });
             }
         }"
-        class="py-32 bg-surface relative overflow-hidden"
+        class="py-32 bg-surface relative overflow-hidden border-t border-border/40"
     >
         {{-- Radial Background Ambience --}}
         <div 
@@ -112,77 +137,186 @@
         ></div>
 
         <div class="container mx-auto px-6 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-20 items-center">
-                {{-- Left Column: Ritual Story --}}
-                <div class="space-y-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                {{-- Left Column: Story, Philosophy & Controls (5 cols) --}}
+                <div class="lg:col-span-5 space-y-8">
+                    {{-- Section Badge --}}
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/10">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent"></i>
+                        <span class="text-accent uppercase tracking-[0.35em] text-[10px] font-black">Filosofía & Trayectoria</span>
+                    </div>
+
+                    {{-- Section Title --}}
                     <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif font-black uppercase tracking-tighter leading-[0.95]">
                         El Ritual de las <span class="text-accent italic">Imágenes</span>, <br />
                         Historias en tu <span class="text-accent italic">Piel</span>.
                     </h2>
-                    <p class="text-muted leading-relaxed uppercase tracking-[0.2em] text-xs font-bold max-w-xl">
-                        Sebastián, El Farfo, combina su formación académica con la maestría del tatuaje moderno. Cada diseño es un diálogo consciente sobre un soporte vivo.
+
+                    {{-- Description --}}
+                    <p class="text-muted leading-relaxed uppercase tracking-[0.16em] text-xs font-semibold max-w-xl">
+                        Sebastián, El Farfo, combina su formación académica con la maestría del tatuaje moderno. Cada diseño es un diálogo consciente sobre un soporte vivo, transformando memorias, tributos y pasiones en obras imperecederas.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-6 pt-6">
+
+                    {{-- Interactive Spec Switcher Pills --}}
+                    <div class="pt-2 space-y-3">
+                        <div class="text-[10px] uppercase tracking-[0.25em] text-accent font-black flex items-center gap-2">
+                            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                            Pilares de Excelencia Técnica
+                        </div>
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <template x-for="(spec, i) in specs" :key="i">
+                                <button
+                                    @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })"
+                                    :class="activeIndex === i 
+                                        ? 'bg-accent text-accent-foreground border-accent font-black shadow-[0_0_15px_rgba(212,175,55,0.25)]' 
+                                        : 'bg-card/70 text-foreground/70 border-border hover:border-accent/40 hover:text-foreground'"
+                                    class="p-3 border text-left flex items-center gap-2.5 text-xs uppercase tracking-wider transition-all duration-300 focus:outline-none"
+                                >
+                                    <i :data-lucide="spec.icon" class="w-4 h-4 shrink-0"></i>
+                                    <span class="truncate text-[11px] font-bold" x-text="spec.title"></span>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+
+                    {{-- Action Buttons --}}
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
                         <a 
                             href="{{ route('portfolio') }}" 
-                            class="group relative px-10 py-5 bg-accent text-accent-foreground text-xs uppercase font-black tracking-[0.3em] overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(212,175,55,0.3)] text-center"
+                            class="group relative px-8 py-4 bg-accent text-accent-foreground text-xs uppercase font-black tracking-[0.25em] overflow-hidden transition-all hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] text-center"
                         >
-                            <span class="relative z-10 flex items-center justify-center gap-3">
+                            <span class="relative z-10 flex items-center justify-center gap-2">
                                 Ver Portafolio 
-                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500"></i>
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-500"></i>
                             </span>
                             <div class="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
                         </a>
                         <a 
                             href="{{ route('about') }}" 
-                            class="group px-10 py-5 border border-border text-foreground text-xs uppercase font-black tracking-[0.3em] hover:border-accent transition-all duration-500 text-center"
+                            class="group px-8 py-4 border border-border text-foreground text-xs uppercase font-black tracking-[0.25em] hover:border-accent transition-all duration-500 text-center"
                         >
-                            <span class="flex items-center justify-center gap-3">
+                            <span class="flex items-center justify-center gap-2">
                                 Sobre Mí 
-                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500"></i>
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-500"></i>
                             </span>
                         </a>
                     </div>
                 </div>
 
-                {{-- Right Column: Interactive Tech Specs Slider --}}
-                <div class="relative h-[440px] w-full max-w-[420px] mx-auto lg:mx-0">
-                    <template x-for="(spec, index) in specs" :key="index">
-                        <div 
-                            x-show="activeIndex === index"
-                            x-transition:enter="transition ease-out duration-500"
-                            x-transition:enter-start="opacity-0 translate-x-12 scale-95"
-                            x-transition:enter-end="opacity-100 translate-x-0 scale-100"
-                            x-transition:leave="transition ease-in duration-300"
-                            x-transition:leave-start="opacity-100 translate-x-0 scale-100"
-                            x-transition:leave-end="opacity-0 -translate-x-12 scale-95"
-                            class="absolute inset-0 bg-background/70 border border-border/60 p-10 flex flex-col justify-center space-y-6 backdrop-blur-xl group shadow-2xl"
+                {{-- Right Column (7 cols): Real Video Showcase + Rotating Pillar Card --}}
+                <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+                    
+                    {{-- 1. Transformation Video Reel Card (7 cols of 12) --}}
+                    <div class="md:col-span-7 relative aspect-[9/16] bg-card border border-border/80 overflow-hidden shadow-2xl group flex items-center justify-center">
+                        
+                        {{-- Top Live Badge --}}
+                        <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
+                            <span class="bg-black/85 backdrop-blur-md border border-accent/40 text-accent px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] font-black flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+                                Antes & Después
+                            </span>
+                        </div>
+
+                        {{-- Top Right Instagram Handle Badge --}}
+                        <a 
+                            href="https://www.instagram.com/p/Db-y_0Jx6l5/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="absolute top-4 right-4 z-20 bg-black/85 backdrop-blur-md border border-white/10 text-muted hover:text-accent px-2.5 py-1 text-[10px] font-mono tracking-wider transition-colors flex items-center gap-1"
                         >
-                            <div class="w-16 h-16 border border-accent/30 flex items-center justify-center text-accent group-hover:bg-accent/10 transition-colors">
-                                <i :data-lucide="spec.icon" class="w-8 h-8"></i>
+                            <i data-lucide="instagram" class="w-3 h-3"></i>
+                            @farfos_tattoo
+                        </a>
+
+                        {{-- Looping Video Reel --}}
+                        <video
+                            x-ref="ritualVideo"
+                            src="{{ asset('videos/ritual_antes_despues.mp4') }}"
+                            poster="{{ asset('videos/ritual_antes_despues_after.jpg') }}"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        ></video>
+
+                        {{-- Play/Pause Overlay Button --}}
+                        <button
+                            @click="toggleRitualVideo()"
+                            class="absolute bottom-4 right-4 z-20 w-10 h-10 rounded-full bg-black/85 border border-accent/40 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none"
+                            :title="videoPlaying ? 'Pausar Video' : 'Reproducir Video'"
+                        >
+                            <i :data-lucide="videoPlaying ? 'pause' : 'play'" class="w-4 h-4"></i>
+                        </button>
+
+                        {{-- Bottom Left Video Tag --}}
+                        <div class="absolute bottom-4 left-4 z-20 max-w-[70%] bg-black/85 backdrop-blur-sm border border-white/10 px-3 py-1.5 text-[10px] uppercase tracking-wider text-foreground/90 font-bold flex items-center gap-1.5">
+                            <i data-lucide="video" class="w-3 h-3 text-accent"></i>
+                            Retrato & Bull Terrier
+                        </div>
+
+                        {{-- Corner Gold Accents --}}
+                        <div class="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 border-accent pointer-events-none z-30"></div>
+                        <div class="absolute -bottom-1 -right-1 w-5 h-5 border-b-2 border-r-2 border-accent pointer-events-none z-30"></div>
+                    </div>
+
+                    {{-- 2. Rotating Spec Details Card (5 cols of 12) --}}
+                    <div class="md:col-span-5 flex flex-col justify-between bg-card/90 border border-border/80 p-6 sm:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl">
+                        {{-- Background Watermark Icon --}}
+                        <div class="absolute -right-6 -bottom-6 opacity-5 pointer-events-none text-accent">
+                            <i data-lucide="award" class="w-36 h-36"></i>
+                        </div>
+
+                        <div class="space-y-6 relative z-10">
+                            {{-- Top Category & Indicator --}}
+                            <div class="flex items-center justify-between">
+                                <div class="w-12 h-12 border border-accent/30 flex items-center justify-center text-accent bg-accent/10">
+                                    <i :data-lucide="specs[activeIndex].icon" class="w-6 h-6"></i>
+                                </div>
+                                <span class="text-[10px] uppercase tracking-widest font-mono text-muted">
+                                    Pilar 0<span x-text="activeIndex + 1"></span> / 04
+                                </span>
                             </div>
 
-                            <div class="space-y-4">
-                                <h4 x-text="spec.title" class="font-serif font-bold text-3xl uppercase italic tracking-tighter text-accent"></h4>
-                                <p x-text="spec.description" class="text-xs text-muted uppercase tracking-[0.15em] leading-relaxed font-bold"></p>
+                            {{-- Active Pillar Content --}}
+                            <div class="space-y-3">
+                                <span class="text-accent text-[10px] uppercase tracking-[0.3em] font-black" x-text="specs[activeIndex].category"></span>
+                                <h4 x-text="specs[activeIndex].title" class="font-serif font-black text-2xl sm:text-3xl uppercase tracking-tight text-foreground leading-tight"></h4>
+                                <p x-text="specs[activeIndex].description" class="text-xs text-muted uppercase tracking-[0.14em] leading-relaxed font-bold"></p>
                             </div>
+                        </div>
 
-                            {{-- Progress Indicators --}}
-                            <div class="flex gap-2 pt-6">
+                        {{-- Progress Dots & Direct Reel Link --}}
+                        <div class="pt-6 relative z-10 space-y-4">
+                            <div class="flex gap-2">
                                 <template x-for="(s, i) in specs" :key="i">
                                     <button 
-                                        @click="activeIndex = i" 
+                                        @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })" 
                                         :class="i === activeIndex ? 'w-8 bg-accent' : 'w-2 bg-border hover:bg-muted'"
-                                        class="h-1 transition-all duration-500 focus:outline-none"
+                                        class="h-1 transition-all duration-300 focus:outline-none"
                                     ></button>
                                 </template>
                             </div>
-                        </div>
-                    </template>
 
-                    {{-- Corner Geometric Line --}}
-                    <div class="absolute -bottom-5 -right-5 w-28 h-28 border-r-2 border-b-2 border-accent/20 pointer-events-none"></div>
+                            <a 
+                                href="https://www.instagram.com/p/Db-y_0Jx6l5/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-accent/80 hover:text-accent font-bold pt-2 transition-colors group"
+                            >
+                                <i data-lucide="instagram" class="w-3.5 h-3.5 text-accent"></i>
+                                Ver reel en Instagram
+                                <i data-lucide="arrow-up-right" class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                            </a>
+                        </div>
+
+                        {{-- Corner Line --}}
+                        <div class="absolute -bottom-3 -right-3 w-16 h-16 border-r-2 border-b-2 border-accent/20 pointer-events-none"></div>
+                    </div>
+
                 </div>
+
             </div>
         </div>
     </section>
