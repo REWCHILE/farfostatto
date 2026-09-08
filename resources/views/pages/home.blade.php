@@ -10,15 +10,33 @@
         id="hero-section"
         class="relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
     >
+        {{-- Background Video Optimized for Horizontal/Responsive Displays --}}
+        <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+            <video
+                autoplay
+                muted
+                loop
+                playsinline
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover opacity-25 select-none"
+                poster="{{ asset('videos/hero_bg.jpg') }}"
+            >
+                <source src="{{ asset('videos/hero_bg.mp4') }}" type="video/mp4">
+            </video>
+
+            {{-- Multi-layered Dark Vignette & Gradient Overlays so video never breaks horizontally --}}
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/80"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,var(--background)_80%)] opacity-95"></div>
+        </div>
+
         {{-- Background Cinematic Particles Canvas --}}
         <canvas 
             id="hero-particles" 
-            class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-40 z-0"
+            class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-40 z-[1]"
             style="filter: blur(1.5px);"
         ></canvas>
 
         {{-- Background Radial Gold Glow --}}
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] pointer-events-none opacity-20">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] pointer-events-none opacity-20 z-[1]">
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,var(--accent)_0%,transparent_70%)] blur-[120px]"></div>
         </div>
 

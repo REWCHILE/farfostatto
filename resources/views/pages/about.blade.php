@@ -115,6 +115,267 @@
                 </div>
             </div>
         </div>
-    </div>
-</main>
+
+        {{-- Video Reels & Filosofía Section --}}
+        <section 
+            id="filosofia-reels"
+            x-data="{
+                activeReel: 0,
+                videoPlaying: true,
+                reels: [
+                    {
+                        id: '01',
+                        title: 'La Batalla del Tattoo en Santiago',
+                        category: 'Competición en Vivo',
+                        tag: 'Evento & Técnica',
+                        desc: 'Viví una de esas experiencias que te recuerdan por qué amas lo que haces. Creación bajo presión, técnica pura y pasión frente al público en La Batalla del Tattoo.',
+                        video: '{{ asset('videos/about/about_1.mp4') }}',
+                        poster: '{{ asset('videos/about/about_1.jpg') }}',
+                        instagram: 'https://www.instagram.com/reel/DQ5WD0XD0Fl/',
+                        quote: 'Cuando la adrenalina y la disciplina formal se encuentran en cada línea sobre la piel.'
+                    },
+                    {
+                        id: '02',
+                        title: 'El Origen del Tatuaje',
+                        category: 'Filosofía de Creación',
+                        tag: 'Bocetaje & Diálogo',
+                        desc: 'No todos los tatuajes parten en la piel: algunos comienzan en una conversación profunda, traduciendo memorias, ideas y significados en bocetos de autor.',
+                        video: '{{ asset('videos/about/about_2.mp4') }}',
+                        poster: '{{ asset('videos/about/about_2.jpg') }}',
+                        instagram: 'https://www.instagram.com/reel/DXxpPD1v37T/',
+                        quote: 'El diálogo consciente con el cliente es la verdadera matriz de una obra irrepetible.'
+                    },
+                    {
+                        id: '03',
+                        title: 'El Dolor en el Tatuaje',
+                        category: 'Ritual y Biología',
+                        tag: 'Conciencia Corporal',
+                        desc: 'El dolor no es tu enemigo: es la señal de que tu cuerpo despierta, tu sistema inmune se activa y la experiencia se graba en tu memoria física y espiritual.',
+                        video: '{{ asset('videos/about/about_3.mp4') }}',
+                        poster: '{{ asset('videos/about/about_3.jpg') }}',
+                        instagram: 'https://www.instagram.com/reel/DNWj1ycvoJF/',
+                        quote: 'Traspasar la barrera del dolor transforma el acto de tatuarse en un rito de paso personal.'
+                    },
+                    {
+                        id: '04',
+                        title: 'Sin Encasillarme: Múltiples Estilos',
+                        category: 'Estilos & Dominio',
+                        tag: 'Versatilidad Artística',
+                        desc: 'No tengo un solo estilo porque nunca he sido de encasillarme. Blackwork, Realismo, Anime y Cover Up convergen bajo un mismo estándar de rigor y pulcritud.',
+                        video: '{{ asset('videos/about/about_4.mp4') }}',
+                        poster: '{{ asset('videos/about/about_4.jpg') }}',
+                        instagram: 'https://www.instagram.com/reel/DMu8O6xuLgg/',
+                        quote: 'La maestría no consiste en repetir una fórmula, sino en dominar los fundamentos para crear libremente.'
+                    },
+                    {
+                        id: '05',
+                        title: 'En el Estudio: Visión y Método',
+                        category: 'Experiencia Farfo',
+                        tag: 'La Sesión',
+                        desc: 'Sebastián reflexiona directamente desde su estudio sobre lo que sucede en cada sesión: la calma, el respeto por el lienzo humano y la intención puesta en la aguja.',
+                        video: '{{ asset('videos/about/about_5.mp4') }}',
+                        poster: '{{ asset('videos/about/about_5.jpg') }}',
+                        instagram: 'https://www.instagram.com/reel/DMf6SBsxG1_/',
+                        quote: 'El estudio es un espacio de concentración y respeto donde tu historia cobra vida eterna.'
+                    }
+                ],
+                selectReel(index) {
+                    this.activeReel = index;
+                    this.videoPlaying = true;
+                    this.$nextTick(() => {
+                        if (this.$refs.aboutVideo) {
+                            this.$refs.aboutVideo.load();
+                            this.$refs.aboutVideo.play().catch(() => {});
+                        }
+                        if (window.lucide) {
+                            window.lucide.createIcons({ icons: window.lucide.icons });
+                        }
+                    });
+                },
+                nextReel() {
+                    this.selectReel((this.activeReel + 1) % this.reels.length);
+                },
+                prevReel() {
+                    this.selectReel((this.activeReel - 1 + this.reels.length) % this.reels.length);
+                },
+                toggleVideo() {
+                    if (!this.$refs.aboutVideo) return;
+                    if (this.$refs.aboutVideo.paused) {
+                        this.$refs.aboutVideo.play();
+                        this.videoPlaying = true;
+                    } else {
+                        this.$refs.aboutVideo.pause();
+                        this.videoPlaying = false;
+                    }
+                },
+                init() {
+                    this.$nextTick(() => {
+                        if (this.$refs.aboutVideo) {
+                            this.$refs.aboutVideo.play().catch(() => {});
+                        }
+                        if (window.lucide) {
+                            window.lucide.createIcons({ icons: window.lucide.icons });
+                        }
+                    });
+                }
+            }"
+            class="mt-32 pt-20 border-t border-border/50 relative"
+        >
+            {{-- Header --}}
+            <div class="max-w-3xl mb-14 space-y-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10">
+                    <i data-lucide="video" class="w-3.5 h-3.5 text-accent animate-pulse"></i>
+                    <span class="text-accent uppercase tracking-[0.35em] text-[10px] font-black">La Voz del Artista</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-serif font-black uppercase tracking-tight text-foreground leading-[1.05]">
+                    Reflexiones, Método & <span class="text-accent italic">Sesiones en Vivo</span>
+                </h2>
+                <p class="text-muted text-xs uppercase tracking-[0.18em] font-semibold leading-relaxed">
+                    Cinco miradas directas sobre la filosofía de trabajo, el manejo del dolor, la versatilidad de estilos y el ritual del tatuaje según Sebastián.
+                </p>
+            </div>
+
+            {{-- Interactive Spotlight Grid: Video Player + Playlist --}}
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+                
+                {{-- Left: Active Vertical Reel Spotlight (5 cols on lg) --}}
+                <div class="lg:col-span-5 flex flex-col">
+                    <div class="relative w-full aspect-[9/16] bg-card border border-border/80 overflow-hidden shadow-2xl group flex items-center justify-center">
+                        
+                        {{-- Top Badge --}}
+                        <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
+                            <span class="bg-black/85 backdrop-blur-md border border-accent/40 text-accent px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] font-black flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+                                <span x-text="reels[activeReel].tag"></span>
+                            </span>
+                        </div>
+
+                        {{-- Top Right Counter & Instagram link --}}
+                        <a 
+                            :href="reels[activeReel].instagram"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="absolute top-4 right-4 z-20 bg-black/85 backdrop-blur-md border border-white/10 text-muted hover:text-accent px-2.5 py-1 text-[10px] font-mono tracking-wider transition-colors flex items-center gap-1"
+                            title="Ver en Instagram"
+                        >
+                            <span class="text-accent font-bold" x-text="'0' + (activeReel + 1) + '/05'"></span>
+                            <i data-lucide="instagram" class="w-3 h-3 ml-1"></i>
+                        </a>
+
+                        {{-- Active Video --}}
+                        <video
+                            x-ref="aboutVideo"
+                            :src="reels[activeReel].video"
+                            :poster="reels[activeReel].poster"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        ></video>
+
+                        {{-- Arrows Overlay --}}
+                        <button
+                            @click="prevReel()"
+                            class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/80 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md shadow-lg transition-all focus:outline-none"
+                            title="Anterior"
+                        >
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        </button>
+
+                        <button
+                            @click="nextReel()"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/80 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md shadow-lg transition-all focus:outline-none"
+                            title="Siguiente"
+                        >
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        </button>
+
+                        {{-- Play/Pause Button --}}
+                        <button
+                            @click="toggleVideo()"
+                            class="absolute bottom-4 right-4 z-20 w-10 h-10 rounded-full bg-black/85 border border-accent/40 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none"
+                            :title="videoPlaying ? 'Pausar' : 'Reproducir'"
+                        >
+                            <i :data-lucide="videoPlaying ? 'pause' : 'play'" class="w-4 h-4"></i>
+                        </button>
+
+                        {{-- Title Tag --}}
+                        <div class="absolute bottom-4 left-4 z-20 max-w-[70%] bg-black/85 backdrop-blur-sm border border-white/10 px-3 py-1.5 text-[10px] uppercase tracking-wider text-foreground/90 font-bold flex items-center gap-1.5">
+                            <i data-lucide="video" class="w-3 h-3 text-accent shrink-0"></i>
+                            <span class="truncate" x-text="reels[activeReel].title"></span>
+                        </div>
+
+                        {{-- Corner Accents --}}
+                        <div class="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 border-accent pointer-events-none z-30"></div>
+                        <div class="absolute -bottom-1 -right-1 w-5 h-5 border-b-2 border-r-2 border-accent pointer-events-none z-30"></div>
+                    </div>
+                </div>
+
+                {{-- Right: Playlist & Reflection Details (7 cols on lg) --}}
+                <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+                    
+                    {{-- Active Reel Details Card --}}
+                    <div class="bg-surface border border-border/80 p-6 sm:p-8 relative overflow-hidden shadow-xl space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-accent text-[10px] uppercase tracking-[0.3em] font-black" x-text="reels[activeReel].category"></span>
+                            <a 
+                                :href="reels[activeReel].instagram" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-muted hover:text-accent font-bold transition-colors"
+                            >
+                                <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
+                                Ver en Instagram
+                                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+                            </a>
+                        </div>
+
+                        <h3 class="text-2xl sm:text-3xl font-serif font-black uppercase tracking-tight text-foreground" x-text="reels[activeReel].title"></h3>
+                        <p class="text-xs sm:text-sm text-foreground/80 leading-relaxed font-sans" x-text="reels[activeReel].desc"></p>
+
+                        <div class="p-4 bg-background/70 border-l-2 border-accent space-y-1">
+                            <div class="text-accent text-[10px] uppercase tracking-widest font-black flex items-center gap-1.5">
+                                <i data-lucide="quote" class="w-3 h-3"></i> Sebastián · El Farfo
+                            </div>
+                            <p class="text-xs italic text-foreground/90 leading-relaxed" x-text="reels[activeReel].quote"></p>
+                        </div>
+                    </div>
+
+                    {{-- Playlist of 5 Videos --}}
+                    <div class="space-y-2.5">
+                        <div class="text-[10px] uppercase tracking-[0.25em] text-accent font-black mb-2 flex items-center gap-2">
+                            <i data-lucide="list-video" class="w-3.5 h-3.5"></i>
+                            Serie de Videos (5 Capítulos)
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <template x-for="(reel, index) in reels" :key="index">
+                                <button
+                                    @click="selectReel(index)"
+                                    :class="activeReel === index 
+                                        ? 'bg-accent/15 border-accent text-accent shadow-[0_0_15px_rgba(212,175,55,0.2)]' 
+                                        : 'bg-card/70 border-border/70 text-foreground/70 hover:border-accent/40 hover:text-foreground'"
+                                    class="p-3 border text-left transition-all duration-300 flex items-start gap-3 group focus:outline-none"
+                                >
+                                    <span 
+                                        :class="activeReel === index ? 'text-accent font-black' : 'text-muted font-bold'"
+                                        class="text-xs font-mono shrink-0 pt-0.5" 
+                                        x-text="reel.id"
+                                    ></span>
+                                    <div class="min-w-0 flex-1">
+                                        <h5 class="text-xs font-serif font-bold uppercase truncate" x-text="reel.title"></h5>
+                                        <p class="text-[10px] text-muted truncate uppercase tracking-wider mt-0.5" x-text="reel.category"></p>
+                                    </div>
+                                    <span :class="activeReel === index ? 'bg-accent text-accent-foreground' : 'bg-border text-muted'" class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                                        <i data-lucide="play" class="w-2.5 h-2.5 fill-current"></i>
+                                    </span>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
 @endsection
