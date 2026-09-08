@@ -18,7 +18,7 @@
             scrollToSection(id) {
                 const el = document.getElementById(id);
                 if (el) {
-                    el.scrollIntoView({ behavior: 'smooth' });
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
             },
             init() {
@@ -146,7 +146,8 @@
         {{-- Scroll Cue Indicator --}}
         <a 
             href="#ritual" 
-            class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 group text-muted hover:text-accent transition-colors focus:outline-none"
+            @click.prevent="document.getElementById('ritual')?.scrollIntoView({ behavior: 'smooth', block: 'center' })"
+            class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 group text-muted hover:text-accent transition-colors focus:outline-none cursor-pointer"
             title="Deslizar a El Ritual"
         >
             <span class="text-[9px] uppercase tracking-[0.35em] text-accent font-bold group-hover:tracking-[0.45em] transition-all">Desliza</span>
@@ -170,6 +171,7 @@
             activeIndex: 0,
             activeReel: 0,
             videoPlaying: true,
+            isMuted: true,
             reels: [
                 {
                     title: 'Retrato Realista & Bull Terrier',
@@ -244,6 +246,7 @@
                 this.$nextTick(() => {
                     if (this.$refs.ritualVideo) {
                         this.$refs.ritualVideo.load();
+                        this.$refs.ritualVideo.muted = this.isMuted;
                         this.$refs.ritualVideo.play().catch(() => {});
                     }
                     if (window.lucide) {
@@ -267,6 +270,16 @@
                     this.videoPlaying = false;
                 }
             },
+            toggleRitualMute() {
+                if (!this.$refs.ritualVideo) return;
+                this.isMuted = !this.isMuted;
+                this.$refs.ritualVideo.muted = this.isMuted;
+                this.$nextTick(() => {
+                    if (window.lucide) {
+                        window.lucide.createIcons({ icons: window.lucide.icons });
+                    }
+                });
+            },
             init() {
                 setInterval(() => {
                     this.activeIndex = (this.activeIndex + 1) % this.specs.length;
@@ -275,6 +288,7 @@
 
                 this.$nextTick(() => {
                     if (this.$refs.ritualVideo) {
+                        this.$refs.ritualVideo.muted = this.isMuted;
                         this.$refs.ritualVideo.play().catch(() => {});
                     }
                     if (window.lucide) {
@@ -283,7 +297,7 @@
                 });
             }
         }"
-        class="snap-section scroll-mt-20 py-32 bg-surface relative overflow-hidden border-t border-border/40"
+        class="snap-section py-8 sm:py-10 lg:py-12 min-h-screen flex items-center bg-surface relative overflow-hidden border-t border-border/40"
     >
         {{-- Radial Background Ambience --}}
         <div 
@@ -294,102 +308,102 @@
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                 
-                {{-- Left Column (5 cols on desktop): Compact Story, Philosophy & Technical Console --}}
-                <div class="lg:col-span-5 space-y-5">
+                {{-- Left Column (5 cols on desktop): Story, Philosophy & Enhanced Technical Console --}}
+                <div class="lg:col-span-5 space-y-4">
                     
                     {{-- Section Badge --}}
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/25 bg-accent/10">
-                        <i data-lucide="sparkles" class="w-3 h-3 text-accent"></i>
-                        <span class="text-accent uppercase tracking-[0.3em] text-[9px] font-black">Filosofía & Trayectoria</span>
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent"></i>
+                        <span class="text-accent uppercase tracking-[0.3em] text-[10px] font-black">Filosofía & Trayectoria</span>
                     </div>
 
-                    {{-- Section Title --}}
-                    <h2 class="text-2xl sm:text-3xl lg:text-[2.25rem] font-serif font-black uppercase tracking-tight leading-[1.1]">
+                    {{-- Section Title (Enlarged) --}}
+                    <h2 class="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif font-black uppercase tracking-tight leading-[1.08] text-foreground">
                         El Ritual de las <span class="text-accent italic">Imágenes</span>, <br class="hidden sm:inline" />
                         Historias en tu <span class="text-accent italic">Piel</span>.
                     </h2>
 
-                    {{-- Description --}}
-                    <p class="text-muted leading-relaxed uppercase tracking-[0.13em] text-[11px] font-semibold max-w-sm">
+                    {{-- Description (Enlarged & Crisp) --}}
+                    <p class="text-muted leading-relaxed uppercase tracking-[0.14em] text-xs sm:text-[12.5px] font-medium max-w-md">
                         Sebastián, El Farfo, combina su formación académica con la maestría del tatuaje moderno. Diálogo consciente transformando memorias y pasiones en obras imperecederas.
                     </p>
 
-                    {{-- Compact Encapsulated Technical Excellence Console --}}
-                    <div class="bg-card/85 border border-border/80 rounded-xl p-4 backdrop-blur-xl relative overflow-hidden shadow-lg space-y-3">
+                    {{-- Enhanced Encapsulated Technical Excellence Console (Slightly larger, clear form) --}}
+                    <div class="bg-card/90 border border-border/80 rounded-xl p-4 sm:p-5 backdrop-blur-xl relative overflow-hidden shadow-xl space-y-3.5">
                         
                         {{-- Top Header / Capsule Bar --}}
                         <div class="flex items-center justify-between border-b border-border/50 pb-2.5">
-                            <div class="flex items-center gap-1.5 text-accent font-black text-[9px] uppercase tracking-[0.2em]">
-                                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                            <div class="flex items-center gap-2 text-accent font-black text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em]">
+                                <i data-lucide="shield-check" class="w-4 h-4"></i>
                                 <span>Pilares de Excelencia Técnica</span>
                             </div>
-                            <span class="text-[9px] font-mono uppercase tracking-widest text-muted">
+                            <span class="text-[9.5px] font-mono uppercase tracking-widest text-muted">
                                 Pilar 0<span x-text="activeIndex + 1"></span> / 04
                             </span>
                         </div>
 
                         {{-- 4-Pill Segmented Selector Tabs --}}
-                        <div class="grid grid-cols-2 gap-1.5">
+                        <div class="grid grid-cols-2 gap-2">
                             <template x-for="(spec, i) in specs" :key="i">
                                 <button
                                     @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })"
                                     :class="activeIndex === i 
                                         ? 'bg-accent text-accent-foreground border-accent font-black shadow-[0_0_12px_rgba(212,175,55,0.25)]' 
-                                        : 'bg-surface/80 text-foreground/70 border-border/70 hover:border-accent/40 hover:text-foreground'"
-                                    class="p-2 rounded-md border text-left flex items-center gap-2 text-[9px] uppercase tracking-wider transition-all duration-300 focus:outline-none"
+                                        : 'bg-surface/80 text-foreground/70 border-border/70 hover:border-accent/50 hover:text-foreground'"
+                                    class="p-2.5 rounded-md border text-left flex items-center gap-2 text-[10px] sm:text-[10.5px] uppercase tracking-wider transition-all duration-200 focus:outline-none cursor-pointer select-none hover:scale-[1.02]"
                                 >
-                                    <i :data-lucide="spec.icon" class="w-3 h-3 shrink-0"></i>
+                                    <i :data-lucide="spec.icon" class="w-3.5 h-3.5 shrink-0"></i>
                                     <span class="truncate font-bold" x-text="spec.title"></span>
                                 </button>
                             </template>
                         </div>
 
-                        {{-- Active Pillar Content Box --}}
-                        <div class="bg-surface/60 rounded-lg p-3 border border-border/40 transition-all duration-300">
-                            <div class="flex items-center justify-between mb-1">
-                                <span class="text-accent text-[8px] uppercase tracking-[0.25em] font-black" x-text="specs[activeIndex].category"></span>
-                                <div class="flex items-center gap-1">
+                        {{-- Active Pillar Content Box (Larger & clearer) --}}
+                        <div class="bg-surface/70 rounded-lg p-3.5 sm:p-4 border border-border/50 transition-all duration-300 space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent text-[9px] uppercase tracking-[0.25em] font-black" x-text="specs[activeIndex].category"></span>
+                                <div class="flex items-center gap-1.5">
                                     <template x-for="(s, i) in specs" :key="i">
                                         <button 
                                             @click="activeIndex = i; $nextTick(() => { window.lucide?.createIcons({ icons: window.lucide?.icons }); })" 
                                             :class="i === activeIndex ? 'w-5 bg-accent' : 'w-1.5 bg-border hover:bg-muted'"
-                                            class="h-1 rounded-full transition-all duration-300 focus:outline-none"
+                                            class="h-1 rounded-full transition-all duration-300 focus:outline-none cursor-pointer"
                                         ></button>
                                     </template>
                                 </div>
                             </div>
-                            <h4 x-text="specs[activeIndex].title" class="font-serif font-black text-base uppercase tracking-tight text-foreground mb-0.5"></h4>
-                            <p x-text="specs[activeIndex].description" class="text-[10px] text-muted uppercase tracking-[0.1em] leading-relaxed font-semibold"></p>
+                            <h4 x-text="specs[activeIndex].title" class="font-serif font-black text-base sm:text-lg uppercase tracking-tight text-foreground"></h4>
+                            <p x-text="specs[activeIndex].description" class="text-[11px] sm:text-xs text-muted uppercase tracking-[0.08em] leading-relaxed font-semibold"></p>
                         </div>
                     </div>
 
                     {{-- Action Buttons --}}
-                    <div class="flex flex-col sm:flex-row gap-3 pt-0.5">
+                    <div class="flex flex-col sm:flex-row gap-3 pt-1">
                         <a 
                             href="{{ route('portfolio') }}" 
-                            class="group relative px-6 py-3 bg-accent text-accent-foreground text-[11px] uppercase font-black tracking-[0.2em] overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center rounded-sm"
+                            class="group relative px-6 py-3.5 bg-accent text-accent-foreground text-xs uppercase font-black tracking-[0.2em] overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center rounded-sm cursor-pointer"
                         >
                             <span class="relative z-10 flex items-center justify-center gap-2">
                                 Ver Portafolio 
-                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-500"></i>
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-500"></i>
                             </span>
                             <div class="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
                         </a>
                         <a 
                             href="{{ route('about') }}" 
-                            class="group px-6 py-3 border border-border text-foreground text-[11px] uppercase font-black tracking-[0.2em] hover:border-accent hover:text-accent transition-all duration-500 text-center rounded-sm"
+                            class="group px-6 py-3.5 border border-border text-foreground text-xs uppercase font-black tracking-[0.2em] hover:border-accent hover:text-accent transition-all duration-500 text-center rounded-sm cursor-pointer"
                         >
                             <span class="flex items-center justify-center gap-2">
                                 Sobre Mí 
-                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-500"></i>
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-500"></i>
                             </span>
                         </a>
                     </div>
                 </div>
 
-                {{-- Right Column (7 cols on desktop): Wider & Centered Studio Reel Showcase with Brand Wave Border --}}
-                <div class="lg:col-span-7 flex justify-center lg:justify-start lg:pl-6">
-                    <div class="w-full max-w-[420px] sm:max-w-[440px] md:max-w-[460px] relative">
+                {{-- Right Column (7 cols on desktop): Wider Video Showcase shifted right --}}
+                <div class="lg:col-span-7 flex justify-center lg:justify-end lg:pr-2">
+                    <div class="w-full max-w-[460px] sm:max-w-[490px] md:max-w-[510px] lg:max-w-[520px] relative">
                         
                         {{-- Ambient Brand Golden Wave Breathing in Background --}}
                         <div class="absolute -inset-3 bg-gradient-to-tr from-accent/25 via-accent/40 to-accent/15 rounded-[36px] blur-2xl opacity-60 animate-gold-wave pointer-events-none"></div>
@@ -410,7 +424,7 @@
                                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                                             <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                                         </span>
-                                        <span class="text-[10px] uppercase tracking-[0.2em] font-black text-accent truncate" x-text="reels[activeReel].tag"></span>
+                                        <span class="text-[10.5px] uppercase tracking-[0.2em] font-black text-accent truncate" x-text="reels[activeReel].tag"></span>
                                     </div>
 
                                     <div class="flex items-center gap-2">
@@ -421,7 +435,7 @@
                                             :href="reels[activeReel].instagram"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            class="text-muted hover:text-accent p-1 transition-colors"
+                                            class="text-muted hover:text-accent p-1 transition-colors cursor-pointer"
                                             title="Ver reel original en Instagram"
                                         >
                                             <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
@@ -437,7 +451,7 @@
                                         :src="reels[activeReel].video"
                                         :poster="reels[activeReel].poster"
                                         autoplay
-                                        muted
+                                        :muted="isMuted"
                                         loop
                                         playsinline
                                         class="w-full h-full object-cover group-hover/video:scale-105 transition-transform duration-700"
@@ -449,7 +463,7 @@
                                     {{-- Slider Navigation Arrows --}}
                                     <button
                                         @click="prevReel()"
-                                        class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/75 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md transition-all shadow-lg focus:outline-none"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/75 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md transition-all shadow-lg focus:outline-none cursor-pointer"
                                         title="Video Anterior"
                                     >
                                         <i data-lucide="chevron-left" class="w-4 h-4"></i>
@@ -457,25 +471,34 @@
 
                                     <button
                                         @click="nextReel()"
-                                        class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/75 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md transition-all shadow-lg focus:outline-none"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/75 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md transition-all shadow-lg focus:outline-none cursor-pointer"
                                         title="Siguiente Video"
                                     >
                                         <i data-lucide="chevron-right" class="w-4 h-4"></i>
                                     </button>
 
+                                    {{-- Floating Audio Mute / Unmute Toggle Button --}}
+                                    <button
+                                        @click="toggleRitualMute()"
+                                        class="absolute bottom-14 right-3 z-20 w-9 h-9 rounded-full bg-black/80 border border-accent/50 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none cursor-pointer"
+                                        :title="isMuted ? 'Activar Sonido' : 'Silenciar'"
+                                    >
+                                        <i :data-lucide="isMuted ? 'volume-x' : 'volume-2'" class="w-3.5 h-3.5"></i>
+                                    </button>
+
                                     {{-- Play / Pause Floating Toggle --}}
                                     <button
                                         @click="toggleRitualVideo()"
-                                        class="absolute bottom-3 right-3 z-20 w-9 h-9 rounded-full bg-black/80 border border-accent/50 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none"
+                                        class="absolute bottom-3 right-3 z-20 w-9 h-9 rounded-full bg-black/80 border border-accent/50 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none cursor-pointer"
                                         :title="videoPlaying ? 'Pausar Video' : 'Reproducir Video'"
                                     >
                                         <i :data-lucide="videoPlaying ? 'pause' : 'play'" class="w-3.5 h-3.5"></i>
                                     </button>
 
                                     {{-- Artwork Title & Subtitle Badge --}}
-                                    <div class="absolute bottom-3 left-3 z-20 max-w-[75%]">
-                                        <p class="text-xs font-bold text-white tracking-wide truncate drop-shadow" x-text="reels[activeReel].title"></p>
-                                        <p class="text-[9px] text-accent/90 tracking-wider uppercase font-semibold truncate" x-text="reels[activeReel].desc"></p>
+                                    <div class="absolute bottom-3 left-3 z-20 max-w-[70%]">
+                                        <p class="text-xs sm:text-[13px] font-bold text-white tracking-wide truncate drop-shadow" x-text="reels[activeReel].title"></p>
+                                        <p class="text-[9.5px] text-accent tracking-wider uppercase font-semibold truncate" x-text="reels[activeReel].desc"></p>
                                     </div>
                                 </div>
 
@@ -488,10 +511,10 @@
                                                 :class="activeReel === rIndex 
                                                     ? 'bg-accent/20 border-accent text-accent font-bold shadow-[0_0_10px_rgba(212,175,55,0.25)]' 
                                                     : 'bg-card/70 border-border/70 text-muted hover:border-accent/40 hover:text-foreground'"
-                                                class="py-1.5 sm:py-2 px-1 border text-center text-[8.5px] sm:text-[9px] uppercase tracking-wider transition-all rounded flex flex-col items-center justify-center gap-0.5 focus:outline-none"
+                                                class="py-2 sm:py-2.5 px-1 border text-center text-[9px] uppercase tracking-wider transition-all rounded flex flex-col items-center justify-center gap-0.5 focus:outline-none cursor-pointer hover:scale-105 active:scale-95 select-none"
                                             >
                                                 <span class="truncate w-full font-bold" x-text="'0' + (rIndex + 1)"></span>
-                                                <span class="truncate w-full text-[7.5px] sm:text-[8px] opacity-80" x-text="reel.tag"></span>
+                                                <span class="truncate w-full text-[8px] opacity-80" x-text="reel.tag"></span>
                                             </button>
                                         </template>
                                     </div>
@@ -504,13 +527,14 @@
         </div>
     </section>
 
-    {{-- Mi Proceso de Tatuaje Section --}}
+    {{-- Mi Proceso de Tatuaje Section (Alternating: Video Left, Text Right) --}}
     <section 
         id="proceso"
         x-data="{
             activeStep: 0,
             isPlaying: true,
             hasReached: false,
+            isMuted: true,
             videoProgress: 0,
             currentTimeFormatted: '0:00',
             durationFormatted: '0:00',
@@ -650,6 +674,7 @@
                 this.$nextTick(() => {
                     if (this.$refs.stepVideo) {
                         this.$refs.stepVideo.load();
+                        this.$refs.stepVideo.muted = this.isMuted;
                         if (this.hasReached && this.isPlaying) {
                             this.$refs.stepVideo.play().catch(() => {});
                         }
@@ -688,6 +713,16 @@
                     this.isPlaying = false;
                 }
             },
+            toggleProcesoMute() {
+                if (!this.$refs.stepVideo) return;
+                this.isMuted = !this.isMuted;
+                this.$refs.stepVideo.muted = this.isMuted;
+                this.$nextTick(() => {
+                    if (window.lucide) {
+                        window.lucide.createIcons({ icons: window.lucide.icons });
+                    }
+                });
+            },
             nextStep() {
                 this.selectStep((this.activeStep + 1) % this.steps.length);
             },
@@ -700,6 +735,7 @@
                         if (entry.isIntersecting) {
                             this.hasReached = true;
                             if (this.$refs.stepVideo && this.isPlaying) {
+                                this.$refs.stepVideo.muted = this.isMuted;
                                 this.$refs.stepVideo.play().catch(() => {});
                             }
                         } else {
@@ -718,7 +754,7 @@
                 });
             }
         }"
-        class="snap-section scroll-mt-20 py-24 sm:py-28 bg-background relative overflow-hidden border-t border-border/40"
+        class="snap-section py-8 sm:py-10 lg:py-12 min-h-screen flex items-center bg-background relative overflow-hidden border-t border-border/40"
     >
         {{-- Background Ambience --}}
         <div 
@@ -729,103 +765,9 @@
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                 
-                {{-- Left Column (5 cols on desktop): Compact Story, Philosophy & Technical Console --}}
-                <div class="lg:col-span-5 space-y-5">
-                    
-                    {{-- Section Badge --}}
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/25 bg-accent/10">
-                        <i data-lucide="layers" class="w-3 h-3 text-accent"></i>
-                        <span class="text-accent uppercase tracking-[0.3em] text-[9px] font-black">Metodología & Flujo Real</span>
-                    </div>
-
-                    {{-- Section Title --}}
-                    <h2 class="text-2xl sm:text-3xl lg:text-[2.25rem] font-serif font-black uppercase tracking-tight leading-[1.1]">
-                        El Proceso de <span class="text-accent italic">Tatuaje</span>, <br class="hidden sm:inline" />
-                        De la Idea a la <span class="text-accent italic">Piel</span>.
-                    </h2>
-
-                    {{-- Description --}}
-                    <p class="text-muted leading-relaxed uppercase tracking-[0.13em] text-[11px] font-semibold max-w-sm">
-                        Desde la concepción digital y el calco anatómico hasta la saturación viva y la segunda piel. Acompaña cada etapa real del ritual con Sebastián Farfo.
-                    </p>
-
-                    {{-- Compact Encapsulated Step Console --}}
-                    <div class="bg-card/85 border border-border/80 rounded-xl p-4 backdrop-blur-xl relative overflow-hidden shadow-lg space-y-3">
-                        
-                        {{-- Top Capsule Bar --}}
-                        <div class="flex items-center justify-between border-b border-border/50 pb-2.5">
-                            <div class="flex items-center gap-1.5 text-accent font-black text-[9px] uppercase tracking-[0.2em]">
-                                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                                <span x-text="steps[activeStep].badge"></span>
-                            </div>
-                            <span class="text-[9px] font-mono uppercase tracking-widest text-muted">
-                                Etapa 0<span x-text="activeStep + 1"></span> / 07
-                            </span>
-                        </div>
-
-                        {{-- Active Step Content Box --}}
-                        <div class="bg-surface/60 rounded-lg p-3 border border-border/40 transition-all duration-300 space-y-2">
-                            <div class="flex items-center justify-between">
-                                <span class="text-accent text-[8px] uppercase tracking-[0.25em] font-black" x-text="steps[activeStep].tag"></span>
-                                <div class="flex items-center gap-1">
-                                    <template x-for="(s, i) in steps" :key="i">
-                                        <button 
-                                            @click="selectStep(i)" 
-                                            :class="i === activeStep ? 'w-4 bg-accent' : 'w-1 bg-border hover:bg-muted'"
-                                            class="h-1 rounded-full transition-all duration-300 focus:outline-none cursor-pointer"
-                                        ></button>
-                                    </template>
-                                </div>
-                            </div>
-
-                            <h4 x-text="steps[activeStep].title" class="font-serif font-black text-base uppercase tracking-tight text-foreground"></h4>
-                            <p x-text="steps[activeStep].description" class="text-[10px] text-muted uppercase tracking-[0.1em] leading-relaxed font-semibold"></p>
-
-                            {{-- Technical Specs List --}}
-                            <div class="pt-2 border-t border-border/50 space-y-1.5">
-                                <template x-for="(spec, i) in steps[activeStep].specs" :key="i">
-                                    <div class="flex items-center justify-between text-[9px]">
-                                        <span class="text-muted uppercase tracking-wider font-bold" x-text="spec.label"></span>
-                                        <span class="text-foreground font-semibold text-right" x-text="spec.val"></span>
-                                    </div>
-                                </template>
-                            </div>
-
-                            {{-- Quote Pill --}}
-                            <div class="pt-2 border-t border-border/40 flex items-start gap-1.5 text-accent text-[9px] italic">
-                                <i data-lucide="quote" class="w-3 h-3 shrink-0 mt-0.5"></i>
-                                <span x-text="steps[activeStep].quote"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Action Buttons --}}
-                    <div class="flex flex-col sm:flex-row gap-3 pt-0.5">
-                        <a 
-                            href="{{ route('booking') }}" 
-                            class="group relative px-6 py-3 bg-accent text-accent-foreground text-[11px] uppercase font-black tracking-[0.2em] overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center rounded-sm"
-                        >
-                            <span class="relative z-10 flex items-center justify-center gap-2">
-                                Cotizar Proyecto 
-                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-500"></i>
-                            </span>
-                            <div class="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
-                        </a>
-                        <a 
-                            href="{{ route('portfolio') }}" 
-                            class="group px-6 py-3 border border-border text-foreground text-[11px] uppercase font-black tracking-[0.2em] hover:border-accent hover:text-accent transition-all duration-500 text-center rounded-sm"
-                        >
-                            <span class="flex items-center justify-center gap-2">
-                                Ver Portafolio 
-                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-500"></i>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-
-                {{-- Right Column (7 cols on desktop): Wider & Centered Studio Video Chassis matching Ritual --}}
-                <div class="lg:col-span-7 flex justify-center lg:justify-start lg:pl-6">
-                    <div class="w-full max-w-[420px] sm:max-w-[440px] md:max-w-[460px] relative">
+                {{-- Column 1: Video / Media Showcase on LEFT (7 cols on desktop, +40px wider) --}}
+                <div class="lg:col-span-7 flex justify-center lg:justify-start lg:pl-2 order-1 lg:order-1">
+                    <div class="w-full max-w-[460px] sm:max-w-[490px] md:max-w-[510px] lg:max-w-[520px] relative">
                         
                         {{-- Ambient Brand Golden Wave Breathing in Background --}}
                         <div class="absolute -inset-3 bg-gradient-to-tr from-accent/25 via-accent/40 to-accent/15 rounded-[36px] blur-2xl opacity-60 animate-gold-wave pointer-events-none"></div>
@@ -846,7 +788,7 @@
                                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                                             <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                                         </span>
-                                        <span class="text-[10px] uppercase tracking-[0.2em] font-black text-accent truncate" x-text="steps[activeStep].tag"></span>
+                                        <span class="text-[10.5px] uppercase tracking-[0.2em] font-black text-accent truncate" x-text="steps[activeStep].tag"></span>
                                     </div>
 
                                     <div class="flex items-center gap-2">
@@ -857,7 +799,7 @@
                                             href="https://www.instagram.com/farfos_tattoo/"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            class="text-muted hover:text-accent p-1 transition-colors"
+                                            class="text-muted hover:text-accent p-1 transition-colors cursor-pointer"
                                             title="Ver perfil oficial en Instagram"
                                         >
                                             <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
@@ -885,7 +827,7 @@
                                 </div>
 
                                 {{-- Media Viewport --}}
-                                <div class="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] max-h-[480px] bg-card overflow-hidden group/video flex items-center justify-center">
+                                <div class="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] max-h-[500px] bg-card overflow-hidden group/video flex items-center justify-center">
                                     
                                     {{-- Video Mode --}}
                                     <template x-if="steps[activeStep].mediaType === 'video'">
@@ -894,7 +836,8 @@
                                                 x-ref="stepVideo"
                                                 :src="steps[activeStep].video"
                                                 :poster="steps[activeStep].image"
-                                                muted
+                                                autoplay
+                                                :muted="isMuted"
                                                 loop
                                                 playsinline
                                                 @timeupdate="updateVideoProgress()"
@@ -969,15 +912,28 @@
                                         <i data-lucide="chevron-right" class="w-4 h-4"></i>
                                     </button>
 
-                                    {{-- Bottom Scrubber Bar (on video mode) --}}
+                                    {{-- Floating Audio Mute / Unmute Toggle Button above Scrubber in Proceso --}}
+                                    <template x-if="steps[activeStep].mediaType === 'video'">
+                                        <button
+                                            @click.stop="toggleProcesoMute()"
+                                            class="absolute bottom-16 right-3 z-20 w-8 h-8 rounded-full bg-black/85 border border-accent/60 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none cursor-pointer"
+                                            :title="isMuted ? 'Activar Sonido' : 'Silenciar'"
+                                        >
+                                            <i :data-lucide="isMuted ? 'volume-x' : 'volume-2'" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </template>
+
+                                    {{-- Bottom Firmly Anchored Scrubber & Controls Bar --}}
                                     <template x-if="steps[activeStep].mediaType === 'video'">
                                         <div 
                                             @click.stop
-                                            class="absolute bottom-2 left-2 right-2 z-20 p-2 bg-black/85 backdrop-blur-md rounded-lg border border-white/10 flex flex-col gap-1"
+                                            class="absolute bottom-0 left-0 right-0 z-20 p-3 bg-gradient-to-t from-black/95 via-black/85 to-transparent flex flex-col gap-1.5"
                                         >
+                                            {{-- Interactive Clickable Progress Bar / Scrubber --}}
                                             <div 
                                                 @click="seekVideo($event)"
                                                 class="w-full py-1 cursor-pointer group/bar relative select-none"
+                                                title="Línea de tiempo del video (clic o arrastra)"
                                             >
                                                 <div class="w-full h-1.5 bg-white/20 rounded-full overflow-hidden relative shadow-inner border border-white/10">
                                                     <div 
@@ -986,23 +942,35 @@
                                                     ></div>
                                                 </div>
                                                 <div 
-                                                    class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-accent border-2 border-white shadow-[0_0_8px_rgba(212,175,55,1)] pointer-events-none transition-[left] duration-100"
+                                                    class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-accent border-2 border-white shadow-[0_0_8px_rgba(212,175,55,1)] pointer-events-none transition-[left] duration-100"
                                                     :style="`left: ${videoProgress}%`"
                                                 ></div>
                                             </div>
 
+                                            {{-- Controls Row: Play + Mute + Timestamp + Short Tag --}}
                                             <div class="flex items-center justify-between">
                                                 <div class="flex items-center gap-2">
+                                                    {{-- Play / Pause Toggle --}}
                                                     <button 
                                                         @click="toggleVideo()"
-                                                        class="w-6 h-6 rounded-full bg-accent text-black flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shadow focus:outline-none cursor-pointer"
+                                                        class="w-7 h-7 rounded-full bg-accent text-black flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shadow focus:outline-none cursor-pointer"
                                                         :title="isPlaying ? 'Pausar' : 'Reproducir'"
                                                     >
-                                                        <i :data-lucide="isPlaying ? 'pause' : 'play'" class="w-3 h-3"></i>
+                                                        <i :data-lucide="isPlaying ? 'pause' : 'play'" class="w-3.5 h-3.5"></i>
                                                     </button>
-                                                    <span class="font-mono text-[9px] text-white/95 font-bold tracking-wider" x-text="currentTimeFormatted + ' / ' + durationFormatted"></span>
+
+                                                    {{-- Audio Mute / Unmute Toggle Button --}}
+                                                    <button 
+                                                        @click="toggleProcesoMute()"
+                                                        class="w-7 h-7 rounded-full bg-black/80 border border-accent/50 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-black transition-all shadow focus:outline-none cursor-pointer"
+                                                        :title="isMuted ? 'Activar Sonido' : 'Silenciar'"
+                                                    >
+                                                        <i :data-lucide="isMuted ? 'volume-x' : 'volume-2'" class="w-3.5 h-3.5"></i>
+                                                    </button>
+
+                                                    <span class="font-mono text-[9.5px] text-white/95 font-bold tracking-wider" x-text="currentTimeFormatted + ' / ' + durationFormatted"></span>
                                                 </div>
-                                                <span class="text-[8.5px] uppercase tracking-wider font-bold text-accent truncate max-w-[50%]" x-text="steps[activeStep].short"></span>
+                                                <span class="text-[9px] uppercase tracking-wider font-bold text-accent bg-black/60 border border-accent/30 px-2 py-0.5 rounded truncate max-w-[50%]" x-text="steps[activeStep].short"></span>
                                             </div>
                                         </div>
                                     </template>
@@ -1016,9 +984,9 @@
                                             <button
                                                 @click="selectStep(sIdx)"
                                                 :class="activeStep === sIdx 
-                                                    ? 'bg-accent/20 border-accent text-accent font-bold shadow-[0_0_8px_rgba(212,175,55,0.25)]' 
+                                                    ? 'bg-accent/20 border-accent text-accent font-bold shadow-[0_0_8px_rgba(212,175,55,0.25)] scale-105' 
                                                     : 'bg-card/70 border-border/70 text-muted hover:border-accent/40 hover:text-foreground'"
-                                                class="py-1.5 px-0.5 border text-center text-[8px] uppercase tracking-wider transition-all rounded flex flex-col items-center justify-center gap-0.5 focus:outline-none cursor-pointer"
+                                                class="py-2 px-0.5 border text-center text-[9px] uppercase font-mono font-bold tracking-wider transition-all rounded flex flex-col items-center justify-center gap-0.5 focus:outline-none cursor-pointer hover:border-accent hover:text-accent hover:scale-105 active:scale-95 select-none"
                                                 :title="step.title"
                                             >
                                                 <span class="font-bold" x-text="'0' + (sIdx + 1)"></span>
@@ -1029,6 +997,100 @@
 
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                {{-- Column 2: Story, Description & Console on RIGHT (5 cols on desktop) --}}
+                <div class="lg:col-span-5 space-y-4 order-2 lg:order-2">
+                    
+                    {{-- Section Badge --}}
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/25 bg-accent/10">
+                        <i data-lucide="layers" class="w-3.5 h-3.5 text-accent"></i>
+                        <span class="text-accent uppercase tracking-[0.3em] text-[10px] font-black">Metodología & Flujo Real</span>
+                    </div>
+
+                    {{-- Section Title (Enlarged) --}}
+                    <h2 class="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif font-black uppercase tracking-tight leading-[1.08] text-foreground">
+                        El Proceso de <span class="text-accent italic">Tatuaje</span>, <br class="hidden sm:inline" />
+                        De la Idea a la <span class="text-accent italic">Piel</span>.
+                    </h2>
+
+                    {{-- Description (Enlarged & Crisp) --}}
+                    <p class="text-muted leading-relaxed uppercase tracking-[0.14em] text-xs sm:text-[12.5px] font-medium max-w-md">
+                        Desde la concepción digital y el calco anatómico hasta la saturación viva y la segunda piel. Acompaña cada etapa real del ritual con Sebastián Farfo.
+                    </p>
+
+                    {{-- Compact Encapsulated Step Console --}}
+                    <div class="bg-card/90 border border-border/80 rounded-xl p-4 sm:p-5 backdrop-blur-xl relative overflow-hidden shadow-xl space-y-3.5">
+                        
+                        {{-- Top Capsule Bar --}}
+                        <div class="flex items-center justify-between border-b border-border/50 pb-2.5">
+                            <div class="flex items-center gap-1.5 text-accent font-black text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em]">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                                <span x-text="steps[activeStep].badge"></span>
+                            </div>
+                            <span class="text-[9.5px] font-mono uppercase tracking-widest text-muted">
+                                Etapa 0<span x-text="activeStep + 1"></span> / 07
+                            </span>
+                        </div>
+
+                        {{-- Active Step Content Box --}}
+                        <div class="bg-surface/70 rounded-lg p-3.5 sm:p-4 border border-border/50 transition-all duration-300 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent text-[9px] uppercase tracking-[0.25em] font-black" x-text="steps[activeStep].tag"></span>
+                                <div class="flex items-center gap-1">
+                                    <template x-for="(s, i) in steps" :key="i">
+                                        <button 
+                                            @click="selectStep(i)" 
+                                            :class="i === activeStep ? 'w-4 bg-accent' : 'w-1 bg-border hover:bg-muted'"
+                                            class="h-1 rounded-full transition-all duration-300 focus:outline-none cursor-pointer"
+                                        ></button>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <h4 x-text="steps[activeStep].title" class="font-serif font-black text-base sm:text-lg uppercase tracking-tight text-foreground"></h4>
+                            <p x-text="steps[activeStep].description" class="text-[11px] sm:text-xs text-muted uppercase tracking-[0.08em] leading-relaxed font-semibold"></p>
+
+                            {{-- Technical Specs List --}}
+                            <div class="pt-2 border-t border-border/50 space-y-1.5">
+                                <template x-for="(spec, i) in steps[activeStep].specs" :key="i">
+                                    <div class="flex items-center justify-between text-[10px]">
+                                        <span class="text-muted uppercase tracking-wider font-bold" x-text="spec.label"></span>
+                                        <span class="text-foreground font-semibold text-right" x-text="spec.val"></span>
+                                    </div>
+                                </template>
+                            </div>
+
+                            {{-- Quote Pill --}}
+                            <div class="pt-2 border-t border-border/40 flex items-start gap-1.5 text-accent text-[9.5px] italic">
+                                <i data-lucide="quote" class="w-3 h-3 shrink-0 mt-0.5"></i>
+                                <span x-text="steps[activeStep].quote"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Action Buttons --}}
+                    <div class="flex flex-col sm:flex-row gap-3 pt-1">
+                        <a 
+                            href="{{ route('booking') }}" 
+                            class="group relative px-6 py-3.5 bg-accent text-accent-foreground text-xs uppercase font-black tracking-[0.2em] overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center rounded-sm cursor-pointer"
+                        >
+                            <span class="relative z-10 flex items-center justify-center gap-2">
+                                Cotizar Proyecto 
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-500"></i>
+                            </span>
+                            <div class="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                        </a>
+                        <a 
+                            href="{{ route('portfolio') }}" 
+                            class="group px-6 py-3.5 border border-border text-foreground text-xs uppercase font-black tracking-[0.2em] hover:border-accent hover:text-accent transition-all duration-500 text-center rounded-sm cursor-pointer"
+                        >
+                            <span class="flex items-center justify-center gap-2">
+                                Ver Portafolio 
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-500"></i>
+                            </span>
+                        </a>
                     </div>
                 </div>
 
