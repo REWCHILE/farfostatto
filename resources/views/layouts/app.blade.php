@@ -178,7 +178,7 @@
                         </li>
                         <li class="flex items-center gap-3">
                             <i data-lucide="phone" class="text-accent w-5 h-5 shrink-0"></i>
-                            <span>+56 9 5874 7816</span>
+                            <a href="https://wa.me/56934424269" target="_blank" rel="noopener" class="hover:text-accent transition-colors">+56 9 3442 4269</a>
                         </li>
                         <li class="flex items-center gap-3">
                             <i data-lucide="mail" class="text-accent w-5 h-5 shrink-0"></i>
@@ -191,11 +191,11 @@
                 <div>
                     <h4 class="text-accent uppercase tracking-widest text-xs font-bold mb-8">Síguenos</h4>
                     <div class="flex gap-4 mb-6">
-                        <a href="https://instagram.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground/80 hover:border-accent hover:text-accent transition-all duration-300">
+                        <a href="https://www.instagram.com/farfos_tattoo/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground/80 hover:border-accent hover:text-accent transition-all duration-300" title="Instagram">
                             <i data-lucide="instagram" class="w-5 h-5"></i>
                         </a>
-                        <a href="https://wa.me/56958747816" target="_blank" rel="noopener" class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground/80 hover:border-accent hover:text-accent transition-all duration-300">
-                            <i data-lucide="phone" class="w-5 h-5"></i>
+                        <a href="https://wa.me/56934424269" target="_blank" rel="noopener" class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground/80 hover:border-accent hover:text-accent transition-all duration-300" title="WhatsApp">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
                         </a>
                     </div>
                     <p class="text-[10px] uppercase tracking-widest text-muted font-bold">Atención con cita previa</p>

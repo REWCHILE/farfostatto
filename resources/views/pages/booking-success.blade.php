@@ -42,7 +42,7 @@
         {{-- Actions --}}
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-                href="https://wa.me/56958747816?text=Hola%20Sebastián,%20acabo%20de%20enviar%20mi%20solicitud%20de%20tatuaje%20desde%20la%20web." 
+                href="https://wa.me/56934424269?text=Hola%20Sebastián,%20acabo%20de%20enviar%20mi%20solicitud%20de%20tatuaje%20desde%20la%20web." 
                 target="_blank" 
                 class="bg-accent text-accent-foreground px-8 py-4 text-[10px] uppercase font-black tracking-widest hover:bg-accent/90 transition-all shadow-[0_0_20px_rgba(212,175,55,0.25)] flex items-center justify-center gap-2"
             >

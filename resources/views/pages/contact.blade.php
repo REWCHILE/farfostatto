@@ -29,7 +29,7 @@
                                 </div>
                                 <div>
                                     <p class="text-[10px] uppercase tracking-widest text-muted font-bold mb-1">WhatsApp</p>
-                                    <a href="https://wa.me/56958747816" target="_blank" class="text-lg font-medium hover:text-accent transition-colors">+56 9 5874 7816</a>
+                                    <a href="https://wa.me/56934424269" target="_blank" class="text-lg font-medium hover:text-accent transition-colors">+56 9 3442 4269</a>
                                 </div>
                             </li>
                             <li class="flex items-start gap-4">
@@ -38,7 +38,7 @@
                                 </div>
                                 <div>
                                     <p class="text-[10px] uppercase tracking-widest text-muted font-bold mb-1">Instagram</p>
-                                    <a href="https://instagram.com" target="_blank" class="text-lg font-medium hover:text-accent transition-colors">@farfos_tattoo</a>
+                                    <a href="https://www.instagram.com/farfos_tattoo/" target="_blank" rel="noopener" class="text-lg font-medium hover:text-accent transition-colors">@farfos_tattoo</a>
                                 </div>
                             </li>
                             <li class="flex items-start gap-4">

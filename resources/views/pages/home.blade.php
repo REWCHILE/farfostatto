@@ -12,8 +12,8 @@
             sections: [
                 { id: 'hero-section', label: 'Inicio', num: '01' },
                 { id: 'ritual', label: 'El Ritual', num: '02' },
-                { id: 'proceso', label: 'Proceso Shenlong', num: '03' },
-                { id: 'footer', label: 'Contacto & Info', num: '04' }
+                { id: 'proceso', label: 'Proceso de Tatuaje', num: '03' },
+                { id: 'contacto-cta', label: 'Contacto & Cita', num: '04' }
             ],
             scrollToSection(id) {
                 const el = document.getElementById(id);
@@ -499,9 +499,7 @@
 
                             </div>
                         </div>
-                    </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -510,7 +508,7 @@
     <section 
         id="proceso"
         x-data="{
-            activeStep: 0, // Starts on Step 01 (Shenlong lines / structure)
+            activeStep: 0,
             isPlaying: true,
             hasReached: false,
             videoProgress: 0,
@@ -520,15 +518,69 @@
             steps: [
                 {
                     num: '01',
+                    badge: 'GÉNESIS CONCEPTUAL',
+                    title: 'Ilustración Digital y Flashes de Autor',
+                    short: '01. Bocetaje Digital',
+                    tag: 'Diseño en Tablet',
+                    featured: false,
+                    mediaType: 'video',
+                    video: '{{ asset('videos/about/about_6.mp4') }}',
+                    image: '{{ asset('videos/about/about_6.jpg') }}',
+                    description: 'Todo tatuaje nace en el trazo libre. Sebastián ilustra y estructura cada pieza personalizada en su tablet, estudiando proporciones, dinamismo y armonía anatómica antes de preparar el calco para la piel.',
+                    specs: [
+                        { label: 'Herramienta', val: 'Ilustración Digital en Alta Definición' },
+                        { label: 'Enfoque', val: 'Diseño Autoral a la Medida del Cuerpo' },
+                        { label: 'Propósito', val: 'Composición y Escala Anatómica Previa' }
+                    ],
+                    quote: 'El dibujo digital es la cocina de la idea: donde la libertad visual encuentra la armonía perfecta con el cuerpo.'
+                },
+                {
+                    num: '02',
+                    badge: 'PREPARACIÓN & ANATOMÍA',
+                    title: 'Calco y Adaptación Anatómica',
+                    short: '02. Calco en Piel',
+                    tag: 'Transfer Stencil',
+                    featured: false,
+                    mediaType: 'video',
+                    video: '{{ asset('images/proceso/paso-1-calco.mp4') }}',
+                    image: '{{ asset('images/proceso/paso-1-calco.jpg') }}',
+                    description: 'Posicionamiento milimétrico de la plantilla sobre el cuerpo. Cada curvatura es respetada para que el diseño fluya de manera orgánica con los tendones y la musculatura viva en movimiento.',
+                    specs: [
+                        { label: 'Técnica', val: 'Estudio Anatómico & Transfer Stencil' },
+                        { label: 'Zona', val: 'Brazo y Antebrazo Completo' },
+                        { label: 'Propósito', val: 'Dinamismo visual y escala armónica' }
+                    ],
+                    quote: 'Un tatuaje de alto impacto dialoga directamente con la silueta viva de tu cuerpo.'
+                },
+                {
+                    num: '03',
+                    badge: 'BIOSEGURIDAD & PIGMENTOS',
+                    title: 'Asepsia Clínica y Pigmentos Sellados',
+                    short: '03. Asepsia & Tintas',
+                    tag: 'Grado Médico',
+                    featured: false,
+                    mediaType: 'video',
+                    video: '{{ asset('images/proceso/paso-2-tintas.mp4') }}',
+                    image: '{{ asset('images/proceso/paso-2-tintas.jpg') }}',
+                    description: 'Apertura de insumos 100% esterilizados en presencia directa del cliente. Pigmentos premium certificados (Electric Ink) desprecintados de fábrica garantizan pureza y bioseguridad absoluta.',
+                    specs: [
+                        { label: 'Tintas', val: 'Electric Ink Selladas de Fábrica' },
+                        { label: 'Bioseguridad', val: 'Campos y barreras estériles descartables' },
+                        { label: 'Normativa', val: 'Cumplimiento riguroso de asepsia clínica' }
+                    ],
+                    quote: 'La seguridad no es negociable: cada aguja, tetina y pigmento se desprecinta frente a tus ojos.'
+                },
+                {
+                    num: '04',
                     badge: 'TRAZO & ESTRUCTURA',
                     title: 'Trazado Estructural de Líneas Sólidas',
-                    short: '01. Líneas Guía',
+                    short: '04. Líneas Guía',
                     tag: 'Precisión Rotativa',
                     featured: false,
                     mediaType: 'video',
                     video: '{{ asset('images/proceso/paso-3-lineas.mp4') }}',
                     image: '{{ asset('images/proceso/paso-3-lineas.jpg') }}',
-                    description: 'Con máquina rotativa de alta gama y cartuchos calibrados, se trazan las líneas fundamentales de Shenlong. Líneas firmes, uniformes y limpias que aseguran la máxima definición y legibilidad del tatuaje a través de los años.',
+                    description: 'Con máquina rotativa calibrada, se trazan las líneas fundamentales de la obra. Líneas firmes, uniformes y limpias que aseguran la máxima definición a través de los años.',
                     specs: [
                         { label: 'Máquinas', val: 'Rotativas de precisión milimétrica' },
                         { label: 'Trazo', val: 'Línea sólida, continua y nítida' },
@@ -537,94 +589,58 @@
                     quote: 'La línea es el cimiento de la obra: si la estructura es impecable, el tatuaje lucirá imponente por décadas.'
                 },
                 {
-                    num: '02',
-                    badge: 'BIOSEGURIDAD & PIGMENTOS',
-                    title: 'Asepsia Clínica y Pigmentos Sellados',
-                    short: '02. Asepsia & Tintas',
-                    tag: 'Grado Médico',
-                    featured: false,
-                    mediaType: 'video',
-                    video: '{{ asset('images/proceso/paso-2-tintas.mp4') }}',
-                    image: '{{ asset('images/proceso/paso-2-tintas.jpg') }}',
-                    description: 'Apertura de insumos 100% esterilizados en presencia directa del cliente. Se utilizan pigmentos premium certificados internacionalmente (Electric Ink) desprecintados de fábrica, garantizando pureza total, fijación duradera y bioseguridad absoluta.',
-                    specs: [
-                        { label: 'Tintas', val: 'Electric Ink Selladas de Fábrica' },
-                        { label: 'Bioseguridad', val: 'Campos y barreras estériles descartables' },
-                        { label: 'Normativa', val: 'Cumplimiento riguroso de asepsia clínica' }
-                    ],
-                    quote: 'La seguridad no es negociable: cada aguja, tetina y pigmento se desprecinta frente a tus ojos antes de empezar.'
-                },
-                {
-                    num: '03',
-                    badge: 'PREPARACIÓN & ANATOMÍA',
-                    title: 'Calco y Adaptación Anatómica',
-                    short: '03. Calco Anatómico',
-                    tag: 'Diseño en Piel',
-                    featured: false,
-                    mediaType: 'video',
-                    video: '{{ asset('images/proceso/paso-1-calco.mp4') }}',
-                    image: '{{ asset('images/proceso/paso-1-calco.jpg') }}',
-                    description: 'El proceso de preparación inicia con el posicionamiento milimétrico de la plantilla sobre el brazo del cliente. Cada curvatura corporal es respetada minuciosamente para que el dragón fluya de manera orgánica con los tendones y la musculatura en movimiento.',
-                    specs: [
-                        { label: 'Técnica', val: 'Estudio Anatómico & Transfer Stencil' },
-                        { label: 'Zona', val: 'Brazo y Antebrazo Completo' },
-                        { label: 'Propósito', val: 'Dinamismo visual y escala armónica' }
-                    ],
-                    quote: 'Un tatuaje de alto impacto no es una imagen plana: es un diálogo directo con la silueta viva de tu cuerpo.'
-                },
-                {
-                    num: '04',
+                    num: '05',
                     badge: 'VOLUMEN & PROFUNDIDAD',
                     title: 'Sombreado y Textura Tridimensional',
-                    short: '04. Sombras & Relieve',
+                    short: '05. Sombras & Relieve',
                     tag: 'Black & Grey Base',
                     featured: false,
                     mediaType: 'video',
                     video: '{{ asset('images/proceso/paso-4-sombras.mp4') }}',
                     image: '{{ asset('images/proceso/paso-4-sombras.jpg') }}',
-                    description: 'Construcción de volumen y atmósfera mediante degradados progresivos de negro y escala de grises. Este paso define las escamas, la textura de los cuernos y la ferocidad en la mirada del mítico dragón.',
+                    description: 'Construcción de volumen mediante degradados progresivos de escala de grises. Este paso define las escamas, la textura de los cuernos y la ferocidad en la mirada de la pieza.',
                     specs: [
                         { label: 'Gradación', val: 'Escala tonal de negros puros y grises' },
                         { label: 'Efecto', val: 'Sensación de volumen y relieve tridimensional' },
                         { label: 'Detalle', val: 'Texturizado escama por escama' }
                     ],
-                    quote: 'El contraste le da alma al dragón: separa las capas y le otorga esa presencia viva que parece emerger de la piel.'
+                    quote: 'El contraste le da alma a la pieza: separa las capas y le otorga esa presencia que parece emerger de la piel.'
                 },
                 {
-                    num: '05',
-                    badge: 'SATURACIÓN VIVA (DESTACADO)',
+                    num: '06',
+                    badge: 'SATURACIÓN VIVA',
                     title: 'Saturación de Color: El Dragón Sagrado',
-                    short: '05. Color Shenlong ★',
-                    tag: 'Full Color Saturation',
+                    short: '06. Color Shenlong ★',
+                    tag: 'Full Color',
                     featured: true,
                     mediaType: 'video',
                     video: '{{ asset('images/proceso/paso-5-color.mp4') }}',
                     image: '{{ asset('images/proceso/paso-5-color.jpg') }}',
-                    description: 'El punto culminante de la sesión: saturación densa de verdes esmeralda, destellos llameantes y el fulgor dorado de las esferas del dragón. Técnica de empaque de color sólido que asegura tonos vívidos y resistentes al paso del tiempo.',
+                    description: 'El punto culminante: saturación densa de verdes esmeralda, destellos llameantes y el fulgor dorado de las esferas. Técnica de empaque de color sólido de máxima fijación.',
                     specs: [
                         { label: 'Paleta', val: 'Verde esmeralda, oro, carmín y blanco óptico' },
                         { label: 'Técnica', val: 'Empaque de pigmento denso de alta fijación' },
                         { label: 'Resultado', val: 'Intensidad cromática y brillo duradero' }
                     ],
-                    quote: '⚡️ ¿Qué pedirías si tuvieras las 7 esferas? Un diseño con significado, magia y fuerza interior plasmado con máxima fidelidad.'
+                    quote: '⚡️ ¿Qué pedirías si tuvieras las 7 esferas? Un diseño con significado plasmado con máxima fidelidad.'
                 },
                 {
-                    num: '06',
+                    num: '07',
                     badge: 'OBRA CULMINADA',
                     title: 'Resultado Final y Protocolo Post-Cuidado',
-                    short: '06. Pieza Final',
+                    short: '07. Pieza Final',
                     tag: 'Masterpiece',
                     featured: false,
                     mediaType: 'image',
                     image: '{{ asset('images/proceso/paso-6-resultado.jpg') }}',
                     image2: '{{ asset('images/proceso/paso-6-resultado-2.jpg') }}',
-                    description: 'La pieza culminada en su máximo esplendor sobre el brazo. Se realiza desinfección suave, aplicación de apósito dérmico hipoalergénico (segunda piel) e instrucciones exhaustivas de cuidado para una cicatrización brillante.',
+                    description: 'La pieza culminada en su máximo esplendor. Desinfección suave, aplicación de apósito dérmico hipoalergénico (segunda piel) e indicaciones para una cicatrización brillante.',
                     specs: [
                         { label: 'Cuidado', val: 'Película dérmica protectora de última generación' },
                         { label: 'Estilo', val: 'Anime Ink & Geek Culture Premium' },
                         { label: 'Artista', val: 'Sebastián El Farfo' }
                     ],
-                    quote: 'Me encanta cuando los tatuajes se transforman en portadores de recuerdos personales, convirtiéndose en guardianes de historias únicas.'
+                    quote: 'Me encanta cuando los tatuajes se transforman en portadores de recuerdos personales, guardianes de historias únicas.'
                 }
             ],
             selectStep(index) {
@@ -702,399 +718,515 @@
                 });
             }
         }"
-        class="snap-section scroll-mt-20 py-32 bg-background relative overflow-hidden border-t border-border/50"
+        class="snap-section scroll-mt-20 py-24 sm:py-28 bg-background relative overflow-hidden border-t border-border/40"
     >
-        {{-- Atmospheric Background Glows --}}
-        <div class="absolute top-1/3 -right-60 w-[500px] h-[500px] rounded-full bg-accent/5 blur-[140px] pointer-events-none"></div>
-        <div class="absolute bottom-10 -left-60 w-[500px] h-[500px] rounded-full bg-accent/5 blur-[140px] pointer-events-none"></div>
+        {{-- Background Ambience --}}
+        <div 
+            class="absolute -top-1/2 -right-1/2 w-[200%] h-[200%] pointer-events-none opacity-[0.05]"
+            style="background: radial-gradient(circle at center, var(--accent) 0%, transparent 50%); filter: blur(140px);"
+        ></div>
 
         <div class="container mx-auto px-6 relative z-10">
-            {{-- Header Title & Subtitle --}}
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-accent/30 bg-accent/10 backdrop-blur-md shadow-[0_0_20px_rgba(212,175,55,0.15)]">
-                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent animate-pulse"></i>
-                    <span class="text-accent uppercase tracking-[0.35em] text-[11px] font-black">Registro en Estudio · Caso Shenlong</span>
-                </div>
-
-                <h2 class="text-4xl sm:text-6xl md:text-7xl font-serif font-black uppercase tracking-tighter leading-[0.95] text-foreground">
-                    Mi Proceso de <span class="text-accent italic">Tatuaje</span>
-                </h2>
-
-                <p class="text-muted text-xs sm:text-sm uppercase tracking-[0.18em] font-semibold leading-relaxed pt-2">
-                    Desde el estudio anatómico del calco hasta la saturación viva del color y la cicatrización. Acompaña cada etapa real del ritual en la piel.
-                </p>
-            </div>
-
-            {{-- Step Tabs Navigation --}}
-            <div class="mb-12 overflow-x-auto pb-4 scrollbar-none">
-                <div class="flex items-center justify-start lg:justify-center gap-2 sm:gap-3 min-w-max mx-auto px-2">
-                    <template x-for="(step, index) in steps" :key="index">
-                        <button
-                            @click="selectStep(index)"
-                            :class="activeStep === index 
-                                ? 'bg-accent text-accent-foreground border-accent shadow-[0_0_25px_rgba(212,175,55,0.35)] scale-105' 
-                                : 'bg-surface/80 text-foreground/70 border-border hover:border-accent/50 hover:text-foreground'"
-                            class="group relative px-4 sm:px-6 py-3.5 border rounded-none transition-all duration-300 font-sans flex items-center gap-2.5 text-left focus:outline-none"
-                        >
-                            <span 
-                                :class="activeStep === index ? 'text-accent-foreground/90 font-black' : 'text-accent font-bold'"
-                                class="text-xs font-mono"
-                                x-text="step.num"
-                            ></span>
-                            <span class="text-xs uppercase tracking-wider font-bold" x-text="step.short"></span>
-                            
-                            <template x-if="step.featured">
-                                <span 
-                                    :class="activeStep === index ? 'bg-black text-accent' : 'bg-accent/20 text-accent'"
-                                    class="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded ml-1"
-                                >
-                                    Slide 7
-                                </span>
-                            </template>
-                        </button>
-                    </template>
-                </div>
-            </div>
-
-            {{-- Main Interactive Display: Split Screen (Media Left, Content Right) --}}
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch max-w-7xl mx-auto">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                 
-                {{-- Media Player Column (7 cols on lg) --}}
-                <div class="lg:col-span-7 flex flex-col">
-                    <div class="relative w-full aspect-[4/5] sm:aspect-[4/4] lg:aspect-[4/5] bg-card border border-border/80 overflow-hidden shadow-2xl flex items-center justify-center group">
+                {{-- Left Column (5 cols on desktop): Compact Story, Philosophy & Technical Console --}}
+                <div class="lg:col-span-5 space-y-5">
+                    
+                    {{-- Section Badge --}}
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/25 bg-accent/10">
+                        <i data-lucide="layers" class="w-3 h-3 text-accent"></i>
+                        <span class="text-accent uppercase tracking-[0.3em] text-[9px] font-black">Metodología & Flujo Real</span>
+                    </div>
+
+                    {{-- Section Title --}}
+                    <h2 class="text-2xl sm:text-3xl lg:text-[2.25rem] font-serif font-black uppercase tracking-tight leading-[1.1]">
+                        El Proceso de <span class="text-accent italic">Tatuaje</span>, <br class="hidden sm:inline" />
+                        De la Idea a la <span class="text-accent italic">Piel</span>.
+                    </h2>
+
+                    {{-- Description --}}
+                    <p class="text-muted leading-relaxed uppercase tracking-[0.13em] text-[11px] font-semibold max-w-sm">
+                        Desde la concepción digital y el calco anatómico hasta la saturación viva y la segunda piel. Acompaña cada etapa real del ritual con Sebastián Farfo.
+                    </p>
+
+                    {{-- Compact Encapsulated Step Console --}}
+                    <div class="bg-card/85 border border-border/80 rounded-xl p-4 backdrop-blur-xl relative overflow-hidden shadow-lg space-y-3">
                         
-                        {{-- Top Story-Style Segmented Step Progress Bar --}}
-                        <div class="absolute top-0 left-0 right-0 z-30 p-3 bg-gradient-to-b from-black/90 via-black/50 to-transparent flex flex-col gap-2">
-                            <div class="grid grid-cols-6 gap-1.5 sm:gap-2">
-                                <template x-for="(st, sIndex) in steps" :key="sIndex">
-                                    <button
-                                        @click="selectStep(sIndex)"
-                                        class="h-1.5 sm:h-2 rounded-full overflow-hidden transition-all duration-300 relative focus:outline-none cursor-pointer"
-                                        :class="sIndex < activeStep ? 'bg-accent shadow-[0_0_8px_rgba(212,175,55,0.5)]' : (sIndex === activeStep ? 'bg-white/30' : 'bg-white/15')"
-                                        :title="`Paso 0${sIndex + 1}: ${st.short}`"
-                                    >
-                                        <template x-if="sIndex === activeStep">
-                                            <div 
-                                                class="h-full bg-accent shadow-[0_0_12px_rgba(212,175,55,1)] transition-[width] duration-150"
-                                                :style="`width: ${videoProgress}%`"
-                                            ></div>
-                                        </template>
-                                    </button>
-                                </template>
+                        {{-- Top Capsule Bar --}}
+                        <div class="flex items-center justify-between border-b border-border/50 pb-2.5">
+                            <div class="flex items-center gap-1.5 text-accent font-black text-[9px] uppercase tracking-[0.2em]">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                                <span x-text="steps[activeStep].badge"></span>
                             </div>
-
-                            {{-- Step Counter & Tag Header --}}
-                            <div class="flex items-center justify-between text-[10px] uppercase font-mono tracking-widest text-muted px-0.5">
-                                <div class="flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
-                                    <span class="text-accent font-black">Paso 0<span x-text="activeStep + 1"></span> / 06</span>
-                                </div>
-                                <span class="text-white/90 font-bold truncate max-w-[65%]" x-text="steps[activeStep].title"></span>
-                            </div>
+                            <span class="text-[9px] font-mono uppercase tracking-widest text-muted">
+                                Etapa 0<span x-text="activeStep + 1"></span> / 07
+                            </span>
                         </div>
 
-                        {{-- Floating Navigation Arrows (Mobile & Desktop) --}}
-                        <button
-                            @click="prevStep()"
-                            class="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/85 hover:bg-accent border border-accent/40 hover:border-accent text-white hover:text-black flex items-center justify-center backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.8)] transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none"
-                            title="Paso Anterior"
-                            aria-label="Paso Anterior"
-                        >
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="15 18 9 12 15 6"></polyline>
-                            </svg>
-                        </button>
-
-                        <button
-                            @click="nextStep()"
-                            class="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/85 hover:bg-accent border border-accent/40 hover:border-accent text-white hover:text-black flex items-center justify-center backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.8)] transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none"
-                            title="Siguiente Paso"
-                            aria-label="Siguiente Paso"
-                        >
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
-                        </button>
-
-                        {{-- Video Display (Steps 1 to 5, plays when in view) --}}
-                        <template x-if="steps[activeStep].mediaType === 'video'">
-                            <div class="relative w-full h-full cursor-pointer" @click="toggleVideo()">
-                                <video
-                                    x-ref="stepVideo"
-                                    :src="steps[activeStep].video"
-                                    :poster="steps[activeStep].image"
-                                    muted
-                                    loop
-                                    playsinline
-                                    @timeupdate="updateVideoProgress()"
-                                    @loadedmetadata="updateVideoProgress()"
-                                    class="w-full h-full object-cover"
-                                ></video>
-
-                                {{-- Central Play Overlay Indicator when paused --}}
-                                <div 
-                                    x-show="!isPlaying" 
-                                    x-transition.opacity
-                                    class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 pointer-events-none"
-                                >
-                                    <div class="w-16 h-16 rounded-full bg-accent/90 text-black flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.7)] backdrop-blur-sm">
-                                        <svg class="w-7 h-7 fill-current ml-1" viewBox="0 0 24 24">
-                                            <polygon points="5 3 19 12 5 21 5 3"/>
-                                        </svg>
-                                    </div>
-                                </div>
-
-                                {{-- Bottom Video Scrubber Timeline & Playback Info Bar --}}
-                                <div 
-                                    @click.stop
-                                    class="absolute bottom-0 left-0 right-0 z-20 p-3.5 bg-gradient-to-t from-black/95 via-black/75 to-transparent flex flex-col gap-2.5"
-                                >
-                                    {{-- Interactive Clickable Progress Bar / Scrubber with Visible Thumb --}}
-                                    <div 
-                                        @click="seekVideo($event)"
-                                        class="w-full py-1.5 cursor-pointer group/bar relative select-none"
-                                        title="Línea de tiempo del video (toca o haz clic para moverte)"
-                                    >
-                                        <div class="w-full h-2.5 bg-white/20 rounded-full overflow-hidden relative shadow-inner border border-white/10">
-                                            <div 
-                                                class="h-full bg-gradient-to-r from-accent via-accent to-[#FFF5BE] shadow-[0_0_12px_rgba(212,175,55,1)] transition-[width] duration-100"
-                                                :style="`width: ${videoProgress}%`"
-                                            ></div>
-                                        </div>
-                                        {{-- Scrubber Thumb Head --}}
-                                        <div 
-                                            class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent border-2 border-white shadow-[0_0_10px_rgba(212,175,55,1)] pointer-events-none transition-[left] duration-100"
-                                            :style="`left: ${videoProgress}%`"
-                                        ></div>
-                                    </div>
-
-                                    {{-- Playback Controls & Timestamp Row --}}
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center gap-3">
-                                            <button 
-                                                @click="toggleVideo()"
-                                                class="w-8 h-8 rounded-full bg-accent text-black flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shadow-[0_0_15px_rgba(212,175,55,0.6)] focus:outline-none"
-                                                :title="isPlaying ? 'Pausar Video' : 'Reproducir Video'"
-                                            >
-                                                <template x-if="isPlaying">
-                                                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                                                        <rect x="6" y="4" width="4" height="16" rx="1"/>
-                                                        <rect x="14" y="4" width="4" height="16" rx="1"/>
-                                                    </svg>
-                                                </template>
-                                                <template x-if="!isPlaying">
-                                                    <svg class="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
-                                                        <polygon points="5 3 19 12 5 21 5 3"/>
-                                                    </svg>
-                                                </template>
-                                            </button>
-                                            
-                                            <span class="font-mono text-[11px] text-white/95 font-bold tracking-wider" x-text="currentTimeFormatted + ' / ' + durationFormatted"></span>
-                                        </div>
-
-                                        <div class="flex items-center gap-2">
-                                            <span class="text-[9px] uppercase tracking-wider font-bold text-accent bg-black/80 border border-accent/40 px-2.5 py-1 rounded backdrop-blur-sm shadow" x-text="steps[activeStep].tag"></span>
-                                        </div>
-                                    </div>
+                        {{-- Active Step Content Box --}}
+                        <div class="bg-surface/60 rounded-lg p-3 border border-border/40 transition-all duration-300 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent text-[8px] uppercase tracking-[0.25em] font-black" x-text="steps[activeStep].tag"></span>
+                                <div class="flex items-center gap-1">
+                                    <template x-for="(s, i) in steps" :key="i">
+                                        <button 
+                                            @click="selectStep(i)" 
+                                            :class="i === activeStep ? 'w-4 bg-accent' : 'w-1 bg-border hover:bg-muted'"
+                                            class="h-1 rounded-full transition-all duration-300 focus:outline-none cursor-pointer"
+                                        ></button>
+                                    </template>
                                 </div>
                             </div>
-                        </template>
 
-                        {{-- Final Photo Display (Step 6) --}}
-                        <template x-if="steps[activeStep].mediaType === 'image'">
-                            <div class="relative w-full h-full">
-                                <img
-                                    :src="photoAngle === 1 ? steps[activeStep].image : steps[activeStep].image2"
-                                    alt="Resultado final del tatuaje Shenlong"
-                                    class="w-full h-full object-cover transition-opacity duration-500"
-                                />
+                            <h4 x-text="steps[activeStep].title" class="font-serif font-black text-base uppercase tracking-tight text-foreground"></h4>
+                            <p x-text="steps[activeStep].description" class="text-[10px] text-muted uppercase tracking-[0.1em] leading-relaxed font-semibold"></p>
 
-                                {{-- Photo Angle Switcher --}}
-                                <div class="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between">
-                                    <div class="bg-black/80 backdrop-blur-md border border-accent/40 p-1 flex gap-1">
-                                        <button
-                                            @click="photoAngle = 1"
-                                            :class="photoAngle === 1 ? 'bg-accent text-accent-foreground font-black' : 'text-foreground/70 hover:text-foreground'"
-                                            class="px-3 py-1 text-[10px] uppercase tracking-widest transition-all"
-                                        >
-                                            Vista Frontal
-                                        </button>
-                                        <button
-                                            @click="photoAngle = 2"
-                                            :class="photoAngle === 2 ? 'bg-accent text-accent-foreground font-black' : 'text-foreground/70 hover:text-foreground'"
-                                            class="px-3 py-1 text-[10px] uppercase tracking-widest transition-all"
-                                        >
-                                            Detalle Esferas
-                                        </button>
-                                    </div>
-
-                                    <div class="bg-black/70 backdrop-blur-sm border border-white/10 px-3 py-1 text-[10px] uppercase tracking-widest text-accent font-bold">
-                                        Fotografía HD
-                                    </div>
-                                </div>
-                            </div>
-                        </template>
-
-                        {{-- Corner Gold Accents --}}
-                        <div class="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-accent pointer-events-none z-30"></div>
-                        <div class="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-accent pointer-events-none z-30"></div>
-                    </div>
-
-                    {{-- Step Navigation Arrows Under Media --}}
-                    <div class="flex items-center justify-between mt-4 px-1">
-                        <button
-                            @click="prevStep()"
-                            class="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-muted hover:text-accent transition-colors py-2 group"
-                        >
-                            <i data-lucide="chevron-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
-                            Paso Anterior
-                        </button>
-
-                        <div class="flex gap-1.5">
-                            <template x-for="(s, i) in steps" :key="i">
-                                <button
-                                    @click="selectStep(i)"
-                                    :class="i === activeStep ? 'w-6 bg-accent' : 'w-2 bg-border hover:bg-muted'"
-                                    class="h-1 transition-all duration-300 focus:outline-none"
-                                ></button>
-                            </template>
-                        </div>
-
-                        <button
-                            @click="nextStep()"
-                            class="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-muted hover:text-accent transition-colors py-2 group"
-                        >
-                            Siguiente Paso
-                            <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                        </button>
-                    </div>
-                </div>
-
-                {{-- Content & Details Column (5 cols on lg) --}}
-                <div class="lg:col-span-5 flex flex-col justify-between space-y-8 bg-surface/70 border border-border/70 p-8 sm:p-10 relative overflow-hidden backdrop-blur-xl">
-                    {{-- Giant Watermark Number in Card Background --}}
-                    <div 
-                        class="absolute -right-4 -bottom-8 font-serif font-black text-[140px] leading-none text-white/[0.03] select-none pointer-events-none"
-                        x-text="steps[activeStep].num"
-                    ></div>
-
-                    <div class="space-y-6 relative z-10">
-                        {{-- Stage Badge --}}
-                        <div class="flex items-center justify-between">
-                            <span 
-                                class="text-accent text-[11px] font-black uppercase tracking-[0.3em] bg-accent/10 border border-accent/20 px-3.5 py-1.5"
-                                x-text="steps[activeStep].badge"
-                            ></span>
-
-                            <a
-                                href="https://www.instagram.com/p/DOKNBZgkiJO/?img_index=7"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest font-bold text-muted hover:text-accent transition-colors"
-                            >
-                                <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
-                                <span>Ver Post</span>
-                                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                            </a>
-                        </div>
-
-                        {{-- Title --}}
-                        <h3 
-                            class="text-2xl sm:text-3xl lg:text-4xl font-serif font-black uppercase tracking-tight text-foreground leading-tight"
-                            x-text="steps[activeStep].title"
-                        ></h3>
-
-                        {{-- Narrative Description --}}
-                        <p 
-                            class="text-sm text-foreground/80 leading-relaxed font-sans"
-                            x-text="steps[activeStep].description"
-                        ></p>
-
-                        {{-- Technical Specifications Grid --}}
-                        <div class="pt-4 border-t border-border/60 space-y-3">
-                            <div class="text-[10px] uppercase tracking-[0.25em] text-accent font-black">
-                                Parámetros Técnicos
-                            </div>
-                            <div class="grid grid-cols-1 gap-2.5">
+                            {{-- Technical Specs List --}}
+                            <div class="pt-2 border-t border-border/50 space-y-1.5">
                                 <template x-for="(spec, i) in steps[activeStep].specs" :key="i">
-                                    <div class="flex items-start justify-between gap-4 py-2 border-b border-border/40 text-xs">
-                                        <span class="text-muted uppercase tracking-wider font-bold text-[11px]" x-text="spec.label"></span>
+                                    <div class="flex items-center justify-between text-[9px]">
+                                        <span class="text-muted uppercase tracking-wider font-bold" x-text="spec.label"></span>
                                         <span class="text-foreground font-semibold text-right" x-text="spec.val"></span>
                                     </div>
                                 </template>
                             </div>
-                        </div>
 
-                        {{-- Post Quote Box --}}
-                        <div class="p-4 bg-background/60 border-l-2 border-accent/70 space-y-2">
-                            <div class="flex items-center gap-1.5 text-accent text-[10px] uppercase tracking-widest font-black">
-                                <i data-lucide="quote" class="w-3 h-3"></i>
-                                Sebastián · El Farfo
+                            {{-- Quote Pill --}}
+                            <div class="pt-2 border-t border-border/40 flex items-start gap-1.5 text-accent text-[9px] italic">
+                                <i data-lucide="quote" class="w-3 h-3 shrink-0 mt-0.5"></i>
+                                <span x-text="steps[activeStep].quote"></span>
                             </div>
-                            <p 
-                                class="text-xs italic text-foreground/90 leading-relaxed"
-                                x-text="steps[activeStep].quote"
-                            ></p>
                         </div>
                     </div>
 
-                    {{-- Call to Action Buttons --}}
-                    <div class="pt-6 relative z-10 flex flex-col sm:flex-row gap-4">
-                        <a
-                            href="{{ route('booking') }}"
-                            class="group relative flex-1 px-6 py-4 bg-accent text-accent-foreground font-bold uppercase tracking-widest text-xs overflow-hidden text-center shadow-[0_0_20px_rgba(212,175,55,0.2)]"
+                    {{-- Action Buttons --}}
+                    <div class="flex flex-col sm:flex-row gap-3 pt-0.5">
+                        <a 
+                            href="{{ route('booking') }}" 
+                            class="group relative px-6 py-3 bg-accent text-accent-foreground text-[11px] uppercase font-black tracking-[0.2em] overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center rounded-sm"
                         >
                             <span class="relative z-10 flex items-center justify-center gap-2">
-                                Quiero mi Proyecto
-                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                                Cotizar Proyecto 
+                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-500"></i>
                             </span>
-                            <div class="absolute top-0 left-0 w-full h-full bg-white/20 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                            <div class="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
                         </a>
+                        <a 
+                            href="{{ route('portfolio') }}" 
+                            class="group px-6 py-3 border border-border text-foreground text-[11px] uppercase font-black tracking-[0.2em] hover:border-accent hover:text-accent transition-all duration-500 text-center rounded-sm"
+                        >
+                            <span class="flex items-center justify-center gap-2">
+                                Ver Portafolio 
+                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-500"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
 
-                        <a
-                            href="https://www.instagram.com/p/DOKNBZgkiJO/?img_index=7"
+                {{-- Right Column (7 cols on desktop): Wider & Centered Studio Video Chassis matching Ritual --}}
+                <div class="lg:col-span-7 flex justify-center lg:justify-start lg:pl-6">
+                    <div class="w-full max-w-[420px] sm:max-w-[440px] md:max-w-[460px] relative">
+                        
+                        {{-- Ambient Brand Golden Wave Breathing in Background --}}
+                        <div class="absolute -inset-3 bg-gradient-to-tr from-accent/25 via-accent/40 to-accent/15 rounded-[36px] blur-2xl opacity-60 animate-gold-wave pointer-events-none"></div>
+
+                        {{-- Encapsulated Luxury Frame with Animated Golden Border Wave --}}
+                        <div class="relative p-[2.5px] rounded-[32px] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.95)] border border-accent/40">
+                            
+                            {{-- Rotating Golden Conic Wave --}}
+                            <div class="absolute -inset-[150%] bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,transparent_75deg,rgba(212,175,55,0.1)_105deg,rgba(212,175,55,0.95)_135deg,rgba(255,245,190,1)_150deg,rgba(212,175,55,0.95)_165deg,rgba(212,175,55,0.1)_195deg,transparent_225deg)] animate-spin-slow pointer-events-none"></div>
+
+                            {{-- Inner Studio Chassis --}}
+                            <div class="relative bg-black rounded-[30px] overflow-hidden flex flex-col border border-white/5">
+                                
+                                {{-- Studio Capsule Header Bar --}}
+                                <div class="px-4 py-2.5 bg-black/90 backdrop-blur-md border-b border-white/10 flex items-center justify-between z-20">
+                                    <div class="flex items-center gap-2">
+                                        <span class="relative flex h-2 w-2">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                                        </span>
+                                        <span class="text-[10px] uppercase tracking-[0.2em] font-black text-accent truncate" x-text="steps[activeStep].tag"></span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-[10px] font-mono tracking-widest text-muted">
+                                            <span class="text-accent font-bold" x-text="'0' + (activeStep + 1)"></span>/0<span x-text="steps.length"></span>
+                                        </span>
+                                        <a 
+                                            href="https://www.instagram.com/farfos_tattoo/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="text-muted hover:text-accent p-1 transition-colors"
+                                            title="Ver perfil oficial en Instagram"
+                                        >
+                                            <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {{-- Segmented Step Bars --}}
+                                <div class="px-3 pt-2 pb-1 bg-black/80 flex gap-1 z-20">
+                                    <template x-for="(st, sIndex) in steps" :key="sIndex">
+                                        <button
+                                            @click="selectStep(sIndex)"
+                                            class="flex-1 h-1.5 rounded-full overflow-hidden transition-all duration-300 relative focus:outline-none cursor-pointer"
+                                            :class="sIndex < activeStep ? 'bg-accent shadow-[0_0_6px_rgba(212,175,55,0.6)]' : (sIndex === activeStep ? 'bg-white/30' : 'bg-white/15')"
+                                            :title="`Paso 0${sIndex + 1}: ${st.short}`"
+                                        >
+                                            <template x-if="sIndex === activeStep">
+                                                <div 
+                                                    class="h-full bg-accent shadow-[0_0_10px_rgba(212,175,55,1)] transition-[width] duration-150"
+                                                    :style="`width: ${videoProgress}%`"
+                                                ></div>
+                                            </template>
+                                        </button>
+                                    </template>
+                                </div>
+
+                                {{-- Media Viewport --}}
+                                <div class="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] max-h-[480px] bg-card overflow-hidden group/video flex items-center justify-center">
+                                    
+                                    {{-- Video Mode --}}
+                                    <template x-if="steps[activeStep].mediaType === 'video'">
+                                        <div class="relative w-full h-full cursor-pointer" @click="toggleVideo()">
+                                            <video
+                                                x-ref="stepVideo"
+                                                :src="steps[activeStep].video"
+                                                :poster="steps[activeStep].image"
+                                                muted
+                                                loop
+                                                playsinline
+                                                @timeupdate="updateVideoProgress()"
+                                                @loadedmetadata="updateVideoProgress()"
+                                                class="w-full h-full object-cover group-hover/video:scale-105 transition-transform duration-700"
+                                            ></video>
+
+                                            {{-- Center Play Icon when paused --}}
+                                            <div 
+                                                x-show="!isPlaying" 
+                                                x-transition.opacity
+                                                class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 pointer-events-none"
+                                            >
+                                                <div class="w-14 h-14 rounded-full bg-accent/90 text-black flex items-center justify-center shadow-[0_0_25px_rgba(212,175,55,0.7)] backdrop-blur-sm">
+                                                    <svg class="w-6 h-6 fill-current ml-0.5" viewBox="0 0 24 24">
+                                                        <polygon points="5 3 19 12 5 21 5 3"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                    {{-- Image Mode (Paso 07) --}}
+                                    <template x-if="steps[activeStep].mediaType === 'image'">
+                                        <div class="relative w-full h-full">
+                                            <img
+                                                :src="photoAngle === 1 ? steps[activeStep].image : steps[activeStep].image2"
+                                                alt="Resultado final del tatuaje"
+                                                class="w-full h-full object-cover"
+                                            />
+                                            <div class="absolute bottom-14 left-3 right-3 z-20 flex items-center justify-between">
+                                                <div class="bg-black/85 backdrop-blur-md border border-accent/40 p-0.5 flex gap-1 rounded">
+                                                    <button
+                                                        @click="photoAngle = 1"
+                                                        :class="photoAngle === 1 ? 'bg-accent text-accent-foreground font-black' : 'text-foreground/70 hover:text-foreground'"
+                                                        class="px-2.5 py-1 text-[9px] uppercase tracking-widest transition-all rounded-sm cursor-pointer"
+                                                    >
+                                                        Frontal
+                                                    </button>
+                                                    <button
+                                                        @click="photoAngle = 2"
+                                                        :class="photoAngle === 2 ? 'bg-accent text-accent-foreground font-black' : 'text-foreground/70 hover:text-foreground'"
+                                                        class="px-2.5 py-1 text-[9px] uppercase tracking-widest transition-all rounded-sm cursor-pointer"
+                                                    >
+                                                        Detalle
+                                                    </button>
+                                                </div>
+                                                <span class="bg-black/70 backdrop-blur-sm border border-white/10 px-2 py-0.5 text-[8.5px] uppercase tracking-widest text-accent font-bold rounded">
+                                                    HD View
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                    {{-- Vignette Overlay --}}
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30 pointer-events-none"></div>
+
+                                    {{-- Slider Navigation Arrows --}}
+                                    <button
+                                        @click="prevStep()"
+                                        class="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/75 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md transition-all shadow-lg focus:outline-none cursor-pointer"
+                                        title="Paso Anterior"
+                                    >
+                                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                    </button>
+
+                                    <button
+                                        @click="nextStep()"
+                                        class="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/75 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md transition-all shadow-lg focus:outline-none cursor-pointer"
+                                        title="Siguiente Paso"
+                                    >
+                                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                    </button>
+
+                                    {{-- Bottom Scrubber Bar (on video mode) --}}
+                                    <template x-if="steps[activeStep].mediaType === 'video'">
+                                        <div 
+                                            @click.stop
+                                            class="absolute bottom-2 left-2 right-2 z-20 p-2 bg-black/85 backdrop-blur-md rounded-lg border border-white/10 flex flex-col gap-1"
+                                        >
+                                            <div 
+                                                @click="seekVideo($event)"
+                                                class="w-full py-1 cursor-pointer group/bar relative select-none"
+                                            >
+                                                <div class="w-full h-1.5 bg-white/20 rounded-full overflow-hidden relative shadow-inner border border-white/10">
+                                                    <div 
+                                                        class="h-full bg-gradient-to-r from-accent via-accent to-[#FFF5BE] shadow-[0_0_8px_rgba(212,175,55,1)] transition-[width] duration-100"
+                                                        :style="`width: ${videoProgress}%`"
+                                                    ></div>
+                                                </div>
+                                                <div 
+                                                    class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-accent border-2 border-white shadow-[0_0_8px_rgba(212,175,55,1)] pointer-events-none transition-[left] duration-100"
+                                                    :style="`left: ${videoProgress}%`"
+                                                ></div>
+                                            </div>
+
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center gap-2">
+                                                    <button 
+                                                        @click="toggleVideo()"
+                                                        class="w-6 h-6 rounded-full bg-accent text-black flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shadow focus:outline-none cursor-pointer"
+                                                        :title="isPlaying ? 'Pausar' : 'Reproducir'"
+                                                    >
+                                                        <i :data-lucide="isPlaying ? 'pause' : 'play'" class="w-3 h-3"></i>
+                                                    </button>
+                                                    <span class="font-mono text-[9px] text-white/95 font-bold tracking-wider" x-text="currentTimeFormatted + ' / ' + durationFormatted"></span>
+                                                </div>
+                                                <span class="text-[8.5px] uppercase tracking-wider font-bold text-accent truncate max-w-[50%]" x-text="steps[activeStep].short"></span>
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                </div>
+
+                                {{-- Capsule Integrated Footer: 7-Step Switcher Tabs --}}
+                                <div class="p-2 bg-black/95 border-t border-white/10 z-20">
+                                    <div class="grid grid-cols-7 gap-1">
+                                        <template x-for="(step, sIdx) in steps" :key="sIdx">
+                                            <button
+                                                @click="selectStep(sIdx)"
+                                                :class="activeStep === sIdx 
+                                                    ? 'bg-accent/20 border-accent text-accent font-bold shadow-[0_0_8px_rgba(212,175,55,0.25)]' 
+                                                    : 'bg-card/70 border-border/70 text-muted hover:border-accent/40 hover:text-foreground'"
+                                                class="py-1.5 px-0.5 border text-center text-[8px] uppercase tracking-wider transition-all rounded flex flex-col items-center justify-center gap-0.5 focus:outline-none cursor-pointer"
+                                                :title="step.title"
+                                            >
+                                                <span class="font-bold" x-text="'0' + (sIdx + 1)"></span>
+                                            </button>
+                                        </template>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    {{-- Pre-Footer CTA Section with Live Studio Reel --}}
+    <section 
+        id="contacto-cta"
+        x-data="{
+            ctaPlaying: true,
+            toggleCtaVideo() {
+                if (!this.$refs.ctaVideo) return;
+                if (this.$refs.ctaVideo.paused) {
+                    this.$refs.ctaVideo.play();
+                    this.ctaPlaying = true;
+                } else {
+                    this.$refs.ctaVideo.pause();
+                    this.ctaPlaying = false;
+                }
+            },
+            init() {
+                const obs = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            if (this.$refs.ctaVideo && this.ctaPlaying) {
+                                this.$refs.ctaVideo.play().catch(() => {});
+                            }
+                        } else {
+                            if (this.$refs.ctaVideo) {
+                                this.$refs.ctaVideo.pause();
+                            }
+                        }
+                    });
+                }, { threshold: 0.25 });
+                obs.observe(this.$el);
+            }
+        }"
+        class="snap-section scroll-mt-20 py-24 sm:py-28 bg-surface relative overflow-hidden border-t border-border/50"
+    >
+        {{-- Background Ambience Glow --}}
+        <div class="absolute -top-1/2 right-0 w-[500px] h-[500px] rounded-full bg-accent/5 blur-[140px] pointer-events-none"></div>
+        <div class="absolute -bottom-1/2 left-0 w-[500px] h-[500px] rounded-full bg-accent/5 blur-[140px] pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+                
+                {{-- Left Column (7 cols on lg): Texts, WhatsApp Direct CTA, Online Booking & Socials --}}
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    {{-- Badge --}}
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/25 bg-accent/10">
+                        <i data-lucide="message-circle" class="w-3.5 h-3.5 text-accent animate-pulse"></i>
+                        <span class="text-accent uppercase tracking-[0.3em] text-[9.5px] font-black">Atención Directa & Reserva</span>
+                    </div>
+
+                    {{-- Title --}}
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-black uppercase tracking-tight leading-[1.05] text-foreground">
+                        ¿Tienes una idea en mente? <br />
+                        <span class="text-accent italic">Hagámosla Realidad</span>
+                    </h2>
+
+                    {{-- Description --}}
+                    <p class="text-muted text-xs sm:text-sm uppercase tracking-[0.14em] font-medium leading-relaxed max-w-xl">
+                        Cada tatuaje es una pieza de autor diseñada a tu medida. Conversemos directamente por WhatsApp para evaluar tu proyecto, resolver dudas sobre el diseño y agendar tu próxima sesión.
+                    </p>
+
+                    {{-- CTA Buttons: WhatsApp Direct (Priority) + Online Booking --}}
+                    <div class="flex flex-col sm:flex-row gap-3.5 pt-2">
+                        {{-- WhatsApp Direct Button --}}
+                        <a 
+                            href="https://wa.me/56934424269?text=Hola%20Sebasti%C3%A1n%2C%20quiero%20cotizar%20un%20tatuaje%20contigo." 
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="px-6 py-4 border border-border hover:border-accent hover:text-accent transition-all font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 text-foreground/80 text-center"
+                            class="group px-7 py-4 bg-[#25D366] text-black font-black uppercase tracking-[0.2em] text-xs transition-all hover:shadow-[0_0_25px_rgba(37,211,102,0.4)] hover:scale-[1.02] flex items-center justify-center gap-3 rounded-sm"
                         >
-                            <i data-lucide="instagram" class="w-4 h-4 text-accent"></i>
-                            Post Original
+                            <i data-lucide="message-circle" class="w-4 h-4 fill-current"></i>
+                            <span>+56 9 3442 4269 · Escríbeme al WhatsApp</span>
                         </a>
+
+                        {{-- Online Booking Button --}}
+                        <a 
+                            href="{{ route('booking') }}" 
+                            class="px-6 py-4 bg-accent text-accent-foreground font-black uppercase tracking-[0.2em] text-xs transition-all hover:bg-accent/90 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] flex items-center justify-center gap-2 rounded-sm"
+                        >
+                            <span>Reservar Cita</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+
+                    {{-- Social Channels & Direct Contact Pill Box --}}
+                    <div class="pt-4 border-t border-border/60">
+                        <div class="text-[10px] uppercase tracking-[0.25em] text-muted font-bold mb-3">
+                            Canales Oficiales & Ubicación
+                        </div>
+                        <div class="flex flex-wrap items-center gap-3">
+                            {{-- Instagram --}}
+                            <a 
+                                href="https://www.instagram.com/farfos_tattoo/" 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-border/80 bg-card/80 hover:border-accent hover:text-accent transition-all text-xs font-mono"
+                            >
+                                <i data-lucide="instagram" class="w-3.5 h-3.5 text-accent"></i>
+                                <span>@farfos_tattoo</span>
+                            </a>
+
+                            {{-- Location --}}
+                            <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-border/80 bg-card/80 text-muted text-xs font-mono">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-accent"></i>
+                                <span>Santiago, Chile · Barrio Bellavista / Providencia</span>
+                            </div>
+
+                            {{-- Safety --}}
+                            <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-border/80 bg-card/80 text-muted text-xs font-mono">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-accent"></i>
+                                <span>Insumos 100% Esterilizados</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                {{-- Right Column (5 cols on lg): Live Studio Video Capsule --}}
+                <div class="lg:col-span-5 flex justify-center lg:justify-end">
+                    <div class="w-full max-w-[340px] sm:max-w-[360px] relative">
+                        
+                        {{-- Golden Glow Wave in Background --}}
+                        <div class="absolute -inset-3 bg-gradient-to-tr from-accent/25 via-accent/40 to-accent/15 rounded-[36px] blur-2xl opacity-60 animate-gold-wave pointer-events-none"></div>
+
+                        {{-- Frame --}}
+                        <div class="relative p-[2.5px] rounded-[32px] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.95)] border border-accent/40">
+                            
+                            {{-- Rotating Golden Conic Wave --}}
+                            <div class="absolute -inset-[150%] bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,transparent_75deg,rgba(212,175,55,0.1)_105deg,rgba(212,175,55,0.95)_135deg,rgba(255,245,190,1)_150deg,rgba(212,175,55,0.95)_165deg,rgba(212,175,55,0.1)_195deg,transparent_225deg)] animate-spin-slow pointer-events-none"></div>
+
+                            {{-- Inner Capsule --}}
+                            <div class="relative bg-black rounded-[30px] overflow-hidden flex flex-col border border-white/5">
+                                
+                                {{-- Top Bar --}}
+                                <div class="px-4 py-2.5 bg-black/90 backdrop-blur-md border-b border-white/10 flex items-center justify-between z-20">
+                                    <div class="flex items-center gap-2">
+                                        <span class="relative flex h-2 w-2">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                                        </span>
+                                        <span class="text-[9.5px] uppercase tracking-[0.2em] font-black text-accent">Sesión en Vivo</span>
+                                    </div>
+                                    <a 
+                                        href="https://www.instagram.com/farfos_tattoo/" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        class="text-[9.5px] font-mono tracking-wider text-muted hover:text-accent flex items-center gap-1 transition-colors"
+                                    >
+                                        <i data-lucide="instagram" class="w-3 h-3"></i>
+                                        <span>@farfos_tattoo</span>
+                                    </a>
+                                </div>
+
+                                {{-- Video Viewport --}}
+                                <div class="relative aspect-[9/16] bg-card overflow-hidden group/cta flex items-center justify-center">
+                                    <video
+                                        x-ref="ctaVideo"
+                                        src="{{ asset('videos/cta_short.mp4') }}"
+                                        poster="{{ asset('videos/cta_banner.jpg') }}"
+                                        autoplay
+                                        muted
+                                        loop
+                                        playsinline
+                                        class="w-full h-full object-cover group-hover/cta:scale-105 transition-transform duration-700"
+                                    ></video>
+
+                                    {{-- Vignette Overlay --}}
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30 pointer-events-none"></div>
+
+                                    {{-- Play / Pause Floating Toggle --}}
+                                    <button
+                                        @click="toggleCtaVideo()"
+                                        class="absolute bottom-3 right-3 z-20 w-9 h-9 rounded-full bg-black/80 border border-accent/50 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none cursor-pointer"
+                                        :title="ctaPlaying ? 'Pausar Video' : 'Reproducir Video'"
+                                    >
+                                        <i :data-lucide="ctaPlaying ? 'pause' : 'play'" class="w-3.5 h-3.5"></i>
+                                    </button>
+
+                                    {{-- Bottom Badge --}}
+                                    <div class="absolute bottom-3 left-3 z-20 max-w-[75%]">
+                                        <p class="text-xs font-bold text-white tracking-wide truncate drop-shadow">Sebastián, El Farfo</p>
+                                        <p class="text-[9px] text-accent tracking-wider uppercase font-semibold truncate">En plena creación</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
-
-            {{-- Bottom Banner Summary --}}
-            <div class="mt-20 border border-border/80 bg-gradient-to-r from-card via-surface to-card p-8 sm:p-12 text-center relative overflow-hidden">
-                <div class="absolute -top-12 -left-12 w-32 h-32 bg-accent/10 rounded-full blur-2xl pointer-events-none"></div>
-                <div class="relative z-10 max-w-2xl mx-auto space-y-4">
-                    <span class="text-accent uppercase tracking-[0.4em] text-[11px] font-black">
-                        Arte de Autor a tu Medida
-                    </span>
-                    <h4 class="text-2xl sm:text-4xl font-serif font-black uppercase tracking-tight text-foreground">
-                        ¿Tienes una idea para tu próxima pieza?
-                    </h4>
-                    <p class="text-muted text-xs sm:text-sm uppercase tracking-[0.15em] leading-relaxed">
-                        Cada diseño se trabaja desde cero, adaptando anime, realismo, mitología y blackwork al contorno exacto de tu cuerpo.
-                    </p>
-                    <div class="pt-4 flex flex-wrap justify-center gap-4">
-                        <a 
-                            href="{{ route('booking') }}"
-                            class="px-8 py-3.5 bg-accent text-accent-foreground font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all"
-                        >
-                            Cotizar Ahora
-                        </a>
-                        <a 
-                            href="{{ route('portfolio') }}"
-                            class="px-8 py-3.5 border border-border hover:border-accent hover:text-accent transition-all font-bold uppercase tracking-widest text-xs"
-                        >
-                            Explorar Trabajos
-                        </a>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 

@@ -125,14 +125,14 @@
                 reels: [
                     {
                         id: '01',
-                        title: 'La Batalla del Tattoo en Santiago',
-                        category: 'Competición en Vivo',
-                        tag: 'Evento & Técnica',
-                        desc: 'Viví una de esas experiencias que te recuerdan por qué amas lo que haces. Creación bajo presión, técnica pura y pasión frente al público en La Batalla del Tattoo.',
-                        video: '{{ asset('videos/about/about_1.mp4') }}',
-                        poster: '{{ asset('videos/about/about_1.jpg') }}',
-                        instagram: 'https://www.instagram.com/reel/DQ5WD0XD0Fl/',
-                        quote: 'Cuando la adrenalina y la disciplina formal se encuentran en cada línea sobre la piel.'
+                        title: 'Ilustración Digital & Flashes de Autor',
+                        category: 'Génesis Creativa',
+                        tag: 'Bocetaje Digital',
+                        desc: 'Todo tatuaje nace en el trazo libre: Sebastián diseña e ilustra cada pieza desde lo digital, explorando simetría, color y composición anatómica antes de llevar la aguja a la piel.',
+                        video: '{{ asset('videos/about/about_6.mp4') }}',
+                        poster: '{{ asset('videos/about/about_6.jpg') }}',
+                        instagram: 'https://www.instagram.com/reel/C_LLaT_OjTd/',
+                        quote: 'El dibujo digital es la cocina de la idea: donde la libertad visual encuentra la armonía perfecta con el cuerpo.'
                     },
                     {
                         id: '02',
@@ -147,17 +147,6 @@
                     },
                     {
                         id: '03',
-                        title: 'El Dolor en el Tatuaje',
-                        category: 'Ritual y Biología',
-                        tag: 'Conciencia Corporal',
-                        desc: 'El dolor no es tu enemigo: es la señal de que tu cuerpo despierta, tu sistema inmune se activa y la experiencia se graba en tu memoria física y espiritual.',
-                        video: '{{ asset('videos/about/about_3.mp4') }}',
-                        poster: '{{ asset('videos/about/about_3.jpg') }}',
-                        instagram: 'https://www.instagram.com/reel/DNWj1ycvoJF/',
-                        quote: 'Traspasar la barrera del dolor transforma el acto de tatuarse en un rito de paso personal.'
-                    },
-                    {
-                        id: '04',
                         title: 'Sin Encasillarme: Múltiples Estilos',
                         category: 'Estilos & Dominio',
                         tag: 'Versatilidad Artística',
@@ -168,7 +157,29 @@
                         quote: 'La maestría no consiste en repetir una fórmula, sino en dominar los fundamentos para crear libremente.'
                     },
                     {
+                        id: '04',
+                        title: 'La Batalla del Tattoo en Santiago',
+                        category: 'Competición en Vivo',
+                        tag: 'Evento & Técnica',
+                        desc: 'Viví una de esas experiencias que te recuerdan por qué amas lo que haces. Creación bajo presión, técnica pura y pasión frente al público en La Batalla del Tattoo.',
+                        video: '{{ asset('videos/about/about_1.mp4') }}',
+                        poster: '{{ asset('videos/about/about_1.jpg') }}',
+                        instagram: 'https://www.instagram.com/reel/DQ5WD0XD0Fl/',
+                        quote: 'Cuando la adrenalina y la disciplina formal se encuentran en cada línea sobre la piel.'
+                    },
+                    {
                         id: '05',
+                        title: 'El Dolor en el Tatuaje',
+                        category: 'Ritual y Biología',
+                        tag: 'Conciencia Corporal',
+                        desc: 'El dolor no es tu enemigo: es la señal de que tu cuerpo despierta, tu sistema inmune se activa y la experiencia se graba en tu memoria física y espiritual.',
+                        video: '{{ asset('videos/about/about_3.mp4') }}',
+                        poster: '{{ asset('videos/about/about_3.jpg') }}',
+                        instagram: 'https://www.instagram.com/reel/DNWj1ycvoJF/',
+                        quote: 'Traspasar la barrera del dolor transforma el acto de tatuarse en un rito de paso personal.'
+                    },
+                    {
+                        id: '06',
                         title: 'En el Estudio: Visión y Método',
                         category: 'Experiencia Farfo',
                         tag: 'La Sesión',
@@ -231,84 +242,105 @@
                     Reflexiones, Método & <span class="text-accent italic">Sesiones en Vivo</span>
                 </h2>
                 <p class="text-muted text-xs uppercase tracking-[0.18em] font-semibold leading-relaxed">
-                    Cinco miradas directas sobre la filosofía de trabajo, el manejo del dolor, la versatilidad de estilos y el ritual del tatuaje según Sebastián.
+                    Seis miradas directas sobre la génesis creativa en dibujo digital, la filosofía de trabajo, el manejo del dolor, la versatilidad de estilos y el ritual del tatuaje según Sebastián.
                 </p>
             </div>
 
             {{-- Interactive Spotlight Grid: Video Player + Playlist --}}
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
                 
-                {{-- Left: Active Vertical Reel Spotlight (5 cols on lg) --}}
-                <div class="lg:col-span-5 flex flex-col">
-                    <div class="relative w-full aspect-[9/16] bg-card border border-border/80 overflow-hidden shadow-2xl group flex items-center justify-center">
+                {{-- Left: Active Vertical Reel Spotlight with Gold Wave Border (5 cols on lg) --}}
+                <div class="lg:col-span-5 flex flex-col justify-center">
+                    <div class="relative w-full max-w-[420px] mx-auto">
                         
-                        {{-- Top Badge --}}
-                        <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
-                            <span class="bg-black/85 backdrop-blur-md border border-accent/40 text-accent px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] font-black flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
-                                <span x-text="reels[activeReel].tag"></span>
-                            </span>
+                        {{-- Ambient Brand Golden Wave Breathing in Background --}}
+                        <div class="absolute -inset-3 bg-gradient-to-tr from-accent/20 via-accent/35 to-accent/10 rounded-[32px] blur-xl opacity-60 animate-gold-wave pointer-events-none"></div>
+
+                        {{-- Encapsulated Luxury Frame with Animated Golden Border Wave --}}
+                        <div class="relative p-[2.5px] rounded-[28px] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.95)] border border-accent/40">
+                            
+                            {{-- Rotating Golden Conic Wave --}}
+                            <div class="absolute -inset-[150%] bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,transparent_75deg,rgba(212,175,55,0.1)_105deg,rgba(212,175,55,0.95)_135deg,rgba(255,245,190,1)_150deg,rgba(212,175,55,0.95)_165deg,rgba(212,175,55,0.1)_195deg,transparent_225deg)] animate-spin-slow pointer-events-none"></div>
+
+                            {{-- Inner Chassis --}}
+                            <div class="relative bg-black rounded-[26px] overflow-hidden flex flex-col border border-white/5">
+                                
+                                {{-- Top Badge Bar --}}
+                                <div class="px-4 py-3 bg-black/90 backdrop-blur-md border-b border-white/10 flex items-center justify-between z-20">
+                                    <div class="flex items-center gap-2">
+                                        <span class="relative flex h-2 w-2">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                                        </span>
+                                        <span class="text-[10px] uppercase tracking-[0.2em] font-black text-accent truncate" x-text="reels[activeReel].tag"></span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-[10px] font-mono tracking-widest text-muted">
+                                            <span class="text-accent font-bold" x-text="'0' + (activeReel + 1)"></span>/0<span x-text="reels.length"></span>
+                                        </span>
+                                        <a 
+                                            :href="reels[activeReel].instagram"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="text-muted hover:text-accent p-1 transition-colors"
+                                            title="Ver reel original en Instagram"
+                                        >
+                                            <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {{-- Reel Video Viewport --}}
+                                <div class="relative aspect-[9/16] bg-card overflow-hidden group/video flex items-center justify-center">
+                                    <video
+                                        x-ref="aboutVideo"
+                                        :src="reels[activeReel].video"
+                                        :poster="reels[activeReel].poster"
+                                        autoplay
+                                        muted
+                                        loop
+                                        playsinline
+                                        class="w-full h-full object-cover group-hover/video:scale-105 transition-transform duration-700"
+                                    ></video>
+
+                                    {{-- Vignette Overlay --}}
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30 pointer-events-none"></div>
+
+                                    {{-- Arrows Overlay --}}
+                                    <button
+                                        @click="prevReel()"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/80 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md shadow-lg transition-all focus:outline-none cursor-pointer"
+                                        title="Anterior"
+                                    >
+                                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                    </button>
+
+                                    <button
+                                        @click="nextReel()"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/80 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md shadow-lg transition-all focus:outline-none cursor-pointer"
+                                        title="Siguiente"
+                                    >
+                                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                    </button>
+
+                                    {{-- Play/Pause Button --}}
+                                    <button
+                                        @click="toggleVideo()"
+                                        class="absolute bottom-4 right-4 z-20 w-10 h-10 rounded-full bg-black/85 border border-accent/40 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none cursor-pointer"
+                                        :title="videoPlaying ? 'Pausar' : 'Reproducir'"
+                                    >
+                                        <i :data-lucide="videoPlaying ? 'pause' : 'play'" class="w-4 h-4"></i>
+                                    </button>
+
+                                    {{-- Title Tag --}}
+                                    <div class="absolute bottom-4 left-4 z-20 max-w-[70%] bg-black/85 backdrop-blur-sm border border-white/10 px-3 py-1.5 text-[10px] uppercase tracking-wider text-foreground/90 font-bold flex items-center gap-1.5">
+                                        <i data-lucide="video" class="w-3 h-3 text-accent shrink-0"></i>
+                                        <span class="truncate" x-text="reels[activeReel].title"></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-                        {{-- Top Right Counter & Instagram link --}}
-                        <a 
-                            :href="reels[activeReel].instagram"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="absolute top-4 right-4 z-20 bg-black/85 backdrop-blur-md border border-white/10 text-muted hover:text-accent px-2.5 py-1 text-[10px] font-mono tracking-wider transition-colors flex items-center gap-1"
-                            title="Ver en Instagram"
-                        >
-                            <span class="text-accent font-bold" x-text="'0' + (activeReel + 1) + '/05'"></span>
-                            <i data-lucide="instagram" class="w-3 h-3 ml-1"></i>
-                        </a>
-
-                        {{-- Active Video --}}
-                        <video
-                            x-ref="aboutVideo"
-                            :src="reels[activeReel].video"
-                            :poster="reels[activeReel].poster"
-                            autoplay
-                            muted
-                            loop
-                            playsinline
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        ></video>
-
-                        {{-- Arrows Overlay --}}
-                        <button
-                            @click="prevReel()"
-                            class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/80 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md shadow-lg transition-all focus:outline-none"
-                            title="Anterior"
-                        >
-                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
-                        </button>
-
-                        <button
-                            @click="nextReel()"
-                            class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/80 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md shadow-lg transition-all focus:outline-none"
-                            title="Siguiente"
-                        >
-                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
-                        </button>
-
-                        {{-- Play/Pause Button --}}
-                        <button
-                            @click="toggleVideo()"
-                            class="absolute bottom-4 right-4 z-20 w-10 h-10 rounded-full bg-black/85 border border-accent/40 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none"
-                            :title="videoPlaying ? 'Pausar' : 'Reproducir'"
-                        >
-                            <i :data-lucide="videoPlaying ? 'pause' : 'play'" class="w-4 h-4"></i>
-                        </button>
-
-                        {{-- Title Tag --}}
-                        <div class="absolute bottom-4 left-4 z-20 max-w-[70%] bg-black/85 backdrop-blur-sm border border-white/10 px-3 py-1.5 text-[10px] uppercase tracking-wider text-foreground/90 font-bold flex items-center gap-1.5">
-                            <i data-lucide="video" class="w-3 h-3 text-accent shrink-0"></i>
-                            <span class="truncate" x-text="reels[activeReel].title"></span>
-                        </div>
-
-                        {{-- Corner Accents --}}
-                        <div class="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 border-accent pointer-events-none z-30"></div>
-                        <div class="absolute -bottom-1 -right-1 w-5 h-5 border-b-2 border-r-2 border-accent pointer-events-none z-30"></div>
                     </div>
                 </div>
 
@@ -342,11 +374,11 @@
                         </div>
                     </div>
 
-                    {{-- Playlist of 5 Videos --}}
+                    {{-- Playlist of 6 Videos --}}
                     <div class="space-y-2.5">
                         <div class="text-[10px] uppercase tracking-[0.25em] text-accent font-black mb-2 flex items-center gap-2">
                             <i data-lucide="list-video" class="w-3.5 h-3.5"></i>
-                            Serie de Videos (5 Capítulos)
+                            Serie de Videos (6 Capítulos)
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                             <template x-for="(reel, index) in reels" :key="index">
@@ -355,7 +387,7 @@
                                     :class="activeReel === index 
                                         ? 'bg-accent/15 border-accent text-accent shadow-[0_0_15px_rgba(212,175,55,0.2)]' 
                                         : 'bg-card/70 border-border/70 text-foreground/70 hover:border-accent/40 hover:text-foreground'"
-                                    class="p-3 border text-left transition-all duration-300 flex items-start gap-3 group focus:outline-none"
+                                    class="p-3 border text-left transition-all duration-300 flex items-start gap-3 group focus:outline-none cursor-pointer"
                                 >
                                     <span 
                                         :class="activeReel === index ? 'text-accent font-black' : 'text-muted font-bold'"
@@ -378,4 +410,6 @@
 
             </div>
         </section>
+    </div>
+</main>
 @endsection
