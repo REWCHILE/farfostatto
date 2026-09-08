@@ -110,7 +110,7 @@
             </div>
 
             {{-- Main Title with Split Text Animation --}}
-            <h1 id="hero-title" class="text-6xl md:text-8xl lg:text-[9.5rem] font-serif font-black tracking-tighter leading-[0.9] mb-8 select-none">
+            <h1 id="hero-title" class="text-6xl sm:text-7xl md:text-8xl lg:text-[9.5rem] font-serif font-black tracking-tighter leading-[0.9] mb-8 select-none">
                 <div class="overflow-hidden">
                     <span class="hero-line block">ARTE EN</span>
                 </div>
@@ -279,8 +279,8 @@
         <div class="container mx-auto px-6 relative z-10">
             <div class="section-content-grid max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                 
-                {{-- Left Column (5 cols on desktop): Story, Philosophy & Enhanced Technical Console --}}
-                <div class="lg:col-span-5 space-y-4">
+                {{-- Left Column (5 cols on desktop): Story, Philosophy & Actions --}}
+                <div class="lg:col-span-5 space-y-6">
                     
                     {{-- Section Badge --}}
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/25 bg-accent/10">
@@ -288,22 +288,22 @@
                         <span class="text-accent uppercase tracking-[0.3em] text-[10px] font-black">Filosofía & Trayectoria</span>
                     </div>
 
-                    {{-- Section Title (Proportionate so it doesn't get cut off) --}}
-                    <h2 class="text-2xl sm:text-3xl lg:text-[1.85rem] font-serif font-black uppercase tracking-tight leading-[1.12] text-foreground">
+                    {{-- Section Title (Enlarged & Majestic) --}}
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-black uppercase tracking-tight leading-[1.06] text-foreground">
                         El Ritual de las <span class="text-accent italic">Imágenes</span>, <br class="hidden sm:inline" />
                         Historias en tu <span class="text-accent italic">Piel</span>.
                     </h2>
 
                     {{-- Description (Farfo's Tattoo copy) --}}
-                    <p class="text-muted leading-relaxed uppercase tracking-[0.12em] text-[11px] sm:text-xs font-medium max-w-md">
+                    <p class="text-muted leading-relaxed uppercase tracking-[0.12em] text-xs sm:text-sm font-medium max-w-lg">
                         Farfo's Tattoo combina su formación académica con la maestría del tatuaje moderno. Diálogo consciente transformando memorias y pasiones en obras imperecederas.
                     </p>
 
                     {{-- Action Buttons: Ver Portafolio & Sobre Mí (Directly below Farfo's Tattoo copy) --}}
-                    <div class="flex flex-wrap sm:flex-nowrap gap-3 pt-2 max-w-md">
+                    <div class="flex flex-wrap sm:flex-nowrap gap-3 pt-2 max-w-lg">
                         <a 
                             href="{{ route('portfolio') }}" 
-                            class="group relative flex-1 py-3 px-5 bg-accent text-accent-foreground text-[11px] sm:text-xs uppercase font-black tracking-[0.18em] overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] text-center rounded flex items-center justify-center gap-2 cursor-pointer"
+                            class="group relative flex-1 py-3.5 px-6 bg-accent text-accent-foreground text-xs uppercase font-black tracking-[0.18em] overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] text-center rounded flex items-center justify-center gap-2 cursor-pointer"
                         >
                             <span class="relative z-10 flex items-center justify-center gap-2">
                                 Ver Portafolio 
@@ -313,7 +313,7 @@
                         </a>
                         <a 
                             href="{{ route('about') }}" 
-                            class="group flex-1 py-3 px-5 border border-border/80 bg-card/80 text-foreground text-[11px] sm:text-xs uppercase font-black tracking-[0.18em] hover:border-accent hover:text-accent transition-all duration-300 text-center rounded flex items-center justify-center gap-2 cursor-pointer"
+                            class="group flex-1 py-3.5 px-6 border border-border/80 bg-card/80 text-foreground text-xs uppercase font-black tracking-[0.18em] hover:border-accent hover:text-accent transition-all duration-300 text-center rounded flex items-center justify-center gap-2 cursor-pointer"
                         >
                             <span class="flex items-center justify-center gap-2">
                                 Sobre Mí 
@@ -922,7 +922,7 @@
                 </div>
 
                 {{-- Column 2: Story, Description & Console on RIGHT (5 cols on desktop) --}}
-                <div class="lg:col-span-5 space-y-4 order-2 lg:order-2">
+                <div class="lg:col-span-5 space-y-6 order-2 lg:order-2">
                     
                     {{-- Section Badge --}}
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/25 bg-accent/10">
@@ -930,14 +930,14 @@
                         <span class="text-accent uppercase tracking-[0.3em] text-[10px] font-black">Metodología & Flujo Real</span>
                     </div>
 
-                    {{-- Section Title (Proportionate so it doesn't get cut off) --}}
-                    <h2 class="text-2xl sm:text-3xl lg:text-[1.85rem] font-serif font-black uppercase tracking-tight leading-[1.12] text-foreground">
+                    {{-- Section Title (Enlarged & Majestic) --}}
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-black uppercase tracking-tight leading-[1.06] text-foreground">
                         El Proceso de <span class="text-accent italic">Tatuaje</span>, <br class="hidden sm:inline" />
                         De la Idea a la <span class="text-accent italic">Piel</span>.
                     </h2>
 
                     {{-- Description (Enlarged & Crisp) --}}
-                    <p class="text-muted leading-relaxed uppercase tracking-[0.12em] text-[11px] sm:text-xs font-medium max-w-md">
+                    <p class="text-muted leading-relaxed uppercase tracking-[0.12em] text-xs sm:text-sm font-medium max-w-lg">
                         Desde el trazado estructural y el calco anatómico hasta la saturación viva y la segunda piel. Acompaña cada etapa real del ritual con Sebastián Farfo.
                     </p>
 
@@ -1078,8 +1078,8 @@
                         <span class="text-accent uppercase tracking-[0.3em] text-[9.5px] font-black">Atención Directa & Reserva</span>
                     </div>
 
-                    {{-- Title --}}
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-black uppercase tracking-tight leading-[1.05] text-foreground">
+                    {{-- Title (Enlarged & Majestic) --}}
+                    <h2 class="text-3xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-serif font-black uppercase tracking-tight leading-[1.02] text-foreground">
                         ¿Tienes una idea en mente? <br />
                         <span class="text-accent italic">Hagámosla Realidad</span>
                     </h2>
