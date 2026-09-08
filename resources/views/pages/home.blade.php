@@ -97,6 +97,16 @@
                     poster: '{{ asset('videos/ritual_slider_2_reveal.jpg') }}',
                     instagram: 'https://www.instagram.com/p/DZsFjYCvcig/',
                     label: '02. Pierna Pokémon'
+                },
+                {
+                    title: 'Cover Up Magistral · Mewtwo',
+                    category: 'Cover Up & Color',
+                    tag: 'Cover Up Épico',
+                    desc: 'Transformación de tatuaje antiguo en Mewtwo full color.',
+                    video: '{{ asset('videos/ritual_slider_3.mp4') }}',
+                    poster: '{{ asset('videos/ritual_slider_3_final.jpg') }}',
+                    instagram: 'https://www.instagram.com/p/DYXQlSeRfJy/',
+                    label: '03. Cover Up Mewtwo'
                 }
             ],
             specs: [
@@ -269,7 +279,7 @@
                                 class="absolute top-4 right-4 z-20 bg-black/85 backdrop-blur-md border border-white/10 text-muted hover:text-accent px-2.5 py-1 text-[10px] font-mono tracking-wider transition-colors flex items-center gap-1"
                                 title="Ver en Instagram"
                             >
-                                <span class="text-accent font-bold" x-text="'0' + (activeReel + 1) + '/02'"></span>
+                                <span class="text-accent font-bold" x-text="'0' + (activeReel + 1) + '/0' + reels.length"></span>
                                 <i data-lucide="instagram" class="w-3 h-3 ml-1"></i>
                             </a>
 
@@ -323,17 +333,17 @@
                         </div>
 
                         {{-- Reel Switcher Tabs Below Video Player --}}
-                        <div class="grid grid-cols-2 gap-2">
+                        <div class="grid grid-cols-3 gap-1.5 sm:gap-2">
                             <template x-for="(reel, rIndex) in reels" :key="rIndex">
                                 <button
                                     @click="selectReel(rIndex)"
                                     :class="activeReel === rIndex 
                                         ? 'bg-accent/20 border-accent text-accent font-bold' 
                                         : 'bg-card/60 border-border/70 text-muted hover:border-accent/40 hover:text-foreground'"
-                                    class="py-2 px-3 border text-left text-[10px] uppercase tracking-wider transition-all flex items-center justify-between"
+                                    class="py-2 px-2 sm:px-2.5 border text-left text-[9px] sm:text-[10px] uppercase tracking-wider transition-all flex items-center justify-between"
                                 >
                                     <span class="truncate" x-text="reel.label"></span>
-                                    <span :class="activeReel === rIndex ? 'w-2 h-2 rounded-full bg-accent' : 'w-1.5 h-1.5 rounded-full bg-border'"></span>
+                                    <span :class="activeReel === rIndex ? 'w-1.5 h-1.5 rounded-full bg-accent shrink-0 ml-1' : 'w-1 h-1 rounded-full bg-border shrink-0 ml-1'"></span>
                                 </button>
                             </template>
                         </div>
