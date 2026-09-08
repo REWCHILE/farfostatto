@@ -439,27 +439,31 @@
     <section 
         id="proceso"
         x-data="{
-            activeStep: 4, // Default to Step 5 (index 4: Color Shenlong - slide 7) as highlighted
+            activeStep: 0, // Starts on Step 01 (Shenlong lines / structure)
             isPlaying: true,
+            hasReached: false,
+            videoProgress: 0,
+            currentTimeFormatted: '0:00',
+            durationFormatted: '0:00',
             photoAngle: 1,
             steps: [
                 {
                     num: '01',
-                    badge: 'PREPARACIÓN & ANATOMÍA',
-                    title: 'Calco y Adaptación Anatómica',
-                    short: '01. Calco Anatómico',
-                    tag: 'Diseño en Piel',
+                    badge: 'TRAZO & ESTRUCTURA',
+                    title: 'Trazado Estructural de Líneas Sólidas',
+                    short: '01. Líneas Guía',
+                    tag: 'Precisión Rotativa',
                     featured: false,
                     mediaType: 'video',
-                    video: '{{ asset('images/proceso/paso-1-calco.mp4') }}',
-                    image: '{{ asset('images/proceso/paso-1-calco.jpg') }}',
-                    description: 'El proceso inicia con el posicionamiento milimétrico de la plantilla sobre el brazo del cliente. Cada curvatura corporal es respetada minuciosamente para que el dragón fluya de manera orgánica con los tendones y la musculatura en movimiento.',
+                    video: '{{ asset('images/proceso/paso-3-lineas.mp4') }}',
+                    image: '{{ asset('images/proceso/paso-3-lineas.jpg') }}',
+                    description: 'Con máquina rotativa de alta gama y cartuchos calibrados, se trazan las líneas fundamentales de Shenlong. Líneas firmes, uniformes y limpias que aseguran la máxima definición y legibilidad del tatuaje a través de los años.',
                     specs: [
-                        { label: 'Técnica', val: 'Estudio Anatómico & Transfer Stencil' },
-                        { label: 'Zona', val: 'Brazo y Antebrazo Completo' },
-                        { label: 'Propósito', val: 'Dinamismo visual y escala armónica' }
+                        { label: 'Máquinas', val: 'Rotativas de precisión milimétrica' },
+                        { label: 'Trazo', val: 'Línea sólida, continua y nítida' },
+                        { label: 'Profundidad', val: 'Penetración dérmica exacta sin sobretrauma' }
                     ],
-                    quote: 'Un tatuaje de alto impacto no es una imagen plana: es un diálogo directo con la silueta viva de tu cuerpo.'
+                    quote: 'La línea es el cimiento de la obra: si la estructura es impecable, el tatuaje lucirá imponente por décadas.'
                 },
                 {
                     num: '02',
@@ -481,21 +485,21 @@
                 },
                 {
                     num: '03',
-                    badge: 'TRAZO & ESTRUCTURA',
-                    title: 'Trazado Estructural de Líneas Sólidas',
-                    short: '03. Líneas Guía',
-                    tag: 'Precisión Rotativa',
+                    badge: 'PREPARACIÓN & ANATOMÍA',
+                    title: 'Calco y Adaptación Anatómica',
+                    short: '03. Calco Anatómico',
+                    tag: 'Diseño en Piel',
                     featured: false,
                     mediaType: 'video',
-                    video: '{{ asset('images/proceso/paso-3-lineas.mp4') }}',
-                    image: '{{ asset('images/proceso/paso-3-lineas.jpg') }}',
-                    description: 'Con máquina rotativa de alta gama y cartuchos calibrados, se trazan las líneas fundamentales de Shenlong. Líneas firmes, uniformes y limpias que aseguran la máxima definición y legibilidad del tatuaje a través de los años.',
+                    video: '{{ asset('images/proceso/paso-1-calco.mp4') }}',
+                    image: '{{ asset('images/proceso/paso-1-calco.jpg') }}',
+                    description: 'El proceso de preparación inicia con el posicionamiento milimétrico de la plantilla sobre el brazo del cliente. Cada curvatura corporal es respetada minuciosamente para que el dragón fluya de manera orgánica con los tendones y la musculatura en movimiento.',
                     specs: [
-                        { label: 'Máquinas', val: 'Rotativas de precisión milimétrica' },
-                        { label: 'Trazo', val: 'Línea sólida, continua y nítida' },
-                        { label: 'Profundidad', val: 'Penetración dérmica exacta sin sobretrauma' }
+                        { label: 'Técnica', val: 'Estudio Anatómico & Transfer Stencil' },
+                        { label: 'Zona', val: 'Brazo y Antebrazo Completo' },
+                        { label: 'Propósito', val: 'Dinamismo visual y escala armónica' }
                     ],
-                    quote: 'La línea es el cimiento de la obra: si la estructura es impecable, el tatuaje lucirá imponente por décadas.'
+                    quote: 'Un tatuaje de alto impacto no es una imagen plana: es un diálogo directo con la silueta viva de tu cuerpo.'
                 },
                 {
                     num: '04',
@@ -555,16 +559,37 @@
             selectStep(index) {
                 this.activeStep = index;
                 this.photoAngle = 1;
+                this.videoProgress = 0;
                 this.$nextTick(() => {
                     if (this.$refs.stepVideo) {
                         this.$refs.stepVideo.load();
-                        this.$refs.stepVideo.play().catch(() => {});
-                        this.isPlaying = true;
+                        if (this.hasReached && this.isPlaying) {
+                            this.$refs.stepVideo.play().catch(() => {});
+                        }
                     }
                     if (window.lucide) {
                         window.lucide.createIcons({ icons: window.lucide.icons });
                     }
                 });
+            },
+            updateVideoProgress() {
+                if (!this.$refs.stepVideo || !this.$refs.stepVideo.duration) return;
+                const cur = this.$refs.stepVideo.currentTime;
+                const dur = this.$refs.stepVideo.duration;
+                this.videoProgress = (cur / dur) * 100;
+                const curM = Math.floor(cur / 60);
+                const curS = Math.floor(cur % 60).toString().padStart(2, '0');
+                const durM = Math.floor(dur / 60);
+                const durS = Math.floor(dur % 60).toString().padStart(2, '0');
+                this.currentTimeFormatted = `${curM}:${curS}`;
+                this.durationFormatted = `${durM}:${durS}`;
+            },
+            seekVideo(event) {
+                if (!this.$refs.stepVideo || !this.$refs.stepVideo.duration) return;
+                const rect = event.currentTarget.getBoundingClientRect();
+                const pos = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+                this.$refs.stepVideo.currentTime = pos * this.$refs.stepVideo.duration;
+                this.updateVideoProgress();
             },
             toggleVideo() {
                 if (!this.$refs.stepVideo) return;
@@ -583,10 +608,23 @@
                 this.selectStep((this.activeStep - 1 + this.steps.length) % this.steps.length);
             },
             init() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            this.hasReached = true;
+                            if (this.$refs.stepVideo && this.isPlaying) {
+                                this.$refs.stepVideo.play().catch(() => {});
+                            }
+                        } else {
+                            if (this.$refs.stepVideo) {
+                                this.$refs.stepVideo.pause();
+                            }
+                        }
+                    });
+                }, { threshold: 0.25 });
+                observer.observe(this.$el);
+
                 this.$nextTick(() => {
-                    if (this.$refs.stepVideo) {
-                        this.$refs.stepVideo.play().catch(() => {});
-                    }
                     if (window.lucide) {
                         window.lucide.createIcons({ icons: window.lucide.icons });
                     }
@@ -654,46 +692,139 @@
                 <div class="lg:col-span-7 flex flex-col">
                     <div class="relative w-full aspect-[4/5] sm:aspect-[4/4] lg:aspect-[4/5] bg-card border border-border/80 overflow-hidden shadow-2xl flex items-center justify-center group">
                         
-                        {{-- Top Badge: Live Footage --}}
-                        <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
-                            <span class="bg-black/80 backdrop-blur-md border border-accent/40 text-accent px-3 py-1.5 text-[10px] uppercase tracking-[0.25em] font-black flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
-                                <span x-text="steps[activeStep].tag"></span>
-                            </span>
+                        {{-- Top Story-Style Segmented Step Progress Bar --}}
+                        <div class="absolute top-0 left-0 right-0 z-30 p-3 bg-gradient-to-b from-black/90 via-black/50 to-transparent flex flex-col gap-2">
+                            <div class="grid grid-cols-6 gap-1.5 sm:gap-2">
+                                <template x-for="(st, sIndex) in steps" :key="sIndex">
+                                    <button
+                                        @click="selectStep(sIndex)"
+                                        class="h-1.5 sm:h-2 rounded-full overflow-hidden transition-all duration-300 relative focus:outline-none cursor-pointer"
+                                        :class="sIndex < activeStep ? 'bg-accent shadow-[0_0_8px_rgba(212,175,55,0.5)]' : (sIndex === activeStep ? 'bg-white/30' : 'bg-white/15')"
+                                        :title="`Paso 0${sIndex + 1}: ${st.short}`"
+                                    >
+                                        <template x-if="sIndex === activeStep">
+                                            <div 
+                                                class="h-full bg-accent shadow-[0_0_12px_rgba(212,175,55,1)] transition-[width] duration-150"
+                                                :style="`width: ${videoProgress}%`"
+                                            ></div>
+                                        </template>
+                                    </button>
+                                </template>
+                            </div>
+
+                            {{-- Step Counter & Tag Header --}}
+                            <div class="flex items-center justify-between text-[10px] uppercase font-mono tracking-widest text-muted px-0.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+                                    <span class="text-accent font-black">Paso 0<span x-text="activeStep + 1"></span> / 06</span>
+                                </div>
+                                <span class="text-white/90 font-bold truncate max-w-[65%]" x-text="steps[activeStep].title"></span>
+                            </div>
                         </div>
 
-                        {{-- Step Counter Watermark --}}
-                        <div class="absolute top-4 right-4 z-20 bg-black/80 backdrop-blur-md border border-white/10 text-muted px-3 py-1.5 text-[10px] font-mono tracking-widest uppercase">
-                            Paso <span class="text-accent font-bold" x-text="steps[activeStep].num"></span> / 06
-                        </div>
+                        {{-- Floating Navigation Arrows (Mobile & Desktop) --}}
+                        <button
+                            @click="prevStep()"
+                            class="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/85 hover:bg-accent border border-accent/40 hover:border-accent text-white hover:text-black flex items-center justify-center backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.8)] transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none"
+                            title="Paso Anterior"
+                            aria-label="Paso Anterior"
+                        >
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
 
-                        {{-- Video Display (Steps 1 to 5) --}}
+                        <button
+                            @click="nextStep()"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/85 hover:bg-accent border border-accent/40 hover:border-accent text-white hover:text-black flex items-center justify-center backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.8)] transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none"
+                            title="Siguiente Paso"
+                            aria-label="Siguiente Paso"
+                        >
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+
+                        {{-- Video Display (Steps 1 to 5, plays when in view) --}}
                         <template x-if="steps[activeStep].mediaType === 'video'">
-                            <div class="relative w-full h-full">
+                            <div class="relative w-full h-full cursor-pointer" @click="toggleVideo()">
                                 <video
                                     x-ref="stepVideo"
                                     :src="steps[activeStep].video"
                                     :poster="steps[activeStep].image"
-                                    autoplay
                                     muted
                                     loop
                                     playsinline
+                                    @timeupdate="updateVideoProgress()"
+                                    @loadedmetadata="updateVideoProgress()"
                                     class="w-full h-full object-cover"
                                 ></video>
 
-                                {{-- Video Play/Pause Overlay Button --}}
-                                <button 
-                                    @click="toggleVideo()"
-                                    class="absolute bottom-4 right-4 z-20 w-11 h-11 rounded-full bg-black/80 border border-accent/40 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all duration-300 backdrop-blur-md shadow-lg focus:outline-none"
-                                    :title="isPlaying ? 'Pausar Video' : 'Reproducir Video'"
+                                {{-- Central Play Overlay Indicator when paused --}}
+                                <div 
+                                    x-show="!isPlaying" 
+                                    x-transition.opacity
+                                    class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 pointer-events-none"
                                 >
-                                    <i :data-lucide="isPlaying ? 'pause' : 'play'" class="w-5 h-5"></i>
-                                </button>
+                                    <div class="w-16 h-16 rounded-full bg-accent/90 text-black flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.7)] backdrop-blur-sm">
+                                        <svg class="w-7 h-7 fill-current ml-1" viewBox="0 0 24 24">
+                                            <polygon points="5 3 19 12 5 21 5 3"/>
+                                        </svg>
+                                    </div>
+                                </div>
 
-                                {{-- Video Indicator --}}
-                                <div class="absolute bottom-4 left-4 z-20 bg-black/70 backdrop-blur-sm border border-white/10 px-3 py-1 text-[10px] uppercase tracking-widest text-foreground/80 flex items-center gap-2">
-                                    <i data-lucide="video" class="w-3.5 h-3.5 text-accent"></i>
-                                    Video en Bucle
+                                {{-- Bottom Video Scrubber Timeline & Playback Info Bar --}}
+                                <div 
+                                    @click.stop
+                                    class="absolute bottom-0 left-0 right-0 z-20 p-3.5 bg-gradient-to-t from-black/95 via-black/75 to-transparent flex flex-col gap-2.5"
+                                >
+                                    {{-- Interactive Clickable Progress Bar / Scrubber with Visible Thumb --}}
+                                    <div 
+                                        @click="seekVideo($event)"
+                                        class="w-full py-1.5 cursor-pointer group/bar relative select-none"
+                                        title="Línea de tiempo del video (toca o haz clic para moverte)"
+                                    >
+                                        <div class="w-full h-2.5 bg-white/20 rounded-full overflow-hidden relative shadow-inner border border-white/10">
+                                            <div 
+                                                class="h-full bg-gradient-to-r from-accent via-accent to-[#FFF5BE] shadow-[0_0_12px_rgba(212,175,55,1)] transition-[width] duration-100"
+                                                :style="`width: ${videoProgress}%`"
+                                            ></div>
+                                        </div>
+                                        {{-- Scrubber Thumb Head --}}
+                                        <div 
+                                            class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent border-2 border-white shadow-[0_0_10px_rgba(212,175,55,1)] pointer-events-none transition-[left] duration-100"
+                                            :style="`left: ${videoProgress}%`"
+                                        ></div>
+                                    </div>
+
+                                    {{-- Playback Controls & Timestamp Row --}}
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <button 
+                                                @click="toggleVideo()"
+                                                class="w-8 h-8 rounded-full bg-accent text-black flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shadow-[0_0_15px_rgba(212,175,55,0.6)] focus:outline-none"
+                                                :title="isPlaying ? 'Pausar Video' : 'Reproducir Video'"
+                                            >
+                                                <template x-if="isPlaying">
+                                                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                                                        <rect x="6" y="4" width="4" height="16" rx="1"/>
+                                                        <rect x="14" y="4" width="4" height="16" rx="1"/>
+                                                    </svg>
+                                                </template>
+                                                <template x-if="!isPlaying">
+                                                    <svg class="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
+                                                        <polygon points="5 3 19 12 5 21 5 3"/>
+                                                    </svg>
+                                                </template>
+                                            </button>
+                                            
+                                            <span class="font-mono text-[11px] text-white/95 font-bold tracking-wider" x-text="currentTimeFormatted + ' / ' + durationFormatted"></span>
+                                        </div>
+
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-[9px] uppercase tracking-wider font-bold text-accent bg-black/80 border border-accent/40 px-2.5 py-1 rounded backdrop-blur-sm shadow" x-text="steps[activeStep].tag"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </template>
