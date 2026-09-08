@@ -138,7 +138,7 @@
     </main>
 
     {{-- Luxury Footer --}}
-    <footer class="bg-surface border-t border-border pt-20 pb-10 mt-auto">
+    <footer id="footer" class="snap-section scroll-mt-20 bg-surface border-t border-border pt-20 pb-10 mt-auto">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
                 {{-- Brand Section --}}

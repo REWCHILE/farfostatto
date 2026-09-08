@@ -5,10 +5,69 @@
 @section('content')
 <div class="bg-background text-foreground">
 
+    {{-- Floating Section Indicator & Quick Snap Navigator (Desktop & Tablet) --}}
+    <nav 
+        x-data="{
+            activeSection: 'hero-section',
+            sections: [
+                { id: 'hero-section', label: 'Inicio', num: '01' },
+                { id: 'ritual', label: 'El Ritual', num: '02' },
+                { id: 'proceso', label: 'Proceso Shenlong', num: '03' },
+                { id: 'footer', label: 'Contacto & Info', num: '04' }
+            ],
+            scrollToSection(id) {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                }
+            },
+            init() {
+                const obs = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            this.activeSection = entry.target.id;
+                        }
+                    });
+                }, { threshold: 0.3 });
+
+                this.sections.forEach(s => {
+                    const el = document.getElementById(s.id);
+                    if (el) obs.observe(el);
+                });
+            }
+        }"
+        class="fixed right-5 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col gap-5 items-center p-2.5 rounded-full bg-black/75 backdrop-blur-md border border-accent/25 shadow-[0_0_30px_rgba(0,0,0,0.9)]"
+        aria-label="Navegación por secciones"
+    >
+        <template x-for="sec in sections" :key="sec.id">
+            <button
+                @click="scrollToSection(sec.id)"
+                class="group relative flex items-center justify-center p-1 focus:outline-none cursor-pointer"
+                :aria-label="'Ir a ' + sec.label"
+            >
+                {{-- Tooltip floating to the left --}}
+                <div 
+                    class="absolute right-full mr-3 px-3 py-1 bg-black/95 border border-accent/40 text-accent text-[10px] uppercase tracking-widest font-black whitespace-nowrap rounded pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-x-1 group-hover:translate-x-0 shadow-2xl backdrop-blur-md"
+                >
+                    <span class="text-white/60 font-mono mr-1" x-text="sec.num + ' ·'"></span>
+                    <span x-text="sec.label"></span>
+                </div>
+
+                {{-- Dot / Pill Indicator --}}
+                <div 
+                    class="transition-all duration-300 rounded-full"
+                    :class="activeSection === sec.id 
+                        ? 'w-2.5 h-7 bg-accent shadow-[0_0_15px_rgba(212,175,55,1)]' 
+                        : 'w-2.5 h-2.5 bg-white/30 group-hover:bg-accent/70'"
+                ></div>
+            </button>
+        </template>
+    </nav>
+
     {{-- Hero Section --}}
     <section 
         id="hero-section"
-        class="relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
+        class="snap-section scroll-mt-20 relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
     >
         {{-- Background Video Optimized for Horizontal/Responsive Displays --}}
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -83,6 +142,18 @@
                 </a>
             </div>
         </div>
+
+        {{-- Scroll Cue Indicator --}}
+        <a 
+            href="#ritual" 
+            class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 group text-muted hover:text-accent transition-colors focus:outline-none"
+            title="Deslizar a El Ritual"
+        >
+            <span class="text-[9px] uppercase tracking-[0.35em] text-accent font-bold group-hover:tracking-[0.45em] transition-all">Desliza</span>
+            <div class="w-5 h-8 rounded-full border border-accent/50 group-hover:border-accent flex items-start justify-center p-1 backdrop-blur-sm transition-colors shadow-[0_0_10px_rgba(212,175,55,0.2)]">
+                <div class="w-1.5 h-2 bg-accent rounded-full animate-bounce"></div>
+            </div>
+        </a>
 
         {{-- Decorative Watermark Text --}}
         <div class="absolute bottom-10 left-10 hidden lg:block overflow-hidden pointer-events-none">
@@ -212,7 +283,7 @@
                 });
             }
         }"
-        class="py-32 bg-surface relative overflow-hidden border-t border-border/40"
+        class="snap-section scroll-mt-20 py-32 bg-surface relative overflow-hidden border-t border-border/40"
     >
         {{-- Radial Background Ambience --}}
         <div 
@@ -631,7 +702,7 @@
                 });
             }
         }"
-        class="scroll-mt-24 py-32 bg-background relative overflow-hidden border-t border-border/50"
+        class="snap-section scroll-mt-20 py-32 bg-background relative overflow-hidden border-t border-border/50"
     >
         {{-- Atmospheric Background Glows --}}
         <div class="absolute top-1/3 -right-60 w-[500px] h-[500px] rounded-full bg-accent/5 blur-[140px] pointer-events-none"></div>

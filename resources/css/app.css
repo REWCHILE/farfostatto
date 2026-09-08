@@ -59,19 +59,45 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
 }
 
-/* Scrollbar styling */
+/* Smooth Section Scrolling & Scroll Snap */
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  scroll-margin-top: 5rem;
+}
+
+/* Brand-colored Luxury Scrollbar (Firefox Standard) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) #060606;
+}
+
+/* Brand-colored Luxury Scrollbar (Webkit: Chrome, Edge, Safari, Opera) */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 9px;
+  height: 9px;
 }
+
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: #050505;
+  border-left: 1px solid rgba(212, 175, 55, 0.15);
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #222;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #F5DE88 0%, #D4AF37 50%, #8C6F12 100%);
+  border-radius: 9999px;
+  border: 2px solid #050505;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: linear-gradient(180deg, #FFF5BE 0%, #E6CA65 50%, #D4AF37 100%);
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.8);
 }
 
 /* Animated Golden Brand Border Wave & Shimmer Effects */
