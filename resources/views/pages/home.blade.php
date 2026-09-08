@@ -70,12 +70,35 @@
         </div>
     </section>
 
-    {{-- Presentation Section: El Ritual de las Imágenes --}}
+    {{-- Presentation Section: El Ritual de las Imágenes con Video Slider --}}
     <section 
         id="ritual"
         x-data="{
             activeIndex: 0,
+            activeReel: 0,
             videoPlaying: true,
+            reels: [
+                {
+                    title: 'Retrato Realista & Bull Terrier',
+                    category: 'Antes & Después',
+                    tag: 'Antes & Después',
+                    desc: 'Transformación y homenaje canino sobre el hombro.',
+                    video: '{{ asset('videos/ritual_antes_despues.mp4') }}',
+                    poster: '{{ asset('videos/ritual_antes_despues_after.jpg') }}',
+                    instagram: 'https://www.instagram.com/p/Db-y_0Jx6l5/',
+                    label: '01. Retrato Bull Terrier'
+                },
+                {
+                    title: 'Línea & Proceso Pokémon',
+                    category: 'Sesión en Vivo',
+                    tag: 'Sesión en Vivo',
+                    desc: 'Evolución de Gengar y Haunter en pierna completa.',
+                    video: '{{ asset('videos/ritual_slider_2.mp4') }}',
+                    poster: '{{ asset('videos/ritual_slider_2_reveal.jpg') }}',
+                    instagram: 'https://www.instagram.com/p/DZsFjYCvcig/',
+                    label: '02. Pierna Pokémon'
+                }
+            ],
             specs: [
                 {
                     icon: 'shield-check',
@@ -102,6 +125,25 @@
                     description: 'Cada obra es concebida y adaptada para fluir en armonía orgánica con la musculatura y contorno del cuerpo.'
                 }
             ],
+            selectReel(index) {
+                this.activeReel = index;
+                this.videoPlaying = true;
+                this.$nextTick(() => {
+                    if (this.$refs.ritualVideo) {
+                        this.$refs.ritualVideo.load();
+                        this.$refs.ritualVideo.play().catch(() => {});
+                    }
+                    if (window.lucide) {
+                        window.lucide.createIcons({ icons: window.lucide.icons });
+                    }
+                });
+            },
+            nextReel() {
+                this.selectReel((this.activeReel + 1) % this.reels.length);
+            },
+            prevReel() {
+                this.selectReel((this.activeReel - 1 + this.reels.length) % this.reels.length);
+            },
             toggleRitualVideo() {
                 if (!this.$refs.ritualVideo) return;
                 if (this.$refs.ritualVideo.paused) {
@@ -204,61 +246,97 @@
                     </div>
                 </div>
 
-                {{-- Right Column (7 cols): Real Video Showcase + Rotating Pillar Card --}}
+                {{-- Right Column (7 cols): Interactive Video Reel Slider + Rotating Pillar Card --}}
                 <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
                     
-                    {{-- 1. Transformation Video Reel Card (7 cols of 12) --}}
-                    <div class="md:col-span-7 relative aspect-[9/16] bg-card border border-border/80 overflow-hidden shadow-2xl group flex items-center justify-center">
-                        
-                        {{-- Top Live Badge --}}
-                        <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
-                            <span class="bg-black/85 backdrop-blur-md border border-accent/40 text-accent px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] font-black flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
-                                Antes & Después
-                            </span>
+                    {{-- 1. Video Reels Slider Card (7 cols of 12) --}}
+                    <div class="md:col-span-7 flex flex-col space-y-3">
+                        <div class="relative aspect-[9/16] bg-card border border-border/80 overflow-hidden shadow-2xl group flex items-center justify-center">
+                            
+                            {{-- Top Live Badge --}}
+                            <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
+                                <span class="bg-black/85 backdrop-blur-md border border-accent/40 text-accent px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] font-black flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+                                    <span x-text="reels[activeReel].tag"></span>
+                                </span>
+                            </div>
+
+                            {{-- Top Right Instagram Handle & Slide Counter --}}
+                            <a 
+                                :href="reels[activeReel].instagram"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="absolute top-4 right-4 z-20 bg-black/85 backdrop-blur-md border border-white/10 text-muted hover:text-accent px-2.5 py-1 text-[10px] font-mono tracking-wider transition-colors flex items-center gap-1"
+                                title="Ver en Instagram"
+                            >
+                                <span class="text-accent font-bold" x-text="'0' + (activeReel + 1) + '/02'"></span>
+                                <i data-lucide="instagram" class="w-3 h-3 ml-1"></i>
+                            </a>
+
+                            {{-- Active Video Reel --}}
+                            <video
+                                x-ref="ritualVideo"
+                                :src="reels[activeReel].video"
+                                :poster="reels[activeReel].poster"
+                                autoplay
+                                muted
+                                loop
+                                playsinline
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            ></video>
+
+                            {{-- Slider Navigation Arrows Overlay --}}
+                            <button
+                                @click="prevReel()"
+                                class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/80 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md shadow-lg transition-all focus:outline-none"
+                                title="Video Anterior"
+                            >
+                                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                            </button>
+
+                            <button
+                                @click="nextReel()"
+                                class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/80 border border-white/20 text-white hover:border-accent hover:text-accent hover:scale-110 flex items-center justify-center backdrop-blur-md shadow-lg transition-all focus:outline-none"
+                                title="Siguiente Video"
+                            >
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </button>
+
+                            {{-- Play/Pause Overlay Button --}}
+                            <button
+                                @click="toggleRitualVideo()"
+                                class="absolute bottom-4 right-4 z-20 w-10 h-10 rounded-full bg-black/85 border border-accent/40 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none"
+                                :title="videoPlaying ? 'Pausar Video' : 'Reproducir Video'"
+                            >
+                                <i :data-lucide="videoPlaying ? 'pause' : 'play'" class="w-4 h-4"></i>
+                            </button>
+
+                            {{-- Bottom Left Video Title Tag --}}
+                            <div class="absolute bottom-4 left-4 z-20 max-w-[70%] bg-black/85 backdrop-blur-sm border border-white/10 px-3 py-1.5 text-[10px] uppercase tracking-wider text-foreground/90 font-bold flex items-center gap-1.5">
+                                <i data-lucide="video" class="w-3 h-3 text-accent shrink-0"></i>
+                                <span class="truncate" x-text="reels[activeReel].title"></span>
+                            </div>
+
+                            {{-- Corner Gold Accents --}}
+                            <div class="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 border-accent pointer-events-none z-30"></div>
+                            <div class="absolute -bottom-1 -right-1 w-5 h-5 border-b-2 border-r-2 border-accent pointer-events-none z-30"></div>
                         </div>
 
-                        {{-- Top Right Instagram Handle Badge --}}
-                        <a 
-                            href="https://www.instagram.com/p/Db-y_0Jx6l5/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="absolute top-4 right-4 z-20 bg-black/85 backdrop-blur-md border border-white/10 text-muted hover:text-accent px-2.5 py-1 text-[10px] font-mono tracking-wider transition-colors flex items-center gap-1"
-                        >
-                            <i data-lucide="instagram" class="w-3 h-3"></i>
-                            @farfos_tattoo
-                        </a>
-
-                        {{-- Looping Video Reel --}}
-                        <video
-                            x-ref="ritualVideo"
-                            src="{{ asset('videos/ritual_antes_despues.mp4') }}"
-                            poster="{{ asset('videos/ritual_antes_despues_after.jpg') }}"
-                            autoplay
-                            muted
-                            loop
-                            playsinline
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        ></video>
-
-                        {{-- Play/Pause Overlay Button --}}
-                        <button
-                            @click="toggleRitualVideo()"
-                            class="absolute bottom-4 right-4 z-20 w-10 h-10 rounded-full bg-black/85 border border-accent/40 text-accent flex items-center justify-center hover:scale-110 hover:bg-accent hover:text-accent-foreground transition-all backdrop-blur-md shadow-lg focus:outline-none"
-                            :title="videoPlaying ? 'Pausar Video' : 'Reproducir Video'"
-                        >
-                            <i :data-lucide="videoPlaying ? 'pause' : 'play'" class="w-4 h-4"></i>
-                        </button>
-
-                        {{-- Bottom Left Video Tag --}}
-                        <div class="absolute bottom-4 left-4 z-20 max-w-[70%] bg-black/85 backdrop-blur-sm border border-white/10 px-3 py-1.5 text-[10px] uppercase tracking-wider text-foreground/90 font-bold flex items-center gap-1.5">
-                            <i data-lucide="video" class="w-3 h-3 text-accent"></i>
-                            Retrato & Bull Terrier
+                        {{-- Reel Switcher Tabs Below Video Player --}}
+                        <div class="grid grid-cols-2 gap-2">
+                            <template x-for="(reel, rIndex) in reels" :key="rIndex">
+                                <button
+                                    @click="selectReel(rIndex)"
+                                    :class="activeReel === rIndex 
+                                        ? 'bg-accent/20 border-accent text-accent font-bold' 
+                                        : 'bg-card/60 border-border/70 text-muted hover:border-accent/40 hover:text-foreground'"
+                                    class="py-2 px-3 border text-left text-[10px] uppercase tracking-wider transition-all flex items-center justify-between"
+                                >
+                                    <span class="truncate" x-text="reel.label"></span>
+                                    <span :class="activeReel === rIndex ? 'w-2 h-2 rounded-full bg-accent' : 'w-1.5 h-1.5 rounded-full bg-border'"></span>
+                                </button>
+                            </template>
                         </div>
-
-                        {{-- Corner Gold Accents --}}
-                        <div class="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 border-accent pointer-events-none z-30"></div>
-                        <div class="absolute -bottom-1 -right-1 w-5 h-5 border-b-2 border-r-2 border-accent pointer-events-none z-30"></div>
                     </div>
 
                     {{-- 2. Rotating Spec Details Card (5 cols of 12) --}}
@@ -300,13 +378,13 @@
                             </div>
 
                             <a 
-                                href="https://www.instagram.com/p/Db-y_0Jx6l5/" 
+                                :href="reels[activeReel].instagram" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-accent/80 hover:text-accent font-bold pt-2 transition-colors group"
                             >
                                 <i data-lucide="instagram" class="w-3.5 h-3.5 text-accent"></i>
-                                Ver reel en Instagram
+                                <span>Ver reel activo en Instagram</span>
                                 <i data-lucide="arrow-up-right" class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
                             </a>
                         </div>
